@@ -1,0 +1,20 @@
+*****************************************************************************************************************
+Section 3: A First Look at React
+*****************************************************************************************************************
+
+- Vanila JS - pure JS without any framework, but can be Jquery
+
+- Vanila JS vs React: https://codesandbox.io/s/react-first-app-advice-52879f
+
+- React - JS library for building user interfaces. 
+1) Based on components - combining blocks of complex UI
+2) Declarative 
+ + describe how components look like and how they work using a declarative syntax called JSX.  
+ + Declarative telling React what a component shoulld look like, based on current data/State
+ + React is abstraction away from DOM: we never touch the DOM(like vanilla JS)
+ + JSX: a syntax that combines HTML, CSS, JS as well as referencing other components.
+3) State-driven: REACT reacts to state changes by re-rendering the UI. State -> Render -> UI(Component written with JSX) -> Action on UI -> Update state -> Re-render -> UI
+4) JS library - React is just library (not framework), because it's only the 'view' layer. We need to pick multiple external libraries to build a comlete application. Complite frameworks built on top of React - NEXT.js, Remix
+5) Extremely popular - a lot of companies use React
+6) Created by facebook in 2011 by Jordan Walke
+
