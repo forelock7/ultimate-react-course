@@ -18,3 +18,13 @@ Section 3: A First Look at React
 5) Extremely popular - a lot of companies use React
 6) Created by facebook in 2011 by Jordan Walke
 
+- Two option for setting up a project
+1) create-react-app (complete 'starter kit', ESLint, Prettier, Jest etc) - slow and outdated technologies. It's used for small projects.
+2) VITE - modern too. Need to manually set up ESLint. Extrimaly fast host replacement (HMR) and bundling. It's used for real projects
+
+- NEXT.js and Remix framework provide more functionality than Vanila React by itself.
+
+- Create React project using 'create-react-app'
+npx create-react-app@5 pizza-menu
+
+- To run JS/TS inside VScode use 'Quokka.js' extansios
