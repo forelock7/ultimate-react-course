@@ -24,7 +24,28 @@ Section 3: A First Look at React
 
 - NEXT.js and Remix framework provide more functionality than Vanila React by itself.
 
-- Create React project using 'create-react-app'
+- Create React project from scratch using 'create-react-app' 
 npx create-react-app@5 pizza-menu
 
 - To run JS/TS inside VScode use 'Quokka.js' extansios
+
+*****************************************************************************************************************
+Section 5: Working With Components, Props, and JSX
+*****************************************************************************************************************
+
+- Start React project 
+npm run start
+
+- React apps are entirely made out of components
+- building blocks of user inerfaces in React
+- Piece of UI that has its own 'data', 'logic' and 'appearance' (how it works and looks)
+- We build complex UIs by building multiple components and combining them
+- Components can be reused, nested inside each other and pass data between them
+
+- Component tree - to understand the structure (Parent and child components)
+
+- Rules for functions of components:
+1) function name must start with capital letter 
+2) function must return murkup (html)
+3) Each component can return only one element (correct: <div><h1>Bla</h1><h2>Bla</h2></div>, wrong: <h1>Bla</h1><h2>Bla</h2>)
+4) Never nest component function in component function
