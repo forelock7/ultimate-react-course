@@ -49,3 +49,26 @@ npm run start
 2) function must return murkup (html)
 3) Each component can return only one element (correct: <div><h1>Bla</h1><h2>Bla</h2></div>, wrong: <h1>Bla</h1><h2>Bla</h2>)
 4) Never nest component function in component function
+
+- Component:
++ data
++ logic
++ appearance
+
+- JSX:
+  + Declarative syntax to describe what components look like and how they work
+  + Components must return a block of JSX
+  + Extension of JS that allows us to embed following elements into HTML:
+    1) JS
+    2) CSS
+    3) React Components
+
+- BABEL in React convert HTML with JSX into JS. (you can use just JS functions instead of JSX syntax)
+
+- Imperative approach - "How to do this" - create elements via Vanila JS 
+   + Manual DOM element selections and DOM traversing.
+   + Step-by-Step DOM mutation until we reach the desired UI
+- Declarative approach - "What we want"
+   + Describe what UI should look like using JSX, based on current data
+   + React is an abstraction away from DOM: we never touch the DOM
+   + Instead, we think of the UI as a reflection of the current data
