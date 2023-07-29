@@ -72,3 +72,5 @@ npm run start
    + Describe what UI should look like using JSX, based on current data
    + React is an abstraction away from DOM: we never touch the DOM
    + Instead, we think of the UI as a reflection of the current data
+
+- alert can happen twice because of 'strict' mode 
