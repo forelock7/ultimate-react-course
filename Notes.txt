@@ -99,3 +99,5 @@ npm run start
     + more predictable
     + easier to debug
     + more performant
+
+- Challenge #1: https://codesandbox.io/s/profile-card-v1-2hrm4p?file=/src/index.js
