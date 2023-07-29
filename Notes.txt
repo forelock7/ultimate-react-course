@@ -77,3 +77,15 @@ npm run start
 
 - One technology per file (traditional)
 - One component per file (React new paradigm)
+
+- Use JS code in JSX syntax - just cover with {}
+        <p>{props.ingredient}</p>
+
+- props in React: if you need use something except string - use JS block {}
+      <Pizza
+        name="Pizza Spinaci"
+        ingredient="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName="pizzas/spinaci.jpg"
+        price={10}
+      />
+
