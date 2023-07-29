@@ -74,3 +74,6 @@ npm run start
    + Instead, we think of the UI as a reflection of the current data
 
 - alert can happen twice because of 'strict' mode 
+
+- One technology per file (traditional)
+- One component per file (React new paradigm)
