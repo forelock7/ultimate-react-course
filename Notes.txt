@@ -81,7 +81,7 @@ npm run start
 - Use JS code in JSX syntax - just cover with {}
         <p>{props.ingredient}</p>
 
-- props in React: if you need use something except string - use JS block {}
+- props in React: if you need use something except string - use JS mode {}
       <Pizza
         name="Pizza Spinaci"
         ingredient="Tomato, mozarella, spinach, and ricotta cheese"
@@ -101,3 +101,23 @@ npm run start
     + more performant
 
 - Challenge #1: https://codesandbox.io/s/profile-card-v1-2hrm4p?file=/src/index.js
+
+- In JS moed {} you can place JS expression (reference vars, create arrays or objects, [].map? ternary operator)
+- In JS mode statements are not allowed (if/else, for, switch)
+- JSX can be written enywhere inside a components (in if/else, assign to vars, pass it into functions)
+- Piece of JSX can only have one root element. If you need more, use <REact.Frgment> (or the short <>)
+
+- If we use iteration in REact, you should use 'key' unique property to avoid console log errors
+function Menu() {
+  return (
+    <main className="menu">
+      <h2>Our menu</h2>
+
+      <div>
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </div>
+    </main>
+  );
+}
