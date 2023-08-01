@@ -147,3 +147,7 @@ function Pizza(props) {
     </li>
   );
 }
+
+- props can be destructuring
+function Pizza(props)
+function Pizza({ pizzaObj })
