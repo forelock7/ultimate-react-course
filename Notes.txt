@@ -121,3 +121,14 @@ function Menu() {
     </main>
   );
 }
+
+- Shortcircuting in React. Use only boolean value (NOT truthy or falsy value), because boolean values are not returned:
+      {numPizzas > 0 && (
+        <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            <Pizza pizzaObj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      )}
+
+- In LS mode we can use if/else statement or any other JS code, except code that produce some value
