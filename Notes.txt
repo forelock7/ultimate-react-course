@@ -169,3 +169,10 @@ function Pizza({ pizzaObj })
 <React.Fragment key={ghdsghd}>
 .....
 </ React.Fragment>
+
+- three options in JSX
+      <span>
+        {level === "advanced" && "💪"}
+        {level === "intermediate" && "👍"}
+        {level === "begginer" && "🐣"}
+      </span>
