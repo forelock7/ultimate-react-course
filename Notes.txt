@@ -180,3 +180,25 @@ function Pizza({ pizzaObj })
 *****************************************************************************************************************
 Section 6: State, Events, and Forms: Interactive Components
 *****************************************************************************************************************
+
+- Set style for element
+        <button style={{ backgroundColor: '#7950f2', color: '#fff' }}>Previous</button>
+
+- Set click event for element ('onClick')
+<button style={{ backgroundColor: '#7950f2', color: '#fff' }} onClick={() => alert('Next')}>
+
+- Alert Function immidiatly run (NOT valid for this case)
+<button onClick={alert('Next')}>
+
+- MOuse handler
+onMouseEnter={() => alert('TEST')}
+
+- Another way to define handler function
+  ........
+  function handlePrevious() {
+    alert('Previous');
+  }
+  return (
+    ........
+        <button style={{ backgroundColor: '#7950f2', color: '#fff' }} onClick={handlePrevious}>
+    ........
