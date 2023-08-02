@@ -202,3 +202,20 @@ onMouseEnter={() => alert('TEST')}
     ........
         <button style={{ backgroundColor: '#7950f2', color: '#fff' }} onClick={handlePrevious}>
     ........
+
+- State - data that a component can hold over time, necessary for information that it needs to remember trhoughout the app's lifecucle
+- "Component's memory"
+- Component state - single local component variable ("Piece of state", "State variable")
+- Updating component state triggers React to re-render the component
+
+- Component View - when component is rendered
+
+- State allows:
+    1) Upfate the component's view (by re-rendering)
+    2) Persist local variables between renders
+
+- Use state in code, where 'step' - variable, 'setStep' - function to update state, 'useState' - function to create a state with init value
+  const [step, setStep] = useState(1);
+  function handlePrevious() {
+    if (step > 1) setStep(step - 1);
+  }
