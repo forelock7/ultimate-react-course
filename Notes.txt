@@ -219,3 +219,10 @@ onMouseEnter={() => alert('TEST')}
   function handlePrevious() {
     if (step > 1) setStep(step - 1);
   }
+
+- Do NOT update state like this:
+step = step + 1
+
+- Update State -> Re-render component -> View
+- In React, a view is updated by re-rendering the component
+- A component is re-rendered when its state is updated
