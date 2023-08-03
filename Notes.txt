@@ -226,3 +226,9 @@ step = step + 1
 - Update State -> Re-render component -> View
 - In React, a view is updated by re-rendering the component
 - A component is re-rendered when its state is updated
+- DATA <-> UI
+
+- Use ONLY callback function to update State
+    if (step < 3) setStep((s) => s + 1);
+    // BAD PRACTICE:
+    if (step < 3) setStep(step + 1);
