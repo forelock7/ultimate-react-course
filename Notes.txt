@@ -232,3 +232,16 @@ step = step + 1
     if (step < 3) setStep((s) => s + 1);
     // BAD PRACTICE:
     if (step < 3) setStep(step + 1);
+
+- UI as a function of state. UI as a reflection of data changing pver time
+
+- For data that should not trigger re-rendering UI do not use state
+
+- Prevent default action when submit form
+function Form() {
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+  return (
+    <form className="add-form" onSubmit={handleSubmit}>
+    .....
