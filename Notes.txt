@@ -245,3 +245,17 @@ function Form() {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
     .....
+
+- State 
+  + internal data, owned by component
+  + Component "memory"
+  + Can be updated by component itself
+  + Updating state causes component to re-render
+  + Used to make components interactive
+
+- Props:
+  + External data, owned by parent component
+  + Similar to function parameters
+  + Read-only
+  + Receiving new props causes component to re-render. Usually when the parent's state has been updated
+  + Used by parent to confugure child component ("settings")
