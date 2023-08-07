@@ -262,3 +262,42 @@ function Form() {
 
   - https://codesandbox.io/s/react-exercise-flashcards-starter-sx254w?file=/src/App.js
   - https://codesandbox.io/s/date-counter-v2-d23kg4?file=/src/App.js
+
+*****************************************************************************************************************
+Section 7: Thinking In React: State Management
+*****************************************************************************************************************
+
+- The "Thinking in React" process:
+  1. Break the desired UI into components and estab;ish the component tree
+  2. Build a static version in React (without state)
+  3. Think about state:                                       |
+    + When to use state                                       |
+    + Types of state: local vs global                         |
+    + Where to place each piece of state                      | State managment
+  4. Establish data flow:                                     |  
+    + One-way data flow                                       |
+    + Child-to-parent communication                           |
+    + Accessing global state                                  |
+
+- Local State - only for one or few components, chiled components
+- Global State - many components. Shared state that accessible to every component in the entire applicatio. (by React Context API, Redux). Use firstly local state!!!!
+
+- Pass function as props:
+      export default function App() {
+        ....
+        function handleAddItems(item) {
+          setItems((items) => [...items, item]);
+        }
+        return (
+          <div className="app">
+            ....
+            <Form onAddItems={handleAddItems} />
+            ....
+          </div>
+        );
+      }
+      function Form({ onAddItems }) {
+          ......
+          onAddItems(newItem);
+          ......
+        }
