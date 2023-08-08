@@ -301,3 +301,6 @@ Section 7: Thinking In React: State Management
           onAddItems(newItem);
           ......
         }
+
+- "Lifting Up State" - just moving state of component to parent component if you need access to state of several sibling component. 
+Child-to parent communication (inverse data flow): child updating parent state (data "flowing" up). Use set function of state in child to update state.
