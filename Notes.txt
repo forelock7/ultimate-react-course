@@ -307,3 +307,9 @@ Child-to parent communication (inverse data flow): child updating parent state (
 
 - Derived state(похідний) - state that is computed from an existing piece of state or from props
 Do not need to devide state of object to several states of elements of that object. Just use regular vars, no useState. State of object is the single state of thruth for related data.
+
+- Sort items in alphabetical order
+if (sortBy === 'description') sortedItems = items.slice().sort((a, b) => a.description.localeCompare(b.description));
+
+- Sort by boolean and number:
+  if (sortBy === 'packed') sortedItems = items.slice().sort((a, b) => Number(a.packed) - Number(b.packed));
