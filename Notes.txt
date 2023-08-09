@@ -313,3 +313,18 @@ if (sortBy === 'description') sortedItems = items.slice().sort((a, b) => a.descr
 
 - Sort by boolean and number:
   if (sortBy === 'packed') sortedItems = items.slice().sort((a, b) => Number(a.packed) - Number(b.packed));
+
+  - 'children' Props
+  props.children
+  Example:
+            <Button textColor="#fff" bgColor="#7950f2" onClick={handlePrevious}>
+              <span>👈</span> Previous
+            </Button>
+            ......
+            function Button({ textColor, bgColor, onClick, children }) {
+              return (
+                <button style={{ backgroundColor: bgColor, color: textColor }} onClick={onClick}>
+                  {children}
+                </button>
+              );
+            }
