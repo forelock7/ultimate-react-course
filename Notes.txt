@@ -328,3 +328,9 @@ if (sortBy === 'description') sortedItems = items.slice().sort((a, b) => a.descr
                 </button>
               );
             }
+
+- Work with current state inside setState method
+  const [selectedFriend, setSelectedFriend] = useState(null);
+    function handleSelection(friend) {
+    setSelectedFriend((cur) => (cur?.id === friend.id ? null : friend));
+  }
