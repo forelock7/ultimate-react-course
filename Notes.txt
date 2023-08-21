@@ -334,3 +334,15 @@ if (sortBy === 'description') sortedItems = items.slice().sort((a, b) => a.descr
     function handleSelection(friend) {
     setSelectedFriend((cur) => (cur?.id === friend.id ? null : friend));
   }
+
+*****************************************************************************************************************
+Section 10: Thinking in React: Components, Composition, and Reusability
+*****************************************************************************************************************
+
+- Split a UI into component:
+  1) Logical separation of content/layout
+  2) Reusability
+  3) Resposibility / complexity
+  4) Personal coding style
+
+- Start from building big component and then split it if necessary
