@@ -346,3 +346,27 @@ Section 10: Thinking in React: Components, Composition, and Reusability
   4) Personal coding style
 
 - Start from building big component and then split it if necessary
+
+- Categories of Components:
+  1) Stateless / presentational components - no state, can receive props and simply present received data or pther content, usually small and reusable
+  2) Stateful components - have state, can still be reusable
+  3) Structural components - pages/layouts/screens of app, result of composition, can be huge and non-reusable(but don't have to)
+
+- Component Composition:
+1.
+  function Model() {
+    return (
+      <div>
+        <Success />
+      </div>
+    )
+  }
+2. - makes component reusable!!!!!
+  function Model({ children }) {
+    return (
+      <div>
+        {children}
+      </div>
+    )
+  }
+
