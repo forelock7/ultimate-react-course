@@ -370,3 +370,10 @@ Section 10: Thinking in React: Components, Composition, and Reusability
     )
   }
 
+- Passing Elements as props
+<Box element={<Movie />} />
+instead of 
+<Box>
+  <Movie />
+</Bob>
+
