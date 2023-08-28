@@ -377,3 +377,15 @@ instead of
   <Movie />
 </Bob>
 
+- Props as an API of component - try to have balance of props, their number should be enough, but not too many
+    <StarRating maxRating={5} messages={['Terrible', 'Bad', 'Okay', 'Good', 'Amazing']} />
+    <StarRating maxRating={5} color="red" className="test" defaultRating={3} />
+    ......
+    export default function StarRating({
+      maxRating = 5,
+      color = '#fcc419',
+      size = 48,
+      className = '',
+      messages = [],
+      defaultRating = 0,
+    }) 
