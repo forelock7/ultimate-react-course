@@ -389,3 +389,15 @@ instead of
       messages = [],
       defaultRating = 0,
     }) 
+
+- Validation of props type. This approach is outdated. Now just use TypeScript
+import PropTypes from 'prop-types';
+StarRating.propTypes = {
+  maxRating: PropTypes.number,
+  defaultRating: PropTypes.number,
+  color: PropTypes.string,
+  size: PropTypes.number,
+  messages: PropTypes.array,
+  className: PropTypes.string,
+  onSetRating: PropTypes.func,
+};
