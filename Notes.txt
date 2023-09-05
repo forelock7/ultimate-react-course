@@ -401,3 +401,41 @@ StarRating.propTypes = {
   className: PropTypes.string,
   onSetRating: PropTypes.func,
 };
+
+*****************************************************************************************************************
+Section 11: How React Works Behind the Scenes
+*****************************************************************************************************************
+
+- Component -> Component Instance -> React Element -> DOM Element (HTML)
+
+- How components are displayed on the screen:
+  1. Render is triggered (Updating State)
+  2. Render Phase (React calls component funcs and figures out how DOM should be updated) - it's quite defferent than rendering UI
+  3. Commit Phase (React actually writes to the DOM, updating, inserting and deleting elements)
+  4. Browser paint
+
+- The render process is triggered for the enire applicastion
+- In practice, it looks like React only re-render the component where the state update happens, but that's not how it works behind the Scenes
+- Renders are not triggered immediately, but scheduled for when the JS engine has some "free time". There is also batching of multiple setState calls in event handlers
+
+- Rendering in React is calling component function? not updating screen/DOM
+- Virtual DOM - React element(component) tree
+- Rendering a component will cause all of its child components to be rendered as well (no matter if props changed or not). Necassary because React doesn't know whether children will be affacted
+- Reconciliation - deciding which DOM elements actually need to be inserted, deleted or updated in order to reflect the latest state changes.
+- Reconciler - engine of React. It allows us never touch DOM directly, instead tells the React how next snapshot of UI should look like.
+- Fiber is current reconciler of React. It takes React element tree (virtual DOM) and builds Fiber Tree based on it.
+- Fiber tree - internal tree that has a 'fiber' for each component instance and DOM element. Fibers are NOT re-create on every render, it's mutable!
+- Work can be done asynchronously - Rendering process can be split into chunks, tasks can be prioritized and work can be paused, reused or thrown away. Enables concurrent features like Suspense or transitions. Long renders won't block JS engine
+- After updating of Virtual DOM executes Reconciliation + Diffing - compering current fiber tree with new Virtual DOM and updating Fiber Tree (build workInProgress tree) 
+- List of effects (List of DOM updates) - result of Render Phase
+
+- Commit Phase - updating DOM based on "List of DOM updates"
+- Committing is synchronous: DOM is updated in one go, it can't be interrupted.
+
+- After the Commit phase completes, the workInProgress fiber tree becomes the current tree for the next cycle
+- Browser paint - is next after Commit phase - updated UI on the sceen.
+
+1. Trigger (change state)
+2. Render Phase - is performed by 'React' (never touch the DOM)
+3. Commit Phase - is performed by 'ReactDOM'(browsers), 'React Native' (IOS, android), 'Remotion' (video) etc.
+4. Browser Paint - is performed by browser (or IOS, android, video etc)
