@@ -409,8 +409,8 @@ Section 11: How React Works Behind the Scenes
 - Component -> Component Instance -> React Element -> DOM Element (HTML)
 
 - How components are displayed on the screen:
-  1. Render is triggered (Updating State)
-  2. Render Phase (React calls component funcs and figures out how DOM should be updated) - it's quite defferent than rendering UI
+  1. Trigger (Render is triggered (Updating State))
+  2. Render Phase (React calls component funcs and figures out how DOM should be updated) - it's quite different than rendering UI
   3. Commit Phase (React actually writes to the DOM, updating, inserting and deleting elements)
   4. Browser paint
 
@@ -418,7 +418,7 @@ Section 11: How React Works Behind the Scenes
 - In practice, it looks like React only re-render the component where the state update happens, but that's not how it works behind the Scenes
 - Renders are not triggered immediately, but scheduled for when the JS engine has some "free time". There is also batching of multiple setState calls in event handlers
 
-- Rendering in React is calling component function? not updating screen/DOM
+- Rendering in React is calling component function, not updating screen/DOM
 - Virtual DOM - React element(component) tree
 - Rendering a component will cause all of its child components to be rendered as well (no matter if props changed or not). Necassary because React doesn't know whether children will be affacted
 - Reconciliation - deciding which DOM elements actually need to be inserted, deleted or updated in order to reflect the latest state changes.
@@ -439,3 +439,25 @@ Section 11: How React Works Behind the Scenes
 2. Render Phase - is performed by 'React' (never touch the DOM)
 3. Commit Phase - is performed by 'ReactDOM'(browsers), 'React Native' (IOS, android), 'Remotion' (video) etc.
 4. Browser Paint - is performed by browser (or IOS, android, video etc)
+
+- Diffing uses 2 fundamental assumption (rules):
+  1. Two elements of different types will produce different trees
+  2. Elements with a stable key prop stay the same across renders
+
+- Two situation:
+  1. Same position, DEFFERENT element
+    + React assumes entire sub-tree is no longer valid
+    + Old components are destroyed and removed from DOM, including state
+    + Tree might be rebuild if children the same (state is reset)
+  2. Same position, SAME elements
+  but some props are changed
+    + Element will be kept (as well as child elements), including state
+    + New props / attributes are passed if they changed between renders
+    + Sometimes this is not what we want... Then we can use the key prop
+
+- Key Prop - special that we use to tell the diffing algorithm that an element is unique
+  + Allows React to distinguish between multiple instances of the same component type
+  + When a key stays the same across renders, the element will be kept in the DOM (even if the position in the tree changes)
+    1. Using keys in List
+  + When a key changes between renders, the element will be destroyed and a new one will be created (even if the position in the tree is the same as before)
+    2. Using key to reset state
