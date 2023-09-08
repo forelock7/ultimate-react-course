@@ -461,3 +461,55 @@ Section 11: How React Works Behind the Scenes
     1. Using keys in List
   + When a key changes between renders, the element will be destroyed and a new one will be created (even if the position in the tree is the same as before)
     2. Using key to reset state
+
+- Types of logic in React components
+  1. Render logic
+    + top level of the component function
+    + describes how component view looks like
+    + execute every time the component renders
+  2. Event handler functions
+    + executed as a consequence of the event that the handler is listening for
+    + code that actually update state, perform an HTTP requests, read an unput field, navigate to another pages
+
+  - Functional programming principales:
+    + Side effect: dependancy on or modification of any data outside the function scope. Interaction with the outside world(mutating external vars, HTTP requests, writing DOM)
+        const areas = {};
+        function circleArea(r) {
+          areas.circle = 3.14 * r * r;
+        }
+    + Pure function: has no side effects. Does not change any vars outside its scope. Give the same input, a pure function always returns the same output
+        function circleArea(r) {
+          return 3.14 * r * r;
+        }
+    + Inpure function (first function is aleo inpure):
+        function circleArea(r) {
+          const date = Date.now();       <---------
+          const area = 3.14 * r * r;
+          return `${date}: ${area}`
+        }
+
+- Rules for Render logic"
+  + Components must be pure when it comes to render logic: given the same props(input), a component instance should always return the same JSX (output)
+  + Render logic must produce no side effects: no interactions with 'outside world' is allowed:
+    * Do NOT perform network requests (API calls)
+    * Do NOT start timers
+    * Do NOT directly use the DOM API
+    * Do NOT mutate objects or vars outside the function scope
+    * Do NOT update state (or refs): this will create an infinite localeCompare
+- Side effects are allowed (and encouraged) in event handler functions. There is special hook to register side effects (useEffect)
+
+- How Satte updates are batched:
+  const reset = function() {
+    setAnswer('');
+    console.log(answer);
+    setBest(true);
+    setSolved(false);
+  }
+- React will update all 3 states together and then render and commit. So answer !== ''.
+- If we need update state based on previous update, use setState with callback:
+    console.log(setAnswer(answer => ...));
+
+- React 18+ supports not only 'Event Handlers' as React 17, but also:
+  + Timeouts
+  + Promises
+  + Native Events
