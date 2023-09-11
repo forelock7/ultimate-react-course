@@ -513,3 +513,13 @@ Section 11: How React Works Behind the Scenes
   + Timeouts
   + Promises
   + Native Events
+
+  - Use callback function to update state and use it again in the same function
+    function handleTripleInc() {
+      // setLikes(likes + 1); // 1
+      // setLikes(likes + 1); // 1
+      // setLikes(likes + 1);  // 1
+      setLikes((likes) => likes + 1); // 1
+      setLikes((likes) => likes + 1); // 2
+      setLikes((likes) => likes + 1); // 3
+    }
