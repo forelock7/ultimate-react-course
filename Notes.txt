@@ -523,3 +523,31 @@ Section 11: How React Works Behind the Scenes
       setLikes((likes) => likes + 1); // 2
       setLikes((likes) => likes + 1); // 3
     }
+
+- Event propagation in the browser
+1. New Event object created in the root element, 'html', and travels to the target, where event was triggered, for instance 'button' (Capturing phase)
+2. Then Event object travels to root back (Bubling phase)
+- By default event handlers listen to events on the target and  during the building phase
+- We can prevent bubbling with 
+    e.stopPropagation();
+
+- Event delegation:
++ Handling events for multiple elements centrally in one single parent element
++ Better for performance and memory, as it needs only one handler function:
+    1. Add handler to parent (.options)
+    2. Check for target element (e.target)
+    3. If target is one of the <button>s, handle the event
+- It's very common for vanilla JS apps, but not so much in React
+
+- React registers all event handlers on the root DOM container. This is where all events are handled.
+- Behind the scenes, React performs event delegation for all events in our application
+
+- React uses SyntheticEvent - is wrapper around DOMs native event object (PointerEvent, MouseEvent, KeyboardEvent...)
+- It has the same interface as native event objects, like stopPropagation() and preventDefault()
+- Fixes browser inconsistencies, so that events work in the exect same way in all browsers
+- Most synthetic events bubbles (including focus, blur and change), except scroll
+
+- Difference of events in React from vanila JS:
+1. Attributes for event handlers are named using camelCAse (onClick instead of onclick or click)
+2. Default behavior can NOT be prevented by returning false (only by using preventDefault())
+3. Attach 'Capture' if you need to handle during capture phase (example: onClickCapture)
