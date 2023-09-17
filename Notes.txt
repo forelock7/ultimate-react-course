@@ -414,13 +414,13 @@ Section 11: How React Works Behind the Scenes
   3. Commit Phase (React actually writes to the DOM, updating, inserting and deleting elements)
   4. Browser paint
 
-- The render process is triggered for the enire applicastion
+- The render process is triggered for the enire application
 - In practice, it looks like React only re-render the component where the state update happens, but that's not how it works behind the Scenes
 - Renders are not triggered immediately, but scheduled for when the JS engine has some "free time". There is also batching of multiple setState calls in event handlers
 
 - Rendering in React is calling component function, not updating screen/DOM
 - Virtual DOM - React element(component) tree
-- Rendering a component will cause all of its child components to be rendered as well (no matter if props changed or not). Necassary because React doesn't know whether children will be affacted
+- Rendering a component will cause all of its child components to be rendered as well (no matter if props changed or not). Necessary because React doesn't know whether children will be affacted
 - Reconciliation - deciding which DOM elements actually need to be inserted, deleted or updated in order to reflect the latest state changes.
 - Reconciler - engine of React. It allows us never touch DOM directly, instead tells the React how next snapshot of UI should look like.
 - Fiber is current reconciler of React. It takes React element tree (virtual DOM) and builds Fiber Tree based on it.
@@ -481,7 +481,7 @@ Section 11: How React Works Behind the Scenes
         function circleArea(r) {
           return 3.14 * r * r;
         }
-    + Inpure function (first function is aleo inpure):
+    + Inpure function (first function is also inpure):
         function circleArea(r) {
           const date = Date.now();       <---------
           const area = 3.14 * r * r;
@@ -498,7 +498,7 @@ Section 11: How React Works Behind the Scenes
     * Do NOT update state (or refs): this will create an infinite localeCompare
 - Side effects are allowed (and encouraged) in event handler functions. There is special hook to register side effects (useEffect)
 
-- How Satte updates are batched:
+- How State updates are batched:
   const reset = function() {
     setAnswer('');
     console.log(answer);
@@ -548,6 +548,38 @@ Section 11: How React Works Behind the Scenes
 - Most synthetic events bubbles (including focus, blur and change), except scroll
 
 - Difference of events in React from vanila JS:
-1. Attributes for event handlers are named using camelCAse (onClick instead of onclick or click)
+1. Attributes for event handlers are named using camelCase (onClick instead of onclick or click)
 2. Default behavior can NOT be prevented by returning false (only by using preventDefault())
 3. Attach 'Capture' if you need to handle during capture phase (example: onClickCapture)
+
+- Library vs Framework: React is library!
+- Framework - it includes all you need. Like Angular: HTTP request, Styling, Routing, Form Management
+- Library - just used for particular part. React - just for view, except React you also need to use other 3rd-party libraries for HTTP request, Styling, Routing, Form Management
+
+- React 3rd oarty library ECOSYSTEM:
+  1. Routing (for SPAs): React Router, React Location
+  2. HTTP requests: JS fetch(), Axios
+  3. Remote state management: React Query, SWR, Apollo
+  4. Global state management: Context API, Redux, Zustand
+  5. Styling: CSS Modules, Styled components, tailwindcss
+  6. Form management: React Hiik Form, FORMIK
+  7. Animations/transitions: Motion, React-spring
+  8. UI components: Mi, chakra, Mantime
+
+- Opinionated React frameworks: Next.js, Remix, Gatsby. It's alternative for first approach
+
+- Summary
+  - Component - is like blueprint for a piece of UI. React create a component instance. When a component instance rendered it will return React element
+  - Rendering - calling component functions and calculating what DOM elements need to be updated/ Each time a component instance is rendered or re-rendered, the function is called again
+  - Only the initial app render and state updates can cause a render, which happens for the entire app
+  - When a component instance gets re-rendered, all its children will get re-render as well. This doesn't mean that all children willget updated in the DOM, thanks reconciliation, 
+    which checks which element actually changed between two renders. But all this re-rendering can still have impact on perfoormance (more on that later in the cource)
+  - Diffing is how decided which DOM elements need to be added or modified.
+  - Giving elements a key prop allows Reacy to avoid destroing elements or reset state
+  - Never declare a new component inside another component
+  - The logic taht produces JSX output for a component instance ("render logic") is not allowed to produce any side effects: no API calls, no timers? no object or variable mutations, no state updates. 
+    Side effects are allowed in event handlers and useEffect
+  - The DOM is updated in the commit phase, but not by React, but by a "rendered" called ReactDOM
+  - Multiple state updates inside an handler function are batched, so it happens only one re-render.
+  - Synthetic event object
+  - React is a library, not a framework.
