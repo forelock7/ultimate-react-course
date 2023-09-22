@@ -583,3 +583,20 @@ Section 11: How React Works Behind the Scenes
   - Multiple state updates inside an handler function are batched, so it happens only one re-render.
   - Synthetic event object
   - React is a library, not a framework.
+
+*****************************************************************************************************************
+Section 12: Effects and Data Fetching
+*****************************************************************************************************************
+
+- Component lifecycle:
+    1. Mount / Initial render
+        + Component instance is rendered for the first time
+        + Fresh state and props are created
+    2. Re-render 
+        + State changes
+        + Props change
+        + Parent re-render
+        + Context changes
+    3. Unmount
+        + Component instance is destroyed and removed
+        + State and props are destroyed
