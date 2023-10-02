@@ -600,3 +600,18 @@ Section 12: Effects and Data Fetching
     3. Unmount
         + Component instance is destroyed and removed
         + State and props are destroyed
+
+- Side effect is basically any "interaction between a React component and the world outside the component". Also when code that actually does something: data fetching, setting up subscriptions, setting up timers, manually accessing the DOM
+
+- Side effects:
+  + Event handlers
+  + EFFECTS (useEffect) - allows us to write code that will run at different moments: mount, re-render or Unmount
+
+  useEffect(function () {
+    fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`)
+      .then((res) => res.json())
+      .then((data) => {
+        setMovies(data.Search);
+      });
+      return () => console.log('Cleanup') // Cleanup function
+  }, []); // [] - Dependancy array
