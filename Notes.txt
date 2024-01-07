@@ -102,12 +102,12 @@ npm run start
 
 - Challenge #1: https://codesandbox.io/s/profile-card-v1-2hrm4p?file=/src/index.js
 
-- In JS moed {} you can place JS expression (reference vars, create arrays or objects, [].map? ternary operator)
+- In JS mode {} you can place JS expression (reference vars, create arrays or objects, [].map, ternary operator)
 - In JS mode statements are not allowed (if/else, for, switch)
-- JSX can be written enywhere inside a components (in if/else, assign to vars, pass it into functions)
-- Piece of JSX can only have one root element. If you need more, use <REact.Frgment> (or the short <>)
+- JSX can be written anywhere inside components (in if/else, assign to vars, pass it into functions)
+- Piece of JSX can only have one root element. If you need more, use <Raact.Fragment> (or the short <>)
 
-- If we use iteration in REact, you should use 'key' unique property to avoid console log errors
+- If we use iteration in React, you should use 'key' unique property to avoid console log errors
 function Menu() {
   return (
     <main className="menu">
@@ -190,7 +190,7 @@ Section 6: State, Events, and Forms: Interactive Components
 - Alert Function immidiatly run (NOT valid for this case)
 <button onClick={alert('Next')}>
 
-- MOuse handler
+- Mouse handler
 onMouseEnter={() => alert('TEST')}
 
 - Another way to define handler function
@@ -203,7 +203,7 @@ onMouseEnter={() => alert('TEST')}
         <button style={{ backgroundColor: '#7950f2', color: '#fff' }} onClick={handlePrevious}>
     ........
 
-- State - data that a component can hold over time, necessary for information that it needs to remember trhoughout the app's lifecucle
+- State - data that a component can hold over time, necessary for information that it needs to remember throughout the app's lifecucle
 - "Component's memory"
 - Component state - single local component variable ("Piece of state", "State variable")
 - Updating component state triggers React to re-render the component
@@ -258,7 +258,7 @@ function Form() {
   + Similar to function parameters
   + Read-only
   + Receiving new props causes component to re-render. Usually when the parent's state has been updated
-  + Used by parent to confugure child component ("settings")
+  + Used by parent to configure child component ("settings")
 
   - https://codesandbox.io/s/react-exercise-flashcards-starter-sx254w?file=/src/App.js
   - https://codesandbox.io/s/date-counter-v2-d23kg4?file=/src/App.js
@@ -268,7 +268,7 @@ Section 7: Thinking In React: State Management
 *****************************************************************************************************************
 
 - The "Thinking in React" process:
-  1. Break the desired UI into components and estab;ish the component tree
+  1. Break the desired UI into components and estabish the component tree
   2. Build a static version in React (without state)
   3. Think about state:                                       |
     + When to use state                                       |
@@ -279,7 +279,7 @@ Section 7: Thinking In React: State Management
     + Child-to-parent communication                           |
     + Accessing global state                                  |
 
-- Local State - only for one or few components, chiled components
+- Local State - only for one or few components, child components
 - Global State - many components. Shared state that accessible to every component in the entire applicatio. (by React Context API, Redux). Use firstly local state!!!!
 
 - Pass function as props:
@@ -330,10 +330,10 @@ if (sortBy === 'description') sortedItems = items.slice().sort((a, b) => a.descr
             }
 
 - Work with current state inside setState method
-  const [selectedFriend, setSelectedFriend] = useState(null);
+    const [selectedFriend, setSelectedFriend] = useState(null);
     function handleSelection(friend) {
-    setSelectedFriend((cur) => (cur?.id === friend.id ? null : friend));
-  }
+      setSelectedFriend((cur) => (cur?.id === friend.id ? null : friend));
+    }
 
 *****************************************************************************************************************
 Section 10: Thinking in React: Components, Composition, and Reusability
@@ -348,7 +348,7 @@ Section 10: Thinking in React: Components, Composition, and Reusability
 - Start from building big component and then split it if necessary
 
 - Categories of Components:
-  1) Stateless / presentational components - no state, can receive props and simply present received data or pther content, usually small and reusable
+  1) Stateless / presentational components - no state, can receive props and simply present received data or other content, usually small and reusable
   2) Stateful components - have state, can still be reusable
   3) Structural components - pages/layouts/screens of app, result of composition, can be huge and non-reusable(but don't have to)
 
@@ -371,11 +371,11 @@ Section 10: Thinking in React: Components, Composition, and Reusability
   }
 
 - Passing Elements as props
-<Box element={<Movie />} />
-instead of 
-<Box>
-  <Movie />
-</Bob>
+    <Box element={<Movie />} />
+  instead of 
+    <Box>
+      <Movie />
+    </Bob>
 
 - Props as an API of component - try to have balance of props, their number should be enough, but not too many
     <StarRating maxRating={5} messages={['Terrible', 'Bad', 'Okay', 'Good', 'Amazing']} />
@@ -391,16 +391,16 @@ instead of
     }) 
 
 - Validation of props type. This approach is outdated. Now just use TypeScript
-import PropTypes from 'prop-types';
-StarRating.propTypes = {
-  maxRating: PropTypes.number,
-  defaultRating: PropTypes.number,
-  color: PropTypes.string,
-  size: PropTypes.number,
-  messages: PropTypes.array,
-  className: PropTypes.string,
-  onSetRating: PropTypes.func,
-};
+    import PropTypes from 'prop-types';
+    StarRating.propTypes = {
+      maxRating: PropTypes.number,
+      defaultRating: PropTypes.number,
+      color: PropTypes.string,
+      size: PropTypes.number,
+      messages: PropTypes.array,
+      className: PropTypes.string,
+      onSetRating: PropTypes.func,
+    };
 
 *****************************************************************************************************************
 Section 11: How React Works Behind the Scenes
@@ -445,12 +445,11 @@ Section 11: How React Works Behind the Scenes
   2. Elements with a stable key prop stay the same across renders
 
 - Two situation:
-  1. Same position, DEFFERENT element
+  1. Same position, DIFFERENT element:
     + React assumes entire sub-tree is no longer valid
     + Old components are destroyed and removed from DOM, including state
     + Tree might be rebuild if children the same (state is reset)
-  2. Same position, SAME elements
-  but some props are changed
+  2. Same position, SAME elements, but some props are changed:
     + Element will be kept (as well as child elements), including state
     + New props / attributes are passed if they changed between renders
     + Sometimes this is not what we want... Then we can use the key prop
@@ -469,24 +468,24 @@ Section 11: How React Works Behind the Scenes
     + execute every time the component renders
   2. Event handler functions
     + executed as a consequence of the event that the handler is listening for
-    + code that actually update state, perform an HTTP requests, read an unput field, navigate to another pages
+    + code that actually update state, perform an HTTP requests, read an input field, navigate to another pages
 
-  - Functional programming principales:
-    + Side effect: dependancy on or modification of any data outside the function scope. Interaction with the outside world(mutating external vars, HTTP requests, writing DOM)
-        const areas = {};
-        function circleArea(r) {
-          areas.circle = 3.14 * r * r;
-        }
-    + Pure function: has no side effects. Does not change any vars outside its scope. Give the same input, a pure function always returns the same output
-        function circleArea(r) {
-          return 3.14 * r * r;
-        }
-    + Inpure function (first function is also inpure):
-        function circleArea(r) {
-          const date = Date.now();       <---------
-          const area = 3.14 * r * r;
-          return `${date}: ${area}`
-        }
+- Functional programming principales:
+  + Side effect: dependancy on or modification of any data outside the function scope. Interaction with the outside world(mutating external vars, HTTP requests, writing DOM)
+      const areas = {};
+      function circleArea(r) {
+        areas.circle = 3.14 * r * r;
+      }
+  + Pure function: has no side effects. Does not change any vars outside its scope. Give the same input, a pure function always returns the same output
+      function circleArea(r) {
+        return 3.14 * r * r;
+      }
+  + Inpure function (first function is also inpure):
+      function circleArea(r) {
+        const date = Date.now();       <---------
+        const area = 3.14 * r * r;
+        return `${date}: ${area}`
+      }
 
 - Rules for Render logic"
   + Components must be pure when it comes to render logic: given the same props(input), a component instance should always return the same JSX (output)
@@ -527,16 +526,16 @@ Section 11: How React Works Behind the Scenes
 - Event propagation in the browser
 1. New Event object created in the root element, 'html', and travels to the target, where event was triggered, for instance 'button' (Capturing phase)
 2. Then Event object travels to root back (Bubling phase)
-- By default event handlers listen to events on the target and  during the building phase
+- By default event handlers listen to events on the target and during the building phase
 - We can prevent bubbling with 
     e.stopPropagation();
 
 - Event delegation:
-+ Handling events for multiple elements centrally in one single parent element
-+ Better for performance and memory, as it needs only one handler function:
-    1. Add handler to parent (.options)
-    2. Check for target element (e.target)
-    3. If target is one of the <button>s, handle the event
+  + Handling events for multiple elements centrally in one single parent element
+  + Better for performance and memory, as it needs only one handler function:
+      1. Add handler to parent (.options)
+      2. Check for target element (e.target)
+      3. If target is one of the <button>s, handle the event
 - It's very common for vanilla JS apps, but not so much in React
 
 - React registers all event handlers on the root DOM container. This is where all events are handled.
@@ -548,15 +547,15 @@ Section 11: How React Works Behind the Scenes
 - Most synthetic events bubbles (including focus, blur and change), except scroll
 
 - Difference of events in React from vanila JS:
-1. Attributes for event handlers are named using camelCase (onClick instead of onclick or click)
-2. Default behavior can NOT be prevented by returning false (only by using preventDefault())
-3. Attach 'Capture' if you need to handle during capture phase (example: onClickCapture)
+    1. Attributes for event handlers are named using camelCase (onClick instead of onclick or click)
+    2. Default behavior can NOT be prevented by returning false (only by using preventDefault())
+    3. Attach 'Capture' if you need to handle during capture phase (example: onClickCapture)
 
 - Library vs Framework: React is library!
-- Framework - it includes all you need. Like Angular: HTTP request, Styling, Routing, Form Management
+- Framework - includes all you need. Like Angular: HTTP request, Styling, Routing, Form Management
 - Library - just used for particular part. React - just for view, except React you also need to use other 3rd-party libraries for HTTP request, Styling, Routing, Form Management
 
-- React 3rd oarty library ECOSYSTEM:
+- React 3rd party library ECOSYSTEM:
   1. Routing (for SPAs): React Router, React Location
   2. HTTP requests: JS fetch(), Axios
   3. Remote state management: React Query, SWR, Apollo
@@ -569,18 +568,18 @@ Section 11: How React Works Behind the Scenes
 - Opinionated React frameworks: Next.js, Remix, Gatsby. It's alternative for first approach
 
 - Summary
-  - Component - is like blueprint for a piece of UI. React create a component instance. When a component instance rendered it will return React element
-  - Rendering - calling component functions and calculating what DOM elements need to be updated/ Each time a component instance is rendered or re-rendered, the function is called again
+  - Component - is like blueprint for a piece of UI. React creates a component instance. When a component instance is rendered, it will return React element
+  - Rendering - calls component functions and calculating what DOM elements need to be updated/ Each time a component instance is rendered or re-rendered, the function is called again
   - Only the initial app render and state updates can cause a render, which happens for the entire app
   - When a component instance gets re-rendered, all its children will get re-render as well. This doesn't mean that all children willget updated in the DOM, thanks reconciliation, 
-    which checks which element actually changed between two renders. But all this re-rendering can still have impact on perfoormance (more on that later in the cource)
+    which checks which element actually changed between two renders. But all this re-rendering can still have impact on performance (more on that later in the cource)
   - Diffing is how decided which DOM elements need to be added or modified.
-  - Giving elements a key prop allows Reacy to avoid destroing elements or reset state
+  - Giving elements a key prop allows React to avoid destroying elements or reset state
   - Never declare a new component inside another component
-  - The logic taht produces JSX output for a component instance ("render logic") is not allowed to produce any side effects: no API calls, no timers? no object or variable mutations, no state updates. 
+  - The logic that produces JSX output for a component instance ("render logic") is not allowed to produce any side effects: no API calls, no timers, no object or variable mutations, no state updates. 
     Side effects are allowed in event handlers and useEffect
   - The DOM is updated in the commit phase, but not by React, but by a "rendered" called ReactDOM
-  - Multiple state updates inside an handler function are batched, so it happens only one re-render.
+  - Multiple state updates inside the handler function are batched, so it happens only one re-render.
   - Synthetic event object
   - React is a library, not a framework.
 
@@ -601,7 +600,8 @@ Section 12: Effects and Data Fetching
         + Component instance is destroyed and removed
         + State and props are destroyed
 
-- Side effect is basically any "interaction between a React component and the world outside the component". Also when code that actually does something: data fetching, setting up subscriptions, setting up timers, manually accessing the DOM
+- Side effect is basically any "interaction between a React component and the world outside the component". 
+Also when code that actually does something: data fetching, setting up subscriptions, setting up timers, manually accessing the DOM
 
 - Side effects:
   + Event handlers
