@@ -642,3 +642,13 @@ Also when code that actually does something: data fetching, setting up subscript
     }, []);
     .....
     <Box>{isLoading ? <Loader /> : <MovieList movies={movies} />}</Box>
+
+- Handling errors
+  see REPO: 07-usepopcorn/usepopcorn/App.js
+  ....
+        <Box>
+          {/* {isLoading ? <Loader /> : <MovieList movies={movies} />} */}
+          {isLoading && <Loader />}
+          {!isLoading && !error && <MovieList movies={movies} />}
+          {error && <ErrorMessage message={error} />}
+        </Box>
