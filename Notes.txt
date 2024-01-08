@@ -587,6 +587,8 @@ Section 11: How React Works Behind the Scenes
 Section 12: Effects and Data Fetching
 *****************************************************************************************************************
 
+- REPO: 07-usepopcorn/usepopcorn
+
 - Component lifecycle:
     1. Mount / Initial render
         + Component instance is rendered for the first time
@@ -604,7 +606,7 @@ Section 12: Effects and Data Fetching
 Also when code that actually does something: data fetching, setting up subscriptions, setting up timers, manually accessing the DOM
 
 - Side effects:
-  + Event handlers
+  + Event handlers - prefered way of using side effect function
   + EFFECTS (useEffect) - allows us to write code that will run at different moments: mount, re-render or Unmount
 
   useEffect(function () {
@@ -615,3 +617,13 @@ Also when code that actually does something: data fetching, setting up subscript
       });
       return () => console.log('Cleanup') // Cleanup function
   }, []); // [] - Dependancy array
+
+- Using async function instead of Promise:
+    useEffect(function () {
+      async function fetchMovies() {
+        const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`);
+        const data = await res.json();
+        setMovies(data.Search);
+      }
+      fetchMovies();
+    }, []);
