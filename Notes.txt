@@ -652,3 +652,47 @@ Also when code that actually does something: data fetching, setting up subscript
           {!isLoading && !error && <MovieList movies={movies} />}
           {error && <ErrorMessage message={error} />}
         </Box>
+
+- Depedancy array
+  + By default, effects run after every render. It can be prevented by a dependency array
+  + Each time one of the dependancies changes, the effect will be executed again
+  + Every state variable and prop used inside the effect MUST be included in the dependency array
+      - otherwise, we get a 'stale closure'.
+
+- effect synchronization:
+  + useEffect(fn, [x, y, z]) - effect synch with x, y, z/ Runs on mount and re-renders triggered by updayting x, y, z
+  + useEffect(fn, []) - effect synch with no state/props. Runs only on mount (initial render)
+  + useEffect(fn) - effect synch with everything. Runs on every render (usualy bad ⛔️)
+
+- Effect executed after mount-commit-browser_paint
+- Layout effect - another type of effect that is very rarely necessary (useLayoutEffect). It executs after commit and before browser_paint
+
+- Example effect synch:
+    useEffect(
+      function () {
+        async function fetchMovies() {
+          try {
+            setIsLoading(true);
+            setError('');
+            const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+            if (!res.ok) new Error('Something went wrong with fetching movies');
+
+            const data = await res.json();
+            if (data.Response === 'False') throw new Error('Movie not found');
+            setMovies(data.Search);
+          } catch (err) {
+            console.error(err.message);
+            setError(err.message);
+          } finally {
+            setIsLoading(false);
+          }
+        }
+        if (query.length < 3) {
+          setMovies([]);
+          setError('');
+          return;
+        }
+        fetchMovies();
+      },
+      [query],
+    );
