@@ -696,3 +696,20 @@ Also when code that actually does something: data fetching, setting up subscript
       },
       [query],
     );
+
+- useEffect should do only ONE action!!!
+
+- Cleanup function can be returned from a effect(optional)
+- It runs:
+    + before the effect is executed again
+    + after component has unmounted!!!
+
+- whenever the side effect keeps happening after the component has been re-rendered or unmounted
+
+- Examples of cleanup:
+    Effect-------------|  Potential Cleanup---
+    HTTP request       |  Cancel requests
+    API subscriptions  |  Cancel subscription
+    Start timers       |  Stop timer
+    Add event listener |  Remove listener
+
