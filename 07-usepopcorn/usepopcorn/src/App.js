@@ -113,7 +113,10 @@ export default function App() {
           setError('');
         } catch (err) {
           console.error(err.message);
-          setError(err.message);
+
+          if (err.name !== 'AbortError') {
+            setError(err.message);
+          }
         } finally {
           setIsLoading(false);
         }
