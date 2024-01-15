@@ -768,3 +768,34 @@ Also when code that actually does something: data fetching, setting up subscript
     },
     [query],
   );
+
+- One more example of clean up:
+  useEffect(
+    function () {
+      if (!title) return;
+      document.title = `Movie | ${title}`;
+      return function () {
+        document.title = 'usePopcorn';
+        // console.log(`Clean up effect for movie ${title} (Explaination of a closure)`);
+      };
+    },
+    [title],
+  );
+
+- use effect to close movie's details by pressong  'Esc' button:
+  useEffect(
+    function () {
+      function callback(e) {
+        if (e.code === 'Escape') {
+          onCloseMovie();
+          console.log('CLOSING');
+        }
+      }
+      document.addEventListener('keydown', callback);
+
+      return function () {
+        document.removeEventListener('keydown', callback);
+      };
+    },
+    [onCloseMovie],
+  );

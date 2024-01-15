@@ -109,12 +109,11 @@ export default function App() {
           const data = await res.json();
           if (data.Response === 'False') throw new Error('Movie not found');
           setMovies(data.Search);
-          console.log(data.Search);
+          // console.log(data.Search);
           setError('');
         } catch (err) {
-          console.error(err.message);
-
           if (err.name !== 'AbortError') {
+            console.log(err.message);
             setError(err.message);
           }
         } finally {
@@ -126,6 +125,8 @@ export default function App() {
         setError('');
         return;
       }
+
+      handleCloseMovie();
       fetchMovies();
 
       return function () {
@@ -297,6 +298,22 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
   useEffect(
     function () {
+      function callback(e) {
+        if (e.code === 'Escape') {
+          onCloseMovie();
+        }
+      }
+      document.addEventListener('keydown', callback);
+
+      return function () {
+        document.removeEventListener('keydown', callback);
+      };
+    },
+    [onCloseMovie],
+  );
+
+  useEffect(
+    function () {
       async function getMovieDetails() {
         setIsLoading(true);
         const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`);
@@ -315,6 +332,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       document.title = `Movie | ${title}`;
       return function () {
         document.title = 'usePopcorn';
+        // console.log(`Clean up effect for movie ${title} (Explaination of a closure)`);
       };
     },
     [title],
