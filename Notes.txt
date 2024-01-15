@@ -799,3 +799,10 @@ Also when code that actually does something: data fetching, setting up subscript
     },
     [onCloseMovie],
   );
+
+  - disable elements if something is loading:
+      <select
+        value={fromCur}
+        onChange={(e) => setFromCur(e.target.value)}
+        disabled={isLoading}
+      >
