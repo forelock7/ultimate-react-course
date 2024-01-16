@@ -806,3 +806,34 @@ Also when code that actually does something: data fetching, setting up subscript
         onChange={(e) => setFromCur(e.target.value)}
         disabled={isLoading}
       >
+
+*****************************************************************************************************************
+Section 13: Custom Hooks, Refs, and More State
+*****************************************************************************************************************
+
+- React HOOKS:
+    + special built-in functions that allow us hook into React internals:
+        - Creating and accessing state from Fiber tree
+        - Registring side effects in Fiber tree
+        - Manual DOM selections, etc
+    + Always start with 'use' word
+    + can compose multiple hooks into our own custom hooks
+    + give function component the ability to own state and run side effects at different lifecycle points
+
+- Most popular hooks:
+    + useState
+    + useEffect
+    + useReducer
+    + useContext
+    + useRef
+    + useCallback
+    + useMemo
+    + useTransition
+    + useDeferredValue, etc
+
+- Rules of HOOKS:
+    + Only call hooks at the top level
+    + Only call hooks from React functions
+- All tese rules are automatically enforced by React's ESLint rules
+
+- Hook relies on call order

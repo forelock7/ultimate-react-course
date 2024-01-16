@@ -59,7 +59,24 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [selectedId, setSelectedId] = useState(null);
+  /*
+  useEffect(function () {
+    console.log('After initial render');
+  }, []);
 
+  useEffect(function () {
+    console.log('After every render');
+  });
+
+  useEffect(
+    function () {
+      console.log('After changing query state');
+    },
+    [query],
+  );
+
+  console.log('During render');
+*/
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
   }
