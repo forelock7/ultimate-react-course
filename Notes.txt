@@ -837,3 +837,24 @@ Section 13: Custom Hooks, Refs, and More State
 - All tese rules are automatically enforced by React's ESLint rules
 
 - Hook relies on call order
+
+- Derive state. If put boolean expression into component, it will be calculated each time during re-rendering:
+    const isTop = imdbRating > 8;
+    console.log(isTop);
+
+- To update value in handle function:
+  function handleAdd() {
+    const newWatchedMovie = {
+      imdbID: selectedId,
+      title,
+      year,
+      poster,
+      imdbRating: Number(imdbRating),
+      runtime: Number(runtime.split(' ').at(0)),
+      userRating,
+    };
+    onAddWatched(newWatchedMovie);
+    ///////////////// see below
+    setAvgRating(Number(imdbRating));
+    setAvgRating((avgRating) => (avgRating + userRating) / 2);
+  }
