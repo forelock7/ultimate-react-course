@@ -904,3 +904,15 @@ Section 13: Custom Hooks, Refs, and More State
         />
       );
     }
+
+- useRef - "Box" (object) with a mutable .current property that is persisted across renders ("normal" variables are always reset)
+- Two big use cases:
+    1. Creating a variable that stays the same between renders (previous state, setTimeout id)
+    2. Selecting and storing DOM elements
+
+- Refs are for data that is NOT rendered: usually only appear in event handlers or effects, not in JSX (otherwise use state)
+- do NOT read write or read .current in render logic (like state)
+
+- Differense | Persist across renders | Updating re-render | Immutable | Asynch updates |
+    State    |          +             |         +          |     +     |        +       |
+    refs     |          +             |         -          |     -     |        -       |
