@@ -871,3 +871,17 @@ Section 13: Custom Hooks, Refs, and More State
         },
         [watched],
       );
+
+- Creating State:
+    1. Simple                               -----  const [count, setCount] = useState(23);
+    2. Based on function (lazy evaluation)  -----  const [count, setCount] = useState(
+                                                      () => lacolStorage.getItem('count');
+                                                    )
+        function - pureand without arguments
+        called only on initial render
+                                  
+- Updating state:
+    1. Simple                               -----  setCount(1000);
+    2. Based on current state               -----  setCount((c) => c + 1);
+        function - pure and return next state
+        Make sure to NOT mutate objects or arrays, but to replace them
