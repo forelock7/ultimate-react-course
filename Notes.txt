@@ -885,3 +885,22 @@ Section 13: Custom Hooks, Refs, and More State
     2. Based on current state               -----  setCount((c) => c + 1);
         function - pure and return next state
         Make sure to NOT mutate objects or arrays, but to replace them
+
+- Bad practice manipulate with DOM directly in React (use useRef instead this case):
+    function Search({ query, setQuery }) {
+      useEffect(function () {
+        const el = document.querySelector('.search');
+        console.log(el);
+        el.focus();
+      }, []);
+
+      return (
+        <input
+          className="search"
+          type="text"
+          placeholder="Search movies..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+      );
+    }
