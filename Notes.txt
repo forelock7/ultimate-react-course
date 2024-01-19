@@ -936,4 +936,20 @@ Section 13: Custom Hooks, Refs, and More State
       );
     }
 
-    
+- press 'Enter' key to clear search field if it's focused
+    useEffect(
+      function () {
+        function callback(e) {
+          if (document.activeElement === inputEl.current) return;
+
+          if (e.code === 'Enter') {
+            inputEl.current.focus();
+            setQuery('');
+            console.log('ENTER');
+          }
+        }
+        document.addEventListener('keydown', callback);
+        return () => document.addEventListener('keydown', callback);
+      },
+      [setQuery],
+    );
