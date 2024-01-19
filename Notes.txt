@@ -953,3 +953,10 @@ Section 13: Custom Hooks, Refs, and More State
       },
       [setQuery],
     );
+
+- Custom hooks:
+    + must start with "use" word
+    + UI (component) and LOGIC (regular functions, custom hooks)
+    + always non-visual logicone custom hooks should have one purpose
+    + rules of hooks apply to custom hooks too
+    + custom hook can have regular hooks inside
