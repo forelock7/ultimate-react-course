@@ -1099,3 +1099,17 @@ Section 16: The Advanced useReducer Hook
         dispatch({ type: 'reset' });
       };
       ......
+
+- Why reducer:
+    1. a lot of state vars and state updates spread across many handlers
+    2. multiple updates need to happen at the same time
+    3. Updating a piece of state  depends on one or multiple other pieces of state
+
+- useRedicer:
+    + alternative way to set state, ideal for complex state and related pieces of state
+    + stores related pieces of state in a state object (see above)
+    + useReducer needs reducer: func contains all logic to update state
+    + reducer: pure func (no side effects) that takes current state and action, and returns the next state
+    + action: object that describes how to update state
+    + dispatch: func to trigger state updates by sending action from event handlers to the reducer (agreed to use scheme: { type: '...', payload: ... })
+
