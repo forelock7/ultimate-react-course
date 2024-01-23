@@ -1113,3 +1113,5 @@ Section 16: The Advanced useReducer Hook
     + action: object that describes how to update state
     + dispatch: func to trigger state updates by sending action from event handlers to the reducer (agreed to use scheme: { type: '...', payload: ... })
 
+- Instal fake server:
+    npm i json-server
