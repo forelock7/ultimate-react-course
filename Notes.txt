@@ -1113,5 +1113,23 @@ Section 16: The Advanced useReducer Hook
     + action: object that describes how to update state
     + dispatch: func to trigger state updates by sending action from event handlers to the reducer (agreed to use scheme: { type: '...', payload: ... })
 
-- Instal fake server:
+- Install fake server:
     npm i json-server
+
+- Use reduce function to calculate sum:
+  const maxPossiblePoints = questions.reduce((prev, cur) => prev + cur.points, 0);
+
+- Clean up function to stop timer between renders
+    function Timer({ dispatch, secondsRemaining }) {
+      useEffect(
+        function () {
+          const id = setInterval(function () {
+            dispatch({ type: 'tick' });
+          }, 1000);
+
+          return () => clearInterval(id);
+        },
+        [dispatch],
+      );
+      return <div className="timer">{secondsRemaining}</div>;
+    }
