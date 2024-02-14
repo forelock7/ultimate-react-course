@@ -14,6 +14,7 @@ import Timer from './Timer';
 
 const SECS_PER_QUESTION = 30;
 const initialState = {
+  totalQuestions: [],
   questions: [],
   // 'loading', 'error', 'ready', 'active', 'finished'
   status: 'loading',
@@ -22,19 +23,22 @@ const initialState = {
   points: 0,
   highscore: 0,
   secondsRemaining: null,
+  numQuestions: 0,
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case 'dataReceived':
-      return { ...state, questions: action.payload, status: 'ready' };
+      const totalQuestions = action.payload;
+      const numQuestions = totalQuestions.length;
+      return { ...state, totalQuestions, questions: totalQuestions, status: 'ready', numQuestions };
     case 'dataFailed':
       return { ...state, status: 'error' };
     case 'start':
       return {
         ...state,
         status: 'active',
-        secondsRemaining: state.questions.length * SECS_PER_QUESTION,
+        secondsRemaining: state.numQuestions * SECS_PER_QUESTION,
       };
     case 'newAnswer':
       const question = state.questions.at(state.index);
@@ -57,6 +61,7 @@ function reducer(state, action) {
         ...initialState,
         status: 'ready',
         questions: state.questions,
+        numQuestions: state.questions.length,
       };
     case 'tick':
       return {
@@ -64,16 +69,27 @@ function reducer(state, action) {
         secondsRemaining: state.secondsRemaining - 1,
         status: state.secondsRemaining === 0 ? 'finished' : state.status,
       };
+    case 'increase':
+      return {
+        ...state,
+        numQuestions: state.numQuestions + 1,
+      };
+    case 'decrease':
+      return {
+        ...state,
+        numQuestions: state.numQuestions - 1,
+      };
     default:
       throw new Error('Action is unknown');
   }
 }
 
 export default function App() {
-  const [{ questions, status, index, answer, points, highscore, secondsRemaining }, dispatch] =
-    useReducer(reducer, initialState);
+  const [
+    { questions, status, index, answer, points, highscore, secondsRemaining, numQuestions },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
-  const numQuestions = questions.length;
   const maxPossiblePoints = questions.reduce((prev, cur) => prev + cur.points, 0);
 
   useEffect(function () {
