@@ -3,12 +3,12 @@ function StartScreen({ numQuestions, dispatch }) {
     <div className="start">
       <h2>Welcome to The React Quiz!</h2>
       <h3>Number of questions to test your React mastery:</h3>
-      <div>
-        <button className="btn btn-ui" onClick={() => dispatch({ type: 'decrease' })}>
+      <div className="choose-number">
+        <button className="btn" onClick={() => dispatch({ type: 'decrease' })}>
           -
         </button>
         <input className="quest-number" value={numQuestions} />
-        <button className="btn btn-ui" onClick={() => dispatch({ type: 'increase' })}>
+        <button className="btn" onClick={() => dispatch({ type: 'increase' })}>
           +
         </button>
       </div>

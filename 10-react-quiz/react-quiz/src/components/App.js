@@ -60,8 +60,9 @@ function reducer(state, action) {
       return {
         ...initialState,
         status: 'ready',
-        questions: state.questions,
-        numQuestions: state.questions.length,
+        totalQuestions: state.totalQuestions,
+        questions: state.totalQuestions,
+        numQuestions: state.totalQuestions.length,
       };
     case 'tick':
       return {
@@ -70,14 +71,19 @@ function reducer(state, action) {
         status: state.secondsRemaining === 0 ? 'finished' : state.status,
       };
     case 'increase':
+      const numQuesIncr = Math.min(state.numQuestions + 1, state.totalQuestions.length);
       return {
         ...state,
-        numQuestions: state.numQuestions + 1,
+        numQuestions: numQuesIncr,
+        questions: state.questions.slice(0, numQuesIncr),
       };
     case 'decrease':
+      const numQuesDecr = Math.max(state.numQuestions - 1, 1);
+
       return {
         ...state,
-        numQuestions: state.numQuestions - 1,
+        numQuestions: numQuesDecr,
+        questions: state.questions.slice(0, numQuesDecr),
       };
     default:
       throw new Error('Action is unknown');
