@@ -1135,3 +1135,24 @@ Section 16: The Advanced useReducer Hook
     }
 
 - CHALLENGE #1: Creating a Bank Account With useReducer: https://codesandbox.io/p/sandbox/react-challenge-usereducer-bank-starter-forked-3xmr2v?file=%2Fsrc%2FApp.js
+
+*****************************************************************************************************************
+Section 17: React Router: Building Single-Page Applications (SPA)
+*****************************************************************************************************************
+
+- Set up Vite project
+    + Install project via Vite:
+        npm create vite@latest
+    + Run Vite project
+        npm run dev
+    + Install Eslint:
+        npm install eslint vite-plugin-eslint eslint-config-react-app --save-dev
+    + Create file: /worldwise/.eslintrc.json
+        {
+          "extends": "react-app"
+        }
+    + Add eslint plugin to /worldwise/src/main.jsx
+        import eslint from 'vite-plugin-eslint';
+        export default defineConfig({
+          plugins: [react(), eslint()],
+        });
