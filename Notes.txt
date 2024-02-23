@@ -1156,3 +1156,18 @@ Section 17: React Router: Building Single-Page Applications (SPA)
         export default defineConfig({
           plugins: [react(), eslint()],
         });
+
+- Routing - match different URLs to different UI views (React components): routes
+- This enables users to navigate between different Applications screens, using the browser URL
+- Keeps the UI in sync with the current browser URL
+- React Router is use as third-party libraries
+- It allows us to create Single Page Application (SPA)
+
+- Single-Page Application (SPA) is executed entirely on the client (browser)
+- Routes: different URLs correspond to different views(components)
+- JavaScript (React) is used to update the page (DOM)
+- The page is never reloaded
+- Feels like a native app
+- Additional data might be loaded from web API
+      user clicks router link ---> URL is changed ---> DOM is updated: React component corresponding to the new URL is rendered
+
