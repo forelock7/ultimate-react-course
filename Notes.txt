@@ -1242,3 +1242,43 @@ Section 17: React Router: Building Single-Page Applications (SPA)
     + Css in JS (External file or component file)
     + Utility-first CSS (JSX elements) - tailwindcss
     + Alternative to styling with CSS: UI libs like MUI, Chakra UI, Mantine etc.
+
+- In module CSS you should use class not tag names(it will not work)
+- Usage module CSS:
+    + worldwise/src/components/PageNav.jsx
+          import styles from './PageNav.module.css';
+          const PageNav = () => {
+            return (
+              <nav className={styles.nav}>
+              .....
+    + worldwise/src/components/PageNav.module.css
+          .nav {
+            background-color: orangered;
+          }
+
+          .nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+          }
+
+- React create random class: class="_nav_2srth_1"
+- To give some particular class styler need to use global:
+      .nav :global(.active) {
+        background-color: green;
+      }
+
+- Usage style class in different component can be with global function:
+    + worldwise/src/components/PageNav.jsx
+        :global(.test) {
+          background-color: red;
+        }
+    + worldwise/src/pages/Homepage.jsx
+        const Homepage = () => {
+          return (
+            <div>
+              <PageNav />
+              <AppNav />
+              <h1 className='test'>WorldWise</h1>
+              ...
+
