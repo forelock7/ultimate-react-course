@@ -1234,3 +1234,11 @@ Section 17: React Router: Building Single-Page Applications (SPA)
       </nav>
     );
   };
+
+- Styling options in React:
+    + Inline CSS (style props in JSX elements)
+    + CSS or Sass file (external file - Entire app - globally)
+    + CSS Modules (One external file per component)
+    + Css in JS (External file or component file)
+    + Utility-first CSS (JSX elements) - tailwindcss
+    + Alternative to styling with CSS: UI libs like MUI, Chakra UI, Mantine etc.
