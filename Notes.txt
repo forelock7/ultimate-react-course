@@ -1282,3 +1282,11 @@ Section 17: React Router: Building Single-Page Applications (SPA)
               <h1 className='test'>WorldWise</h1>
               ...
 
+- Snipet
+    "importCSSModule": {
+      "prefix": "csm",
+      "scope": "javascript,typescript,javascriptreact",
+      "body": ["import styles from './${TM_FILENAME_BASE}.module.css'"],
+      "description": "Import CSS Module as `styles`"
+    },
+
