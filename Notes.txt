@@ -1290,3 +1290,46 @@ Section 17: React Router: Building Single-Page Applications (SPA)
       "description": "Import CSS Module as `styles`"
     },
 
+- Use nested Routing: like /app/cities (Outlet like childrent elements)
+    const App = () => {
+      return (
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+              ....
+            <Route path="app" element={<AppLayout />}>
+              <Route index element={<p>LIST</p>} />             ---------  DEFAULTE
+              <Route path="cities" element={<p>List of cities</p>} />
+              <Route path="countries" element={<p>Countries</p>} />
+              <Route path="form" element={<p>Form</p>} />
+            </Route>
+            ....
+
+    const AppLayout = () => {
+      return (
+        <div className={styles.app}>
+          <Sidebar />
+          <Map />
+          ....
+    
+    const Sidebar = () => {
+      return (
+        <div className={styles.sidebar}>
+          <Logo />
+          <AppNav />
+
+          <Outlet />
+          ....
+
+- To link previous nested rout with web elements:
+    const AppNav = () => {
+      return (
+        <nav className={nav}>
+          <ul>
+            <li>
+              <NavLink to="cities">Cities</NavLink>
+            </li>
+            <li>
+              <NavLink to="countries">Countries</NavLink>
+            </li>
+            ....
