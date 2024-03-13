@@ -1116,6 +1116,10 @@ Section 16: The Advanced useReducer Hook
 - Install fake server:
     npm i json-server
 
+      "scripts": {
+        "server": "json-server --watch ./data/cities.json --port 8000"
+        ......
+
 - Use reduce function to calculate sum:
   const maxPossiblePoints = questions.reduce((prev, cur) => prev + cur.points, 0);
 
