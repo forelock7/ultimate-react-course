@@ -1352,3 +1352,17 @@ Section 17: React Router: Building Single-Page Applications (SPA)
   lat=38.4343&lng=-9.743864 - query string
 
   City name and GPS location were retrieved from the URL instead of application state!
+
+- Create a route to open certain component when the link is matche the pattern
+         <Route path="cities/:id" element={<City />} />
+- Add link too component with the same pattern which will lead to previous component after click
+          const CityItem = ({ city }) => {
+            const { cityName, emoji, date, id } = city;
+            return (
+              <li>
+                <Link className={styles.cityItem} to={`${id}`}>
+                .....
+- Then we can read param from URL using useParams hook
+    function City() {
+      const { id } = useParams();
+      ...
