@@ -1362,7 +1362,25 @@ Section 17: React Router: Building Single-Page Applications (SPA)
               <li>
                 <Link className={styles.cityItem} to={`${id}`}>
                 .....
+
 - Then we can read param from URL using useParams hook
     function City() {
       const { id } = useParams();
       ...
+
+- Set search params to URL
+     <Link className={styles.cityItem} to={`${id}?lat=${position.lat}&lng=${position.lng}`}>
+
+- Get Search params from URL
+    const [searchParams, setSerchParams] = useSearchParams();
+    const lat = searchParams.get('lat');
+    const lng = searchParams.get('lng');
+
+- Update search params in URL
+      <button
+        onClick={() => {
+          setSerchParams({ lat: 23, lng: 50 });
+        }}
+      >
+        Change pos
+      </button>
