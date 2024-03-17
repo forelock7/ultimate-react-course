@@ -1417,3 +1417,9 @@ Section 17: React Router: Building Single-Page Applications (SPA)
           <Route index element={<Navigate replace to="cities" />} />
           <Route path="cities" element={<CityList cities={cities} isLoading={isLoading} />} />
           ....
+
+*****************************************************************************************************************
+Section 18: Advanced State Management: The Context API
+*****************************************************************************************************************
+
+- PROJECT: 12-atomic-blog/atomic-blog
