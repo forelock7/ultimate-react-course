@@ -1384,3 +1384,30 @@ Section 17: React Router: Building Single-Page Applications (SPA)
       >
         Change pos
       </button>
+
+- useNavigate - navigate to another page without clicking any butto, for instance after submitting form:
+    const Map = () => {
+      const navigate = useNavigate();
+      const [searchParams, setSerchParams] = useSearchParams();
+      const lat = searchParams.get('lat');
+      const lng = searchParams.get('lng');
+      return (
+        <div
+          className={styles.mapContainer}
+          onClick={() => {
+            navigate('form');
+          }}>
+          ...
+
+- navigate to previous page (-1)
+        <Button
+          type="back"
+          onClick={(e) => {
+            // prevent re-submit all form(re-rendering) because button inside the form
+            e.preventDefault();
+            // move to previous page
+            navigate(-1);
+          }}
+        >
+          &larr; Back
+        </Button>
