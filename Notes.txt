@@ -1437,3 +1437,36 @@ Section 18: Advanced State Management: The Context API
     3. Consumers: all components that read the provided context value
 
     value is updated -> all consumers re-render
+
+- Flow:
+    1. Create a new context
+       const PostContext = createContext();
+    2. Provide value to the child component
+        <PostContext.Provider
+          value={{
+            posts: searchedPosts,
+            onAddPost: handleAddPost,
+            onClearPosts: handleClearPosts,
+            searchQuery,
+            setSearchQuery,
+          }}
+        >
+          <section>
+            <button
+              onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
+              className="btn-fake-dark-mode"
+            >
+              {isFakeDark ? '☀️' : '🌙'}
+            </button>
+
+            <Header
+              posts={searchedPosts}
+              onClearPosts={handleClearPosts}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+            <Main posts={searchedPosts} onAddPost={handleAddPost} />
+            <Archive onAddPost={handleAddPost} />
+            <Footer />
+          </section>
+        </PostContext.Provider>
