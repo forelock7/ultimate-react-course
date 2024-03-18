@@ -1470,3 +1470,19 @@ Section 18: Advanced State Management: The Context API
             <Footer />
           </section>
         </PostContext.Provider>
+    3. Consuming context value
+      function Header() {
+        const { onClearPosts } = useContext(PostContext);
+        return (
+          <header>
+            <h1>
+              <span>⚛️</span>The Atomic Blog
+            </h1>
+            <div>
+              <Results />
+              <SearchPosts />
+              <button onClick={onClearPosts}>Clear posts</button>
+            </div>
+          </header>
+        );
+      }
