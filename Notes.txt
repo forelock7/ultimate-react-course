@@ -1423,3 +1423,17 @@ Section 18: Advanced State Management: The Context API
 *****************************************************************************************************************
 
 - PROJECT: 12-atomic-blog/atomic-blog
+
+- A prop drilling. Sollutions:
+    1. Passing props through all level into deeply nested components (BAD SOLUTION)
+    2. Context API. Read state everywhere (GOOD SOLUTION)
+
+- Context API:
+    + System to pass data throughout the app withiut manually passing props down the tree
+    + Allows us to "broadcast" global state to the entire app
+
+    1. Provider: gives all child components access to value
+    2. value: data that we want to make available (usually state and functions)
+    3. Consumers: all components that read the provided context value
+
+    value is updated -> all consumers re-render
