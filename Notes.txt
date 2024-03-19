@@ -1486,3 +1486,38 @@ Section 18: Advanced State Management: The Context API
           </header>
         );
       }
+
+- 1. Better to use API Context as a Component:
+    function PostProvider({ children }) {
+      ....
+        return (
+        // 2. Provide value to the child component
+        <PostContext.Provider
+          value={{
+            posts: searchedPosts,
+            onAddPost: handleAddPost,
+            onClearPosts: handleClearPosts,
+            searchQuery,
+            setSearchQuery,
+          }}
+        >
+          {children}
+        </PostContext.Provider>
+      );
+    function usePosts() {
+      const context = useContext(PostContext);
+      if (context === undefined) throw new Error('PostContext was used outside of the PostProvider');
+      return context;
+    }
+    export { PostProvider, usePosts };
+
+- 2. Usage
+      <PostProvider>
+        <Header />
+        <Main />
+        <Archive />
+        <Footer />
+      </PostProvider>
+      -------
+    // 3. Consuming context value
+    const { onClearPosts } = usePosts();
