@@ -1521,3 +1521,36 @@ Section 18: Advanced State Management: The Context API
       -------
     // 3. Consuming context value
     const { onClearPosts } = usePosts();
+
+- Types of State:
+    1. State Accessibility: 
+        + Local State   - Need only by one or few components
+                        - Only accessible in component and child
+                        - If your component was rendered twice, should a state update in one of them reflected one? - NO
+
+        + Global State  - Might be needed by many components
+                        - Accessible to every component in the application
+                        - If your component was rendered twice, should a state update in one of them reflected one? - YES
+
+    2. State Domain:
+        + Remote State  - All application data loaded from a remote server (API)
+                        - Usually asynchronously
+                        - Needs re-fetching + updating
+        + UI State      - Everything else :)
+                        - Theme, list filters, from data, etc.
+                        - Usually synchronous and stored in the application
+
+- State placement option:
+    + Local component   - Tools: useState, useReducer or useRef
+                        - When: Local state
+    + Parent component  - Tools: useState, useReducer or useRef
+                        - When: Lifting up state
+    + Context           - Tools: Context API + useState or useReducer
+                        - When: Global state (Preferably UI state)
+    + 3rd-party library - Tools: Redux, React Query, SWR, Zustand, etc.
+                        - When: Global state (remote or UI)
+    + URL               - Tools: React Router
+                        - When: Global State, passing between pages
+    + Browser           - Tools: Local storage, session storage, etc
+                        - When: Storing data in user's browser
+
