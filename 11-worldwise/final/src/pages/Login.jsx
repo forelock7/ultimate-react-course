@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "../components/Button";
-import PageNav from "../components/PageNav";
-import { useAuth } from "../contexts/FakeAuthContext";
-import styles from "./Login.module.css";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
+import PageNav from '../components/PageNav';
+import { useAuth } from '../contexts/FakeAuthContext';
+import styles from './Login.module.css';
 
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
-  const [email, setEmail] = useState("jack@example.com");
-  const [password, setPassword] = useState("qwerty");
+  const [email, setEmail] = useState('jack@example.com');
+  const [password, setPassword] = useState('qwerty');
 
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
@@ -21,9 +21,9 @@ export default function Login() {
 
   useEffect(
     function () {
-      if (isAuthenticated) navigate("/app", { replace: true });
+      if (isAuthenticated) navigate('/app', { replace: true });
     },
-    [isAuthenticated, navigate]
+    [isAuthenticated, navigate],
   );
 
   return (
@@ -33,12 +33,7 @@ export default function Login() {
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.row}>
           <label htmlFor="email">Email address</label>
-          <input
-            type="email"
-            id="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
+          <input type="email" id="email" onChange={(e) => setEmail(e.target.value)} value={email} />
         </div>
 
         <div className={styles.row}>
