@@ -1561,3 +1561,29 @@ Section 18: Advanced State Management: The Context API
       },
       [isAuthenticated, navigate],
     );
+
+- Redirect to root if not authenticated. Created own componet and call it in App.jsx
+        const ProtectedRoute = ({ children }) => {
+          const { isAuthenticated } = useAuth();
+          const navigate = useNavigate();
+          useEffect(
+            function () {
+              if (!isAuthenticated) navigate('/');
+            },
+            [isAuthenticated, navigate],
+          );
+
+          return isAuthenticated ? children : null;
+        };
+        ........
+                    <Route path="login" element={<Login />} />
+            <Route
+              path="app"
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<Navigate replace to="cities" />} />
+              .....
