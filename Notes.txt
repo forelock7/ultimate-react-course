@@ -1614,3 +1614,7 @@ Section 19: Performance Optimization and Advanced useEffect
 - Remember: a render does not mean that the DOM actuallyu gets updated, it just means the component functiongets called. But this can be expensive operation.
 - Wasted render: a render that didn't produce any changes in DOM
 - Only a problem when they happen too frequently or when the component is very slow
+
+- For debug. Use Dev Tools plugin React(Components and Profiler) -> Profiler
+- Set up it: Settings -> "Record why each component rendered while profiling"=True
+- Record and change state
