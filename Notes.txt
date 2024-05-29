@@ -1587,3 +1587,30 @@ Section 18: Advanced State Management: The Context API
             >
               <Route index element={<Navigate replace to="cities" />} />
               .....
+
+*****************************************************************************************************************
+Section 19: Performance Optimization and Advanced useEffect
+*****************************************************************************************************************
+
+- performance Optimization Tools
+  1. prevent wasted renders
+    + memory
+    + useMemo
+    + useCallback
+    + passing elements as children or regular prop
+  2. improve app speed/responsiveness
+    + memory
+    + useMemo
+    + useCallback
+  3. reduce bundle size
+    + using fewer 3rd-party packages
+    + code splitting and lazy loading
+
+- When does a component instance re-render:
+    + state changes
+    + context changes
+    + parent re-renders (creates the false impression that changing props re-renders a component. This is NOT true)
+
+- Remember: a render does not mean that the DOM actuallyu gets updated, it just means the component functiongets called. But this can be expensive operation.
+- Wasted render: a render that didn't produce any changes in DOM
+- Only a problem when they happen too frequently or when the component is very slow
