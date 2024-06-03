@@ -702,7 +702,7 @@ Also when code that actually does something: data fetching, setting up subscript
 - Cleanup function can be returned from a effect(optional)
 - It runs:
     + before the effect is executed again
-    + after component has unmounted!!!
+    + after component has unmounted!!!  
 
 - whenever the side effect keeps happening after the component has been re-rendered or unmounted
 
@@ -1680,3 +1680,7 @@ Section 19: Performance Optimization and Advanced useEffect
 - Memoized component - not render if its parent re-render as long as props stay the same beween renders
 - Only affects props! A memorized component will still re-render when its own state changes or when a context that it's subscribed to changes
 - Only makes sence when the component is heavy (slow rendering), re-renders often, and does so with the same props
+
+- Add component to memo, just wrap by memo function:
+    const Archive = memo(function Archive({ show }) {
+      ......
