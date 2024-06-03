@@ -1695,7 +1695,7 @@ Three big uses cases:
 2. Memoizing values to avoid expensive re-calculations on every render
 3. Memoizing values that are used in dependancy array of another hook
 
-- Example: 
+- Example useMemo: 
   const archiveOptions = useMemo(() => {
     return {
       show: false,
@@ -1709,3 +1709,8 @@ Three big uses cases:
       title: `Post archive in addition to ${posts.length} main posts`,
     };
   }, [posts.length]);
+
+  - Example useCallback:
+  const handleAddPost = useCallback(function handleAddPost(post) {
+    setPosts((posts) => [post, ...posts]);
+  }, []);
