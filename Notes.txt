@@ -1694,3 +1694,18 @@ Three big uses cases:
 1. Memoizing props to prevent wasted renders (together with memo)
 2. Memoizing values to avoid expensive re-calculations on every render
 3. Memoizing values that are used in dependancy array of another hook
+
+- Example: 
+  const archiveOptions = useMemo(() => {
+    return {
+      show: false,
+      title: 'Post archive in addition to main posts',
+    };
+  }, []);
+
+  const archiveOptions = useMemo(() => {
+    return {
+      show: false,
+      title: `Post archive in addition to ${posts.length} main posts`,
+    };
+  }, [posts.length]);
