@@ -1684,3 +1684,13 @@ Section 19: Performance Optimization and Advanced useEffect
 - Add component to memo, just wrap by memo function:
     const Archive = memo(function Archive({ show }) {
       ......
+
+- useMemo - memorize values between renders
+- useCallback - memorize function between renders
+- values passed into useMemo and use Callback will be stored in memory ('cached') and returned in subsequent re-renders, as long as dependencies ('inputs') stay the same
+- useMemo and useCallback have a dependency array (like useEffect): whenever one dependency changes, the value will be re-created
+
+Three big uses cases:
+1. Memoizing props to prevent wasted renders (together with memo)
+2. Memoizing values to avoid expensive re-calculations on every render
+3. Memoizing values that are used in dependancy array of another hook
