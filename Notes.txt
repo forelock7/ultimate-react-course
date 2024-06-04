@@ -1714,3 +1714,9 @@ Three big uses cases:
   const handleAddPost = useCallback(function handleAddPost(post) {
     setPosts((posts) => [post, ...posts]);
   }, []);
+
+- Optimize context (only if all 3 are true):
+    1. State in the context needs to change all the time
+    2. Context has many consumers
+    3. App is slow and laggy
+    
