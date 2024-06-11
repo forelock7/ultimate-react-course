@@ -1741,3 +1741,12 @@ Three big uses cases:
             <Routes>
               <Route index element={<Homepage />} />
               <Route path="product" element={<Product />} />
+
+- Don't optimize prematuraly:
+    + find performance bottleneck using Profile and visual inspection (laggy UI)
+    + Fix those real performance issues
+    + Memoize expensive re-renders
+    + Memoize expensive calculations
+    + Optimize context if it has many consumers and changes often
+    + Memoize context value + child components
+    + Implement code splitting + lazy loading for SPA routes
