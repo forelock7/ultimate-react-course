@@ -1720,3 +1720,24 @@ Three big uses cases:
     2. Context has many consumers
     3. App is slow and laggy
     
+- Bundle and code splitting
+    + Bundle - JS file containing the entire application code. Downloading the bundle will load the entire app at once, turning it into a SPA
+        - Vite
+        - Webpack (inside create-react-app)
+    + Bundle Size - amount of JS users have to download to start using app. One of the most important things to be optimized, so that the bundle takes less time to download.
+    + Code splitting - splitting bundle into multiple parts that can be downloaded over time ("lazy loading")
+
+- Example of lazy load in App.js:
+  // import Homepage from './pages/Homepage';
+  const Homepage = lazy(() => import('./pages/Homepage'));
+
+- Add Suspense API for lazy load with falback attribute (to display spinner meanwhile):
+  const App = () => {
+  return (
+    <AuthProvider>
+      <CitiesProvider>
+        <BrowserRouter>
+          <Suspense fallback={<SpinnerFullPage />}>
+            <Routes>
+              <Route index element={<Homepage />} />
+              <Route path="product" element={<Product />} />
