@@ -1750,3 +1750,29 @@ Three big uses cases:
     + Optimize context if it has many consumers and changes often
     + Memoize context value + child components
     + Implement code splitting + lazy loading for SPA routes
+
+- useEffect dependency array rules:
+    + Every state variable, prop and context value used inside the effect MUST be included in the dependency array
+    + All "reactive values" must be included! That means any function or variable that reference any other reactive values
+    + Dependencies choose themselves: NEVER ignore the exhaustive-deps ESLint rule!
+    + Do NOT use objects or arrays as dependencies (objects are reacted on each render and React sees new objects as different, {} !== {})
+
+- Removing unnecessary dependencies:
+    + Removing function dependencies:
+        - Move function into the effect
+        - if you need the function in multiple place, memoize it (useCallback)
+        - if the function doesn't reference any reactive values, move it out of the component
+    + Removing object dependencies:
+        - Instead of including the entire object, include only the properties you need (primitive values)
+        - if that doesn't work, use the same strategies as for functions (moving or memoizing object)
+    + Other strategies
+        - if you have multiple related reactive values as dependencies, try using a reducer (useReducer)
+        - you don't need to include setState (from useState) and dispatch (from useReducer) in the dependencies, as React guarantees them to be stable across renders
+
+- When NOT to use an effect
+    + Effects should be used as a last resort, when no other solution makes sense. React calls them an 'escape hatch' to step outside of React
+
+- Three cases where effects are overused:
+    1. Responding to a user event. An event handler function should be used instead
+    2. Fetching data on component mount. This is fine in small apps, but in real-world app, a library like React Query should be used
+    3. Synchronizing state changes with one another (setting state based on another state variable). Try to use derived state and event handlers
