@@ -1786,3 +1786,29 @@ Three big uses cases:
   useEffect(function() {
     document.title = `Your ${number}-exercise workout`
   }, [number])
+
+*****************************************************************************************************************
+Section 20: Redux and Modern Redux Toolkit (With Thunks)
+*****************************************************************************************************************
+
+- Redux:
+    + 3rd-party lib to manage global state
+    + Standalone lib, but easy to integrate with React apps using react-redux lib
+    + All global state is stored in one globaly accessible store, which is easy to update using "actions" (like useReducer)
+    + It's conceptually similar to using the Contex API + useReducer
+    + Two "versions": (1) Classic Redux, (2) Modern Redux Toolkit
+
+- Global store is updated -> All consuming components re-render
+
+- Historically Redux was used in most Reacts apps for all global stae. Today that has changed, necause there are many alternatives. Many apps don't need a lot of global UI state.
+    + UI Local State: useState, useReducer, useRef
+    + UI Global State: Context API + useState/useReducer; Redux, Zustand, Recoil, etc; React Router
+    + Remote Local State: fetch + useEffect + useState/useReducer
+    + Remote Global State: Context API + useState/useReducer; Redux, Zustand, Recoil, etc; React Query; SWR; RTK Query
+
+- Mechanism of the useReducer hook:
+    + Event handler in component(action with type and payload) -> dispatch -> reducer(current state) -> Next state -> Re-render\
+
+- Mechanism of the Redux hook:
+    + Event handler in component -> Action creator function(auto create action with type and payload) -> dispatch -> STORE with multiple reducers(current state) -> Next state -> Re-render
+    
