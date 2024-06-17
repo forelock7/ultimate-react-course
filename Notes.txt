@@ -1776,3 +1776,13 @@ Three big uses cases:
     1. Responding to a user event. An event handler function should be used instead
     2. Fetching data on component mount. This is fine in small apps, but in real-world app, a library like React Query should be used
     3. Synchronizing state changes with one another (setting state based on another state variable). Try to use derived state and event handlers
+
+- Stale closure - when fuction was created initialy and point to init 'snapshot' of 'number' var (outdated value)
+  useEffect(function() {
+    document.title = `Your ${number}-exercise workout`
+  }, [])
+
+- Re-execute function, just use dependany array 
+  useEffect(function() {
+    document.title = `Your ${number}-exercise workout`
+  }, [number])
