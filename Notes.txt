@@ -1845,3 +1845,7 @@ Section 20: Redux and Modern Redux Toolkit (With Thunks)
       }
       const store = createStore(reducer);
       store.dispatch({ type: 'account/deposit', payload: 500 });
+
+- combine 2 reducers:
+    const rootReducer = combineReducers({ account: accountReducer, customer: customerReducer });
+    const store = createStore(rootReducer);
