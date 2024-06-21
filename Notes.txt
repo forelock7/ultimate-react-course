@@ -1849,3 +1849,19 @@ Section 20: Redux and Modern Redux Toolkit (With Thunks)
 - combine 2 reducers:
     const rootReducer = combineReducers({ account: accountReducer, customer: customerReducer });
     const store = createStore(rootReducer);
+
+- Provider for stor to components:
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(
+        <React.StrictMode>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </React.StrictMode>,
+      );
+
+- Get state from store in components:
+    import { useSelector } from 'react-redux';
+    function Customer() {
+      const customer = useSelector((store) => store.customer.fullName);
+      console.log(customer);
