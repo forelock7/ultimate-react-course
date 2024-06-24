@@ -1913,3 +1913,13 @@ Section 20: Redux and Modern Redux Toolkit (With Thunks)
   npm i redux-devtools-extension
   import { composeWithDevTools } from 'redux-devtools-extension';
   const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+
+- What is Redux Toolkit (RTK)? 
+    + the modern way to write Redux code
+    + the opinionated approach, forcing us to use Redux best practice
+    + 100% compatiable to old Redux, allowing usage together in one app
+    + allows us to write a lot less code to achive the same (less "boilerplate")
+    + give us 3 big things (but there are many more...):
+      1. we can write code that mutates state inside reducer (will be converted to immutable logic behind the scenes by "Immer" library)
+      2. action creators are automaticaly created
+      3. Automatic setup of thunk middleware and DevTools
