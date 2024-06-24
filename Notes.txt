@@ -1974,3 +1974,5 @@ Section 20: Redux and Modern Redux Toolkit (With Thunks)
       });
       export const { deposit, withdraw, requestLoan, payLoan } = accountSlice.actions;
       export default accountSlice.reducer;
+
+- Back to Thunks - re-use the old approach, because it's more simple for now than approach from redux toolkit
