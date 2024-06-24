@@ -1880,3 +1880,12 @@ Section 20: Redux and Modern Redux Toolkit (With Thunks)
       };
     }
     export default connect(mapStateToProps)(BalanceDisplay);
+
+- Redux Middleware and Thunks. 
+  What is Redux Middleware?
+  'COMPONENT' --> 'dispatch' --> 'MIDDLEWARE' --> 'STORE'
+  Middleware - functions that sits between dispatching the actions and store:
+    + perfect for async code
+    + API calls, timers, logging
+    + The place for side effects
+  Redux Thunks - 3rd-party lib for middleware
