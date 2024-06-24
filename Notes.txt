@@ -1865,3 +1865,12 @@ Section 20: Redux and Modern Redux Toolkit (With Thunks)
     function Customer() {
       const customer = useSelector((store) => store.customer.fullName);
       console.log(customer);
+
+- Dispatching Actions from Our React App:
+  const dispatch = useDispatch();
+  function handleClick() {
+    if (!fullName || !nationalId) return;
+    dispatch(createCustomer(fullName, nationalId));
+  }
+
+  
