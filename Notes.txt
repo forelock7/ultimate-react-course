@@ -1907,3 +1907,9 @@ Section 20: Redux and Modern Redux Toolkit (With Thunks)
         dispatch({ type: 'account/deposit', payload: converted });
       };
     }
+
+- The Redux DevTools:
+  Install Redux DevTools Chrome extention
+  npm i redux-devtools-extension
+  import { composeWithDevTools } from 'redux-devtools-extension';
+  const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
