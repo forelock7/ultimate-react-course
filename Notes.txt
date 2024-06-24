@@ -1923,3 +1923,12 @@ Section 20: Redux and Modern Redux Toolkit (With Thunks)
       1. we can write code that mutates state inside reducer (will be converted to immutable logic behind the scenes by "Immer" library)
       2. action creators are automaticaly created
       3. Automatic setup of thunk middleware and DevTools
+
+- Creating the Store With RTK.
+  npm i @reduxjs/toolkit
+  Simplify store.js
+  import { configureStore } from '@reduxjs/toolkit';
+  import accountReducer from './features/accounts/accountSlice';
+  import customerReducer from './features/customers/customerSlice';
+  const store = configureStore({ reducer: { account: accountReducer, customer: customerReducer } });
+  export default store;
