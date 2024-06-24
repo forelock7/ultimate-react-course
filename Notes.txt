@@ -1978,3 +1978,28 @@ Section 20: Redux and Modern Redux Toolkit (With Thunks)
 - Back to Thunks - re-use the old approach, because it's more simple for now than approach from redux toolkit
 
 - Redux vs. Context API (+useReducer)
+
+*****************************************************************************************************************
+Section 21: PART 4: PROFESSIONAL REACT DEVELOPMENT [2 PROJECTS]
+*****************************************************************************************************************
+
+*****************************************************************************************************************
+Section 22: React Router With Data Loading (v6.4+)
+*****************************************************************************************************************
+
+- Setting Up a New Project: "Fast React Pizza Co."
+    npm create vite@4 //// or vite@latest
+    cd fast-react-pizza
+    npm i
+    npm i eslint vite-plugin-eslint eslint-config-react-app --save-dev
+    Create file ".eslintrc.json":
+    {
+        "extends": "react-app"
+    }
+    Add in "vite.config.js" file:
+    import eslint from "vite-plugin-eslint"
+    export default defineConfig({
+      plugins: [react(), eslint()],
+    })
+    Clean project fron unnecessary files and run it:
+    npm run dev
