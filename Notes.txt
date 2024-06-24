@@ -1889,3 +1889,21 @@ Section 20: Redux and Modern Redux Toolkit (With Thunks)
     + API calls, timers, logging
     + The place for side effects
   Redux Thunks - 3rd-party lib for middleware
+
+- Making an API Call With Redux Thunks
+  npm i redux-thunk
+  const store = createStore(rootReducer, applyMiddleware(thunk));
+  If we return in action function, redux will know that it's async (middleware) 
+    export function deposit(amount, currency) {
+      if (currency === 'USD') return { type: 'account/deposit', payload: amount };
+      return async function (dispatch, getState) {
+        dispatch({ type: 'account/convertingCurrency' });
+        const res = await fetch(
+          `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`,
+        );
+        const data = await res.json();
+        const converted = data.rates.USD;
+        console.log(converted);
+        dispatch({ type: 'account/deposit', payload: converted });
+      };
+    }
