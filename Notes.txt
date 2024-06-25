@@ -2040,7 +2040,7 @@ Section 22: React Router With Data Loading (v6.4+)
         - Placing a new order (/order/new)
         - Looking up an order (/order/:orderID)
     
-Step 4 + 5. State management and technology decision
+- Step 4 + 5. State management and technology decision
     + State domain / slices - type of state
         - User - Global UI state (no accounts so stay in app)
         - Menu - Global remote state (fetched from API)
@@ -2051,3 +2051,6 @@ Step 4 + 5. State management and technology decision
         - Styling - tailwindcss (trendy way)
         - Remote state management - ReactRouter (New way of fetching data)
         - UI state management - Redux (State is fairly complex)
+
+- A New Way Of Implementing Routes:
+    - npm i react-router-dom@6
