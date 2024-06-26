@@ -2096,3 +2096,28 @@ Section 22: React Router With Data Loading (v6.4+)
           </div>
         );
       };
+
+- Fetching Data With React Router "Loaders": Pizza Menu:
+        function Menu() {
+          const menu = useLoaderData();    ----------- using hook to fetch data
+          console.log(menu);
+          return (
+            <ul>
+              {menu.map((pizza) => (
+                <MenuItem pizza={pizza} key={pizza.id} />
+              ))}
+            </ul>
+          );
+        }
+        export async function loader() {      ------ fetching data from API
+          const menu = await getMenu();
+          return menu;
+        }
+        --------------
+        import Menu, { loader as menuLoader } from './features/menu/Menu';
+        .....
+              {
+                path: '/menu',
+                element: <Menu />,
+                loader: menuLoader,            -----  rendering during fetching data
+              },
