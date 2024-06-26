@@ -2054,3 +2054,45 @@ Section 22: React Router With Data Loading (v6.4+)
 
 - A New Way Of Implementing Routes:
     - npm i react-router-dom@6
+
+- Building AppLayout:
+      const router = createBrowserRouter([
+        {
+          element: <AppLayout />,     --------- LayOut rout
+          children: [
+            {
+              path: '/',
+              element: <Home />,
+            },
+            {
+              path: '/menu',
+              element: <Menu />,
+            },
+            {
+              path: '/cart',
+              element: <Cart />,
+            },
+            {
+              path: '/order/new',
+              element: <CreateOrder />,
+            },
+            {
+              path: '/order/:orderId',
+              element: <Order />,
+            },
+          ],
+        },
+      ]);
+      ----------
+      const AppLayout = () => {    ------ parent component for every single rout in application
+        return (
+          <div>
+            <Header />
+            <main>
+              <h1>Content</h1>
+              <Outlet />          ------- to show/render content nested components from router
+            </main>
+            <CartOverview />
+          </div>
+        );
+      };
