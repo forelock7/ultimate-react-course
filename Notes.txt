@@ -2121,3 +2121,23 @@ Section 22: React Router With Data Loading (v6.4+)
                 element: <Menu />,
                 loader: menuLoader,            -----  rendering during fetching data
               },
+
+- Displaying a Loading Indicator:
+  Just create Loader component and put it in Layout component using useNavigation hook. Loader will appear in every page 
+    const AppLayout = () => {
+      const navigation = useNavigation();
+      const isLoading = navigation.state === 'loading';
+      console.log(navigation);
+
+      return (
+        <div className="layout">
+          {isLoading && <Loader />}
+          <Header />
+          <main>
+            <h1>Content</h1>
+            <Outlet />
+          </main>
+          <CartOverview />
+        </div>
+      );
+    };
