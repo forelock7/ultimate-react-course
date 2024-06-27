@@ -2186,3 +2186,5 @@ Section 22: React Router With Data Loading (v6.4+)
           </div>
         );
       }
+
+- Fetching Orders
