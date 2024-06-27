@@ -2221,3 +2221,35 @@ Section 22: React Router With Data Loading (v6.4+)
         const newOrder = await createOrder(order);
         return redirect(`/order/${newOrder.id}`);
       }
+
+- Error Handling in Form Actions
+        export async function action({ request }) {
+        .....
+          const order = {
+            ...data,
+            cart: JSON.parse(data.cart),
+            priority: data.priority === 'on',
+          };
+
+          const errors = {};
+          if (!isValidPhone(order.phone)) {
+            errors.phone = 'Please give us your correct phone number.';
+          }
+          if (Object.keys(errors).length > 0) return errors;
+
+          const newOrder = await createOrder(order);
+          return redirect(`/order/${newOrder.id}`);
+        }
+        --------------
+        function CreateOrder() {
+        .......
+          const formErrors = useActionData();
+          ......
+                <div>
+                  <label>Phone number</label>
+                  <div>
+                    <input type="tel" name="phone" required />
+                  </div>
+                  {formErrors?.phone && <p>{formErrors.phone}</p>}
+                </div>
+                .....
