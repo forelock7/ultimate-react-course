@@ -2188,3 +2188,36 @@ Section 22: React Router With Data Loading (v6.4+)
       }
 
 - Fetching Orders
+
+- Writing Data With React Router "Actions"
+      const router = createBrowserRouter([
+        {
+          element: <AppLayout />,
+      ......
+            {
+              path: '/order/new',
+              element: <CreateOrder />,
+              action: createOrderAction,
+            },
+            .....
+      ----------------
+      function CreateOrder() {
+      ......
+        return (
+      ......
+            {/* <Form method="POST" action='/order/new'>  --- action can be omitted in this case*/}
+            <Form method="POST">
+              <div>
+              .........
+      .......
+      export async function action({ request }) {
+        const formData = await request.formData();
+        const data = Object.fromEntries(formData);
+        const order = {
+          ...data,
+          cart: JSON.parse(data.cart),
+          priority: data.priority === 'on',
+        };
+        const newOrder = await createOrder(order);
+        return redirect(`/order/${newOrder.id}`);
+      }
