@@ -2141,3 +2141,48 @@ Section 22: React Router With Data Loading (v6.4+)
         </div>
       );
     };
+
+- Handling Errors With Error Elements
+      const router = createBrowserRouter([
+        {
+          element: <AppLayout />,
+          errorElement: <Error />, --- Error component
+          children: [
+            {
+              path: '/',
+              element: <Home />,
+            },
+            {
+              path: '/menu',
+              element: <Menu />,
+              errorElement: <Error />, ---- to place it in page inside, but not replace all content in there
+              loader: menuLoader,
+            },
+            {
+              path: '/cart',
+              element: <Cart />,
+            },
+            {
+              path: '/order/new',
+              element: <CreateOrder />,
+            },
+            {
+              path: '/order/:orderId',
+              element: <Order />,
+            },
+          ],
+        },
+      ]);
+      -----
+      function Error() {
+        const navigate = useNavigate();
+        const error = useRouteError(); --- hook to fetch error message 
+
+        return (
+          <div>
+            <h1>Something went wrong 😢</h1>
+            <p>{error.data || error.message}</p>
+            <button onClick={() => navigate(-1)}>&larr; Go back</button>
+          </div>
+        );
+      }
