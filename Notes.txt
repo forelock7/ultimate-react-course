@@ -2253,3 +2253,26 @@ Section 22: React Router With Data Loading (v6.4+)
                   {formErrors?.phone && <p>{formErrors.phone}</p>}
                 </div>
                 .....
+
+*****************************************************************************************************************
+Section 23: [Optional] Tailwind CSS Crash Course: Styling the App
+*****************************************************************************************************************
+
+- What is Tailwind CSS - utility-first CSS framework with utility classes like 'flex', 'text-center' and 'rotate-90'
+- can be composed to build any design, directly in your markup (HTML, JSX)
+- Utility-first approach - writing tiny classes with one single purpose, then combining them to build entire layouts
+- theses classes are already written for us
+
+Cons:
+  - don't think about class names
+  - no jumping between files to write markup and styles
+  - immediatly understand styling
+  - there are many design decisions
+  - save a lot of time
+  - Docs and VS Code integration
+
+Pros:
+  - Markup is unreadable
+  - have to learn all native classes
+  - install and set-up Tailwind CSS
+  - You are givving up 'vanila CSS'
