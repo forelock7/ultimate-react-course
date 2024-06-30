@@ -2287,3 +2287,9 @@ Pros:
 
 - Working With Color:
   <div class="bg-stone-800 text-stone-200">
+
+- Styling Text
+  <Link to="/" className="tracking-widest">
+  <Link to="/" className="tracking-[5px]">
+  <h1 className="text-xl">
+  <h1 className="text-[2rem]">
