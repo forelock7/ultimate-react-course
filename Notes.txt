@@ -2276,3 +2276,11 @@ Pros:
   - have to learn all native classes
   - install and set-up Tailwind CSS
   - You are givving up 'vanila CSS'
+
+- Setting Up Tailwind CSS. 
+  - Install for vite project. Follow the docs: https://tailwindcss.com/docs/guides/vite
+  - Install VS Code "Tailwind CSS IntelliSense" extention
+  - Install tailwind prettier extension. Follow the docs: https://github.com/tailwindlabs/prettier-plugin-tailwindcss
+
+- Example: 
+  <h1 className="text-xl text-yellow-500 font-semibold">
