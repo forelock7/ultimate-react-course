@@ -2284,3 +2284,6 @@ Pros:
 
 - Example: 
   <h1 className="text-xl text-yellow-500 font-semibold">
+
+- Working With Color:
+  <div class="bg-stone-800 text-stone-200">
