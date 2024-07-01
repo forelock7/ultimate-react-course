@@ -2293,3 +2293,12 @@ Pros:
   <Link to="/" className="tracking-[5px]">
   <h1 className="text-xl">
   <h1 className="text-[2rem]">
+
+- The Box Model: Spacing, Borders, and Display
+  mb-4  - margin-bottom
+  lassName="my-10" - marging top and bottom
+  <header className="px-4 py-3"> padding left and right, padding top and bottom
+  border-b border-stone-500 - border-bottom and border-color
+  py-4	- padding-top: 1rem; /* 16px */ and padding-bottom: 1rem; /* 16px */
+  space-x-4 - 	margin-left: 1rem; /* 16px */
+  hidden -	display: none;
