@@ -2312,3 +2312,7 @@ Pros:
   - Example:
     <div className="my-10 sm:my-16 text-center"> if viewport smaller than 640px, my-16 will override my-10
     w-72 - width
+    hidden md:block - display when more than medium side
+
+- Using Flexbox
+  "flex items-center justify-between"  - devide items and put them into both sides
