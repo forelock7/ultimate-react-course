@@ -2302,3 +2302,13 @@ Pros:
   py-4	- padding-top: 1rem; /* 16px */ and padding-bottom: 1rem; /* 16px */
   space-x-4 - 	margin-left: 1rem; /* 16px */
   hidden -	display: none;
+
+- Responsive Design.
+    sm	640px	@media (min-width: 640px) { ... }
+    md	768px	@media (min-width: 768px) { ... }
+    lg	1024px	@media (min-width: 1024px) { ... }
+    xl	1280px	@media (min-width: 1280px) { ... }
+    2xl	1536px	@media (min-width: 1536px) { ... }
+  - Example:
+    <div className="my-10 sm:my-16 text-center"> if viewport smaller than 640px, my-16 will override my-10
+    w-72 - width
