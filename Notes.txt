@@ -2316,3 +2316,17 @@ Pros:
 
 - Using Flexbox
   "flex items-center justify-between"  - devide items and put them into both sides
+
+- Using CSS Grid:
+        <div className="grid grid-cols-2 grid-rows-3 gap-y-4">
+        ---------
+        <div className="grid h-screen grid-rows-[auto_1fr_auto]"> - devide screen into 3 lines
+          {isLoading && <Loader />}
+          <Header />
+          <div className="overflow-scroll"> - scrllable div
+            <main className="mx-auto max-w-3xl"> - content in the center with auto marging
+              <Outlet />
+            </main>
+          </div>
+          <CartOverview />
+        </div>
