@@ -4,9 +4,7 @@ import { createOrder } from '../../services/apiRestaurant';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
-  /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
-    str,
-  );
+  /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(str);
 
 const fakeCart = [
   {
@@ -63,7 +61,12 @@ function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input type="text" name="address" required />
+            <input
+              className="w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-400 focus:outline-none focus:ring focus:ring-yellow-400 md:px-6 md:py-3"
+              type="text"
+              name="address"
+              required
+            />
           </div>
         </div>
 
@@ -72,6 +75,7 @@ function CreateOrder() {
             type="checkbox"
             name="priority"
             id="priority"
+            className="h-6 w-6 accent-yellow-400 focus:outline-none focus:ring focus:ring-yellow-400 focus:ring-offset-2"
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
           />
