@@ -2356,3 +2356,13 @@ Pros:
   }
   - in component:
   <input className="input" />
+
+- 305. Reusing Styles With React Components;
+  - Just create new component with defined classes:
+    const LinkButton = ({ children, to }) => {
+      return (
+        <Link to={to} className="text-sm text-blue-500 hover:text-blue-600 hover:underline">
+          {children}
+        </Link>
+      );
+    };
