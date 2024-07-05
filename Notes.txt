@@ -2366,3 +2366,12 @@ Pros:
         </Link>
       );
     };
+
+  - 306. Absolute Positioning, z-index, and More
+    - 'bg-slate-200/20' - 20 is oppacity
+    - 'backdrop-blur-sm' - bluring
+    - linear-gradient(theme(colors.stone.800) 0 0); - set Tailwind class inside CSS file
+    - Loader example:
+      <div className="absolute inset-0 flex items-center justify-center bg-slate-200/20 backdrop-blur-sm">
+        <div className="loader"></div>
+      </div>
