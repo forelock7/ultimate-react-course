@@ -2401,3 +2401,9 @@ Pros:
         },
       result:
       className="h-screen" - 100dvh
+
+- 308. Styling the Menu
+
+  - <ul className='divide-y divide-stone-200'> - divide child items by gap with color
+  - <img src={imageUrl} alt={name} className={`h-24 ${soldOut ? 'opacity-70 grayscale' : ''}`} /> - - make image with lower opacity and gray if sold out
+  - <div className="flex grow flex-col"> - 'grow' the same as in CSS 'flex-grow: 1' - extend flex box as much as it can. to align buttons to right side unside the 'div'
