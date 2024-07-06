@@ -2423,3 +2423,7 @@ Pros:
 
   - favicon as emoji:
     - https://css-tricks.com/emoji-as-a-favicon/
+
+- 311. Styling the Order Overview
+  - wrap === {flex-wrap: wrap;} - CSS property sets the flex grow factor, which specifies how much of the flex container's positive free space, if any, should be assigned to the flex item's main size.
+   <div className="flex flex-wrap items-center justify-between">
