@@ -2416,3 +2416,10 @@ Pros:
         </Button>
         <button>Clear cart</button>
       </div>
+
+- 310. Styling the Order Form
+  - className="grow" - extend box to the end (horizontally)
+  - If we use flex boxes, we shouldn't use use 'width property'
+
+  - favicon as emoji:
+    - https://css-tricks.com/emoji-as-a-favicon/
