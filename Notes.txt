@@ -2564,3 +2564,5 @@ Section 24: Adding Redux and Advanced React Router
         store.dispatch(clearCart());
         return redirect(`/order/${newOrder.id}`);
       }
+
+- 322. Redux Thunks With createAsyncThunk
