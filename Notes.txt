@@ -2538,3 +2538,19 @@ Section 24: Adding Redux and Advanced React Router
 - 318. Building the Cart Page
 
 - 319. Deleting Cart Items
+
+- 320. Updating Cart Quantities
+
+    - reusage reducer action in another one:
+          deleteItem(state, action) {
+            // payload = pizzaId
+            state.cart = state.cart.filter((item) => item.pizzaId !== action.payload);
+          },
+          decreaseItemQuantity(state, action) {
+            // payload = pizzaId
+            const item = state.cart.find((item) => item.pizzaId === action.payload);
+            item.quantity--;
+            item.totalPrice = item.quantity * item.unitPrice;
+
+            if (item.quantity === 0) cartSlice.caseReducers.deleteItem(state, action);
+          },
