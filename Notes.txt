@@ -2498,3 +2498,24 @@ Section 24: Adding Redux and Advanced React Router
             ...
             required
           />
+
+- 315. Modeling the "Cart" State
+
+    - create cartSlice:
+        const initialState = {
+          cart: [],
+        };
+        const cartSlice = createSlice({
+          name: 'cart',
+          initialState,
+          reducers: {
+            addItem(state, action) {
+              ....
+
+    - Add cartRedicer to store:
+        const store = configureStore({
+          reducer: {
+            user: userReducer,
+            cart: cartReducer,
+          },
+        });
