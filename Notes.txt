@@ -2474,3 +2474,27 @@ Section 24: Adding Redux and Advanced React Router
         const username = useSelector((state) => state.user.username);
         ....
 
+- 314. Reading and Updating the User State:
+    - Update username in createUser component:
+          function CreateUser() {
+            const [username, setUsername] = useState('');
+            const dispatch = useDispatch();
+            const navigate = useNavigate();
+            function handleSubmit(e) {
+              e.preventDefault();
+              if (!username) return;
+              dispatch(updateName(username));
+              navigate('/menu');
+            }
+            ...
+
+  - Reuse state value in components just with:
+      const username = useSelector((state) => state.user.username);
+
+  - Auto fill input by value from state:
+          <input
+            ...
+            defaultValue={username} - DO NOT USE 'value'!!!!
+            ...
+            required
+          />
