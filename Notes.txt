@@ -2651,3 +2651,38 @@ Section 24: Adding Redux and Advanced React Router
           ></OrderItem>
         ))}
       </ul>
+
+- 325. Updating Data Without Navigation
+
+  - <Form method="POST"> - submit the form and rout to the different page
+  - <fetcher.Form method='PATCH'> - submit the form and 're-validate' the current page
+
+  - Implementation:
+        {!priority && <UpdateOrder order={order} />}
+        ----------
+        const UpdateOrder = ({ order }) => {
+          const fetcher = useFetcher();
+
+          return (
+            <fetcher.Form method="PATCH" className="text-right">
+              <Button type="primary">Make priority</Button>
+            </fetcher.Form>
+          );
+        };
+
+        export default UpdateOrder;
+
+        export async function action({ request, params }) {
+          const data = { priority: true };
+          await updateOrder(params.orderId, data);
+          return null;
+        }
+        ---------
+        {
+          path: '/order/:orderId',
+          element: <Order />,
+          errorElement: <Error />,
+          loader: orderLoader,
+          action: updateOrderAction,
+        },
+      
