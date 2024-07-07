@@ -2521,3 +2521,16 @@ Section 24: Adding Redux and Advanced React Router
         });
 
 - 316. Adding Menu Items to the Cart
+
+- 317. Building the Cart Overview With Redux Selectors
+
+  - Get some calculated value from state. Place such function into slice file:
+      export const getTotalCartQuantity = (state) =>
+        state.cart.cart.reduce((sum, item) => sum + item.quantity, 0);
+  - Add use it in component:
+      function CartOverview() {
+         const totalCartQuantity = useSelector(getTotalCartQuantity);
+         ...
+
+  - !!! in huge applications this approach is not used!!!!
+  - Need to concider 'reselect' libraries
