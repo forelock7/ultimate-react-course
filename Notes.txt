@@ -2536,3 +2536,5 @@ Section 24: Adding Redux and Advanced React Router
   - Need to concider 'reselect' libraries
 
 - 318. Building the Cart Page
+
+- 319. Deleting Cart Items
