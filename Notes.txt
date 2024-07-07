@@ -2630,3 +2630,24 @@ Section 24: Adding Redux and Advanced React Router
           )}
         </div>
 
+- 324. Fetching Data Without Navigation: useFetcher
+
+    - use it in component:
+      const fetcher = useFetcher();
+      useEffect(
+        function () {
+          if (!fetcher.data && fetcher.state === 'idle') fetcher.load('/menu'); ---- has 3 state: idle, loading, submitting
+        },
+        [fetcher],
+      );
+      ....
+      <ul className="dive-stone-200 divide-y border-b border-t">
+        {cart.map((item) => (
+          <OrderItem
+            item={item}
+            key={item.pizzaId}
+            isLoadingIngredients={fetcher.state === 'loading'}
+            ingredients={fetcher?.data?.find((el) => el.id === item.pizzaId)?.ingredients ?? []}
+          ></OrderItem>
+        ))}
+      </ul>
