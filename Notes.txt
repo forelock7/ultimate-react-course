@@ -2554,3 +2554,13 @@ Section 24: Adding Redux and Advanced React Router
 
             if (item.quantity === 0) cartSlice.caseReducers.deleteItem(state, action);
           },
+
+- 321. Using the Cart for New Orders
+
+  - update state from action function in component ('CreateOrder.jsx'). Do not overuse this.
+      export async function action({ request }) {
+        ....
+        // Do NOT overuse
+        store.dispatch(clearCart());
+        return redirect(`/order/${newOrder.id}`);
+      }
