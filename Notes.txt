@@ -2519,3 +2519,5 @@ Section 24: Adding Redux and Advanced React Router
             cart: cartReducer,
           },
         });
+
+- 316. Adding Menu Items to the Cart
