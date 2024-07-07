@@ -2534,3 +2534,5 @@ Section 24: Adding Redux and Advanced React Router
 
   - !!! in huge applications this approach is not used!!!!
   - Need to concider 'reselect' libraries
+
+- 318. Building the Cart Page

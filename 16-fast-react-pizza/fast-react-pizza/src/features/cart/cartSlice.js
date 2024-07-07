@@ -40,6 +40,10 @@ export const { addItem, deleteItem, increaseItemQuantity, decreaseItemQuantity, 
 
 export default cartSlice.reducer;
 
+// 'reselect' is better to use for huge app
+
+export const getCart = (state) => state.cart.cart;
+
 export const getTotalCartQuantity = (state) =>
   state.cart.cart.reduce((sum, item) => sum + item.quantity, 0);
 
