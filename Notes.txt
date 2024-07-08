@@ -2740,7 +2740,7 @@ Section 25: Setting Up Our Biggest Project + Styled Components
   1. npm create vite@4 (Vite install)
   2. npm i (Install all packages)
   3. npm install --save-dev vite-plugin-eslint eslint-config-react-app eslint (ESlint install)
-  4. .eslint.json (create ESLint config file):
+  4. .eslintrc.json (create ESLint config file):
       {
           "extends": "react-app"
       }
@@ -2799,3 +2799,46 @@ Section 25: Setting Up Our Biggest Project + Styled Components
                 </StyledApp>
               );
             };
+            
+- 330. Global Styles With Styled Components
+
+    - Create GlobalStyles.js:
+        import { createGlobalStyle } from 'styled-components';
+        const GlobalStyles = createGlobalStyle`
+        :root {
+          /* Indigo */
+          --color-brand-50: #eef2ff;
+          --color-brand-100: #e0e7ff;
+          --color-brand-200: #c7d2fe;
+          ...
+    
+    - able to add css vars in App.jsx. Add Sibling element GlobalStyles
+            const Input = styled.input`
+            border: 1px solid var(--color-grey-300);
+            background-color: var(--color-grey-0);
+            border-radius: var(--border-radius-sm);
+            box-shadow: var(--shadow-sm);
+            padding: 0.8rem 1.2rem;
+          `;
+            ....
+          const App = () => {
+            return (
+              <>
+                <GlobalStyles />
+                <StyledApp>
+                  <H1>The Wiled Oasis</H1>
+                  <Button onClick={() => alert('Check in')}>Check in</Button>
+                  <Button onClick={() => alert('Check out')}>Check out</Button>
+                  <Input type="number" placeholder="Number of guests" />
+                </StyledApp>
+              </>
+            );
+          };
+
+    - psedo classes like in common CSS:
+          const Button = styled.button`
+          ....
+          &:hover {
+            background-color: var(--color-brand-600);
+          }
+        `;
