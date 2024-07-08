@@ -2686,3 +2686,51 @@ Section 24: Adding Redux and Advanced React Router
           action: updateOrderAction,
         },
       
+*****************************************************************************************************************
+Section 25: Setting Up Our Biggest Project + Styled Components
+*****************************************************************************************************************
+
+- 327. Application Planning:
+  + General Structure:
+    - Internal Hotel Management App
+    - Customer-Facing Website to book stays (Later)
+    - API
+  + Requirements. Key featutes:
+    - Authentification
+    - Cabins
+    - Bookings
+    - Check In/Outdated
+    - Guests
+    - Dashboards
+    - Settings
+  + Pages:
+    - Dashboards
+    - Bookings
+    - Cabins
+    - Booking check in
+    - App settings
+    - User sign up
+    - Login
+    - Account settings
+
+ - Client-side Rendering (CSR)
+    + Vanila React
+      - Used to build Single-Page App (SPAs)
+      - All html is rendered on the client
+      - All JS needs to be downloaded before apps starts running: bad for performance
+      - One perfect use case: apps that are used 'internally' as tools companies, that are entirely hidden a login (this is exactly what we want to build in this project)
+
+ - Server-side Rendering (SSR)
+    + SSR Frameworks (Next.js, Remix)
+      - Used for Multi-Page App (MPAs)
+      - Some HTML is rendered in the server
+      - More performance, as less JS needs to be downloaded
+      - The React team is moving more and more in this direction
+
+  + Techstack:
+    + Rounting: ReactRouter (standard for React SPAs)
+    + Styling: styled components (Veru popular for component scoped CSS, right inside JS)
+    + Remote state management: React Query (The best way managing remote state with features like caching, auto re-fetching, pre-fetching, offline support. Alternative - SWR, RTK Query)
+    + UI State management: Context API (There is almost no UI state needed in this app, so one simple useState will be enough. No need for Redux)
+    + Form management: React Hook Form (Handling bigger forms can be a lot of work, such as manual state creation and error handling. Alibrary can simplify all this)
+    + Other tools: React icons, React hot toast, Recharts, date-fns, Supabase
