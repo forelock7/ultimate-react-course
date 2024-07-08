@@ -2734,3 +2734,24 @@ Section 25: Setting Up Our Biggest Project + Styled Components
     + UI State management: Context API (There is almost no UI state needed in this app, so one simple useState will be enough. No need for Redux)
     + Form management: React Hook Form (Handling bigger forms can be a lot of work, such as manual state creation and error handling. Alibrary can simplify all this)
     + Other tools: React icons, React hot toast, Recharts, date-fns, Supabase
+
+- 328. Setting Up the Project: "The Wild Oasis"
+
+  1. npm create vite@4 (Vite install)
+  2. npm i (Install all packages)
+  3. npm install --save-dev vite-plugin-eslint eslint-config-react-app eslint (ESlint install)
+  4. .eslint.json (create ESLint config file):
+      {
+          "extends": "react-app"
+      }
+  5. Update vite.config.js by:
+      import eslint from 'vite-plugin-eslint';
+      ...
+      plugins: [....eslint()],
+  6. Delete:
+      - /assets
+      - App.css
+      - index.css
+  7. In main.jsx delete import index.css 
+  8. Recreate App.jsx
+  9. Copy all files from /starter to /src
