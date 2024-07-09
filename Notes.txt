@@ -2957,3 +2957,47 @@ Section 25: Setting Up Our Biggest Project + Styled Components
         );
       };
       export default App;
+
+- 334. Building the App Layout
+      const App = () => {
+        return (
+          <>
+            <GlobalStyles />
+            <BrowserRouter>
+              <Routes>
+                <Route element={<AppLayout />}>
+                  <Route index element={<Navigate replace to="dashboard" />} />
+                  <Route path="dashboard" element={<Dashboard />} />
+                  <Route path="bookings" element={<Bookings />} />
+                  <Route path="cabins" element={<Cabins />} />
+                  <Route path="users" element={<Users />} />
+                  <Route path="settings" element={<Settings />} />
+                  <Route path="account" element={<Account />} />
+                </Route>
+                <Route path="login" element={<Login />} />
+                <Route path="*" element={<PageNotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </>
+        );
+      };
+      ----
+      const AppLayout = () => {
+        return (
+          <StyledAppLayout>
+            <Header />
+            <Sidebar />
+            <Main>
+              <Outlet />
+            </Main>
+          </StyledAppLayout>
+        );
+      };
+      ----
+      const Header = () => {
+        return <StyledHeader>HEADER</StyledHeader>;
+      };
+      ----
+      const Sidebar = () => {
+        return <StyledSidebar>SIDEBAR</StyledSidebar>;
+      };
