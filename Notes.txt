@@ -3001,3 +3001,33 @@ Section 25: Setting Up Our Biggest Project + Styled Components
       const Sidebar = () => {
         return <StyledSidebar>SIDEBAR</StyledSidebar>;
       };
+
+- 335. Building the Sidebar and Main Navigation
+
+    - Install react icons (https://react-icons.github.io/react-icons/):
+    npm i react-icons
+
+    import { HiOutlineCalendarDays, HiOutlineHome } from 'react-icons/hi2';
+    ...
+    const MainNav = () => {
+    return (
+      <nav>
+        <NavList>
+          <li>
+            <StyledNavLink to="/dashboard">
+              <HiOutlineHome />
+              <span>Home</span>
+            </StyledNavLink>
+          </li>
+          <li>
+            <StyledNavLink to="/bookings">
+              <HiOutlineCalendarDays />
+              <span>Bookings</span>
+            </StyledNavLink>
+          </li>
+        </NavList>
+      </nav>
+    );
+  };
+  -----
+  const StyledNavLink = styled(NavLink)`` - style custom element
