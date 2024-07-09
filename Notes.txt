@@ -2842,3 +2842,43 @@ Section 25: Setting Up Our Biggest Project + Styled Components
             background-color: var(--color-brand-600);
           }
         `;
+
+- 331. Styled Component Props and the "css" Function
+
+      import styled, {css} from 'styled-components';
+      const test = css`
+        test-align: center;
+        ${10 > 5 && "background-color: yellow"}
+      `;
+      const Heading = styled.h1`
+        font-size: 30px;
+        font-weight: 600;
+        background-color: yellow;
+        ${test}
+      `;
+      export default Heading;
+
+      --------
+        <Heading type="h3">Form</Heading> -  it will be <h1> element but modified style
+        ....
+        const Heading = styled.h1`
+        ${(props) =>
+          props.type === 'h1' &&    ----!!!
+          css`
+            font-size: 3rem;
+            font-weight: 600;
+          `}
+        line-height: 1.4;
+      `;
+      -------
+      <Heading as="h3">Form</Heading> -  it will be <h3> element
+      ....
+        const Heading = styled.h1`
+        ${(props) =>
+          props.as === 'h1' &&   ------!!!!
+          css`
+            font-size: 3rem;
+            font-weight: 600;
+          `}
+        line-height: 1.4;
+      `;
