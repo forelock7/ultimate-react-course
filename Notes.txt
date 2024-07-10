@@ -3031,3 +3031,52 @@ Section 25: Setting Up Our Biggest Project + Styled Components
   };
   -----
   const StyledNavLink = styled(NavLink)`` - style custom element
+
+*****************************************************************************************************************
+Section 26: Supabase Crash Course: Building a Back-End!
+*****************************************************************************************************************
+
+- 337. What is Supabase?
+    - Supabase - PostgreSQL
+    - Auto create database and API
+    - No backend development needed
+    - Perfect to get up and running
+    - Not just API, but also user Authentication and file storage
+
+- 338. Creating a New Database:
+    - https://supabase.com/dashboard/project/tbdnqeequpkpxismudxc/building
+
+- 339. Modeling Application State:
+  - Tables:
+    - GUESTS (id, email...)
+    - CABIN (id, name, ...)
+    - BOOKING (id, guestId, cabinId, ...) - guestId, cabinId - forein keys
+
+- 340. Creating Tables:
+    - cabins
+    - guests
+    - settings
+
+- 341. Relationships Between Tables
+    + 'bookings' table wit relations to cabins and guests
+
+- 342. Adding Security Policies (RLS)
+    - Supabase has api to run query all types with provided code snipets
+    - Go to 'API Docs', choose table and query. Copy command and execute
+
+    - Go to 'Authentification' - 'Policies'
+    - Greate new Policy from SELECT template with allow read access for all user. Do it for all tables
+
+- 343. Connecting Supabase With Our React App
+    - Install lib:
+    npm install @supabase/supabase-js
+
+- 344. Setting Up Storage Buckets
+  - Create 2 buckets in stirage:
+    - avatars
+    - cabin-images
+  - Coppy images from /src/data/cabins to cabin-images
+  
+  - Copy URL for one image sand create to test:
+        <img src="https://tbdnqeequpkpxismudxc.supabase.co/storage/v1/object/public/cabin-images/cabin_001.jpg" />
+  - Copy this URL also to the table 'cabins'.'imageUrl'
