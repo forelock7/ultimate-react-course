@@ -3080,3 +3080,18 @@ Section 26: Supabase Crash Course: Building a Back-End!
   - Copy URL for one image sand create to test:
         <img src="https://tbdnqeequpkpxismudxc.supabase.co/storage/v1/object/public/cabin-images/cabin_001.jpg" />
   - Copy this URL also to the table 'cabins'.'imageUrl'
+
+*****************************************************************************************************************
+Section 27: React Query: Managing Remote State
+*****************************************************************************************************************
+
+- 346. What is React Query?
+    - Powerful lib for managing remote (server) state
+    - Many features that allow us to write a lot less code, while also making the UX a lot better:
+        + Data is stored in a cache
+        + Automatic loading and error states
+        + Automatic re-fetching to keep state synched
+        + Pre-fetching
+        + Easy remote state mutation (updating)
+        + Offline support
+    - Needed because remote state is fundamentally different from regular (UI) state
