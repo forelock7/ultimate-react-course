@@ -3133,3 +3133,44 @@ Section 27: React Query: Managing Remote State
           </QueryClientProvider>
         );
       };
+
+- 349. Fetching Cabin Data
+    - Install lib to manupulate with dates
+    npm i date-fns
+
+    - Fetching data in componenmt:
+      const CabinTable = () => {
+        const {
+          isLoading,
+          data: cabins,
+          isError,
+        } = useQuery({
+          queryKey: ['cabin'], --- Key of data to use it across the app via Query
+          queryFn: getCabins, ---- async function from apiCabins
+        });
+        if (isLoading) return <Spinner />;
+        return (
+          <Table role="table">
+            <TableHeader role="row">
+              <div></div>
+              <div>Cabin</div>
+              <div>Capacity</div>
+              <div>Price</div>
+              <div>Discount</div>
+              <div></div>
+            </TableHeader>
+            {cabins.map((cabin) => (
+              <CabinRow cabin={cabin} key={cabin.id} />
+            ))}
+          </Table>
+        );
+      };
+      ----
+      export async function getCabins() {
+        let { data, error } = await supabase.from('cabins').select('*');
+        if (error) {
+          console.error(error);
+          throw new Error('Cabins could not be loaded');
+        }
+        return data;
+      }
