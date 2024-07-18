@@ -3174,3 +3174,53 @@ Section 27: React Query: Managing Remote State
         }
         return data;
       }
+
+- 350. Mutations: Deleting a Cabin
+
+        export async function deleteCabin(id) {
+          const { data, error } = await supabase.from('cabins').delete().eq('id', id);
+
+          if (error) {
+            console.error(error);
+            throw new Error('Cabin could not be deleted');
+          }
+
+          return data;
+        }
+
+        - Supabase code was taken from: https://supabase.com/dashboard/project/tbdnqeequpkpxismudxc/api?resource=cabins
+
+        - Need to add new security policy to Supabase to allow us delete rows, not only select: https://supabase.com/dashboard/project/tbdnqeequpkpxismudxc/auth/policies
+
+        - The same next expressions, because calling the same value as provided:
+            + mutationFn: (id) => deleteCabin(id)
+            + mutationFn: deleteCabin
+
+        const CabinRow = ({ cabin }) => {
+          const { id: cabinId, name, maxCapacity, regularPrice, discount, image } = cabin;
+
+          const queryClient = useQueryClient();
+
+          const { isLoading: isDeleting, mutate } = useMutation({
+            // mutationFn: (id) => deleteCabin(id),
+            mutationFn: deleteCabin,   ---- calling func from apiCabins.js
+            onSuccess: () => {
+              alert('Cabin successfully deleted');
+              queryClient.invalidateQueries({ queryKey: ['cabins'] }); --- invalidate cash for re-loading page with deleted row
+            },
+            onError: (err) => alert(err.message), --- handle errors
+          });
+
+          return (
+            <TableRow role="row">
+              <Img src={image} />
+              <Cabin>{name}</Cabin>
+              <div>Fits up to {maxCapacity} guests</div>
+              <Price>{formatCurrency(regularPrice)}</Price>
+              <Discount>{formatCurrency(discount)}</Discount>
+              <button onClick={() => mutate(cabinId)} disabled={isDeleting}>
+                Delete
+              </button>
+            </TableRow>
+          );
+        };
