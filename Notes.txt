@@ -3224,3 +3224,54 @@ Section 27: React Query: Managing Remote State
             </TableRow>
           );
         };
+
+- 351. Displaying Toasts (Notifications)
+  - Installation:
+   npm i react-hot-toast
+
+  - Documentation:
+   https://react-hot-toast.com/
+
+  - Add toaster config to App.jsx:
+      const App = () => {
+        return (
+          <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools />
+            <GlobalStyles />
+            <BrowserRouter>
+      ....
+            </BrowserRouter>
+            <Toaster
+              position="top-center"
+              gutter={12}
+              continerStyle={{ margin: '8px' }}
+              toastOptions={{
+                success: {
+                  duration: 3000,
+                },
+                error: {
+                  duration: 5000,
+                },
+                style: {
+                  fontSize: '16px',
+                  maxWidth: '500px',
+                  padding: '16px 24px',
+                  backgroundColor: 'var(--color-grey-0)',
+                  color: 'var(--color-grey-700)',
+                },
+              }}
+            />
+          </QueryClientProvider>
+        );
+      };
+
+  - Use it:
+      const { isLoading: isDeleting, mutate } = useMutation({
+        // mutationFn: (id) => deleteCabin(id),
+        mutationFn: deleteCabin,
+        onSuccess: () => {
+          toast.success('Cabin successfully deleted');
+          queryClient.invalidateQueries({ queryKey: ['cabins'] });
+        },
+        onError: (err) => toast.error(err.message),
+      });
