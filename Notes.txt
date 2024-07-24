@@ -3351,3 +3351,91 @@ Section 27: React Query: Managing Remote State
             .....
             <Button disabled={isCreating}>Add cabin</Button>
             .....
+
+- 354. Handling Form Errors
+
+  - Make scroll only for AppLayout.jsx (scroll main contetnt except navver and header)
+      const Main = styled.main`
+      ...
+      overflow: scroll;
+    `;
+
+  - Make field required in form:
+      <FormRow>
+        <Label htmlFor="name">Cabin name</Label>
+        <Input
+          type="text"
+          id="name"
+          {...register('name', { required: 'This field is required' })}  ---- add 'required' prop
+        />
+      </FormRow>
+
+  - Make validation on min value:
+      <FormRow>
+        <Label htmlFor="regularPrice">Regular price</Label>
+        <Input
+          type="number"
+          id="regularPrice"
+          {...register('regularPrice', {
+            required: 'This field is required',
+            min: {
+              value: 1,
+              message: 'Price should be at least 1',
+            },
+          })}
+        />
+      </FormRow>
+
+  - Make custom validation:
+      const { register, handleSubmit, reset, getValues } = useForm();   --- use getValues to get value from other fields
+        .....
+      <FormRow>
+        <Label htmlFor="discount">Discount</Label>
+        <Input
+          type="number"
+          id="discount"
+          defaultValue={0}
+          {...register('discount', {
+            required: 'This field is required',
+            validate: (value) =>
+              value <= getValues().regularPrice || 'Discount should be less than regular price',
+          })}
+        />
+      </FormRow>
+
+  - Make display erro for particular field:
+        const { register, handleSubmit, reset, getValues, formState } = useForm();
+        const { errors } = formState;
+        ....
+        <FormRow>
+          <Label htmlFor="name">Cabin name</Label>
+          <Input
+            type="text"
+            id="name"
+            {...register('name', { required: 'This field is required' })}
+          />
+          {errors?.name?.message && <Error>{errors.name.message}</Error>}
+        </FormRow>
+
+  - Create own FormRow component:
+      const FormRow = ({ label, error, children }) => {
+        return (
+          <StyledFormRow>
+            {label && <Label htmlFor={children.props.id}>{label}</Label>}
+            {children}
+            {error && <Error>{error}</Error>}
+          </StyledFormRow>
+        );
+      };
+
+  - And use in in CreateCabinForm:
+      <Form onSubmit={handleSubmit(onSubmit, onError)}>
+        <FormRow label="Cabin name" error={errors?.name?.message}>
+          <Input
+            type="text"
+            id="name"
+            disabled={isCreating}
+            {...register('name', { required: 'This field is required' })}
+          />
+        </FormRow>
+        ....
