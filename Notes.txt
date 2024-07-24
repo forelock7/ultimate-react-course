@@ -3306,3 +3306,48 @@ Section 27: React Query: Managing Remote State
 
           ..........
             </Form>
+
+- 353. Creating a New Cabin
+
+  - Create the new 'Insert' and 'Update' polices for cabin table in supabase for all users.
+
+  - Copy JS code in section 'API Docs' -> 'cabins' -> 'Insert a row':
+      const { data, error } = await supabase
+      .from('cabins')
+      .insert([{ some_column: 'someValue', other_column: 'otherValue' }])
+      .select();
+
+  - So copy and modify previous code to services/apiCabins.js:
+        export async function createCabin(newCabin) {
+        const { data, error } = await supabase.from('cabins').insert([newCabin]).select();
+        if (error) {
+          console.error(error);
+          throw new Error('Cabin could not be created');
+        }
+      }
+
+  - Modify CreateCabinForm component:
+          function CreateCabinForm() {
+          const queryClient = useQueryClient();   ---- use it
+
+          const { mutate, isLoading: isCreating } = useMutation({   ---- use mutation hook
+            mutationFn: createCabin,
+            onSuccess: () => {
+              toast.success('New cabin successfully created');
+              queryClient.invalidateQueries({ queryKey: ['cabins'] });    ---- invalidate component to display new cabit in table
+              reset();                                                    ---- to reset the form after successful submit
+            },
+            onError: (err) => toast.error(err.message),
+          });
+
+          const { register, handleSubmit, reset } = useForm();
+
+          function onSubmit(data) {
+            mutate(data);
+          }
+
+          return (
+            <Form onSubmit={handleSubmit(onSubmit)}>
+            .....
+            <Button disabled={isCreating}>Add cabin</Button>
+            .....
