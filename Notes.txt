@@ -3275,3 +3275,34 @@ Section 27: React Query: Managing Remote State
         },
         onError: (err) => toast.error(err.message),
       });
+
+- 352. Introducing Another Library: React Hook Form
+
+  - Create form component:
+  the-wild-oasis/src/features/cabins/CreateCabinForm.jsx
+
+  - Install lib:
+  npm i react-hook-form@7
+
+  - Modify form component:
+        function CreateCabinForm() {
+          const { register, handleSubmit } = useForm();   ---- add new hook
+
+          function onSubmit(data) {   ---- create function for handle submit
+            console.log(data);
+          }
+
+          return (
+            <Form onSubmit={handleSubmit(onSubmit)}>
+              <FormRow>
+                <Label htmlFor="name">Cabin name</Label>
+                <Input type="text" id="name" {...register('name')} />   ----- add register function for each field
+              </FormRow>
+
+              <FormRow>
+                <Label htmlFor="maxCapacity">Maximum capacity</Label>
+                <Input type="number" id="maxCapacity" {...register('maxCapacity')} />
+              </FormRow>
+
+          ..........
+            </Form>
