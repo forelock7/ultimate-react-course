@@ -3439,3 +3439,79 @@ Section 27: React Query: Managing Remote State
           />
         </FormRow>
         ....
+
+- 355. Uploading Images to Supabase
+
+  - Configure supabase storage to upload image.
+    - Set up policy: 'Storage' -> 'Storage policies' -> 'New policy' -> 'Full customization' -> enable all operations
+    - Read how to upload file into storage: https://supabase.com/docs/guides/storage/uploads/standard-uploads and grep code snippet
+
+  - Add type=file attr to styled component:
+      const FileInput = styled.input.attrs({type: 'file'})`  ------ this one
+        font-size: 1.4rem;
+        border-radius: var(--border-radius-sm);
+
+        &::file-selector-button {
+          font: inherit;
+          font-weight: 500;
+          padding: 0.8rem 1.2rem;
+          margin-right: 1.2rem;
+          border-radius: var(--border-radius-sm);
+          border: none;
+          color: var(--color-brand-50);
+          background-color: var(--color-brand-600);
+          cursor: pointer;
+          transition: color 0.2s, background-color 0.2s;
+
+          &:hover {
+            background-color: var(--color-brand-700);
+          }
+        }
+      `;
+
+  - Use in in create table form:
+      function onSubmit(data) {
+        mutate({ ...data, image: data.image[0] });
+        console.log(data);
+      }
+      ....
+      <FormRow label="Cabin photo">
+        <FileInput
+          id="image"
+          accept="image/*"
+          {...register('image', { required: 'This field is required' })}
+        />
+      </FormRow>
+
+  - Add API to upload images to storage and add new cabin record with link to storage:
+        export async function createCabin(newCabin) {
+          const imageName = `${Math.random()}-${newCabin.image.name}`.replaceAll('/', '');
+          const imagePath = `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
+          // https://tbdnqeequpkpxismudxc.supabase.co/storage/v1/object/public/cabin-images/cabin_001.jpg
+
+          // 1. Create cabin
+          const { data, error } = await supabase
+            .from('cabins')
+            .insert([{ ...newCabin, image: imagePath }])
+            .select();
+
+          if (error) {
+            console.error(error);
+            throw new Error('Cabin could not be created');
+          }
+
+          // 2. Upload image
+
+          const { error: storageError } = await supabase.storage
+            .from('cabin-images')
+            .upload(imageName, newCabin.image);
+
+          // 3. Delete the cabin IF there was an error uploading file
+          if (storageError) {
+            await supabase.from('cabins').delete().eq('id', data.id);
+            console.error(storageError);
+            throw new Error('Cabin image could not be uploaded and the cabin was not created');
+          }
+
+          return data;
+        }
