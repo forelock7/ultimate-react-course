@@ -3515,3 +3515,5 @@ Section 27: React Query: Managing Remote State
 
           return data;
         }
+
+- 356. Editing a Cabin
