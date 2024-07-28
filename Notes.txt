@@ -3533,3 +3533,5 @@ Section 27: React Query: Managing Remote State
     }); 
     BUT ALSO:
      else createCabin({ ...data, image }, { onSuccess: (data) => reset() });
+
+- 358. Duplicating Cabins
