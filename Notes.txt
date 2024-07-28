@@ -3517,3 +3517,19 @@ Section 27: React Query: Managing Remote State
         }
 
 - 356. Editing a Cabin
+    - see code
+
+- 357. Abstracting React Query Into Custom Hooks
+    - reset() function could use in diffrent place:
+    not oly here:
+    const { mutate: editCabin, isLoading: isEditing } = useMutation({
+      mutationFn: ({ newCabinData, id }) => createEditCabin(newCabinData, id),
+      onSuccess: () => {
+        toast.success('Cabin successfully edited');
+        queryClient.invalidateQueries({ queryKey: ['cabins'] });
+        reset();
+      },
+      onError: (err) => toast.error(err.message),
+    }); 
+    BUT ALSO:
+     else createCabin({ ...data, image }, { onSuccess: (data) => reset() });
