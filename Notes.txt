@@ -3535,3 +3535,45 @@ Section 27: React Query: Managing Remote State
      else createCabin({ ...data, image }, { onSuccess: (data) => reset() });
 
 - 358. Duplicating Cabins
+- 359. Fetching Applications Settings
+    - Create custom hook:
+    import { useQuery } from '@tanstack/react-query';
+    import { getSettings } from '../../services/apiSettings';
+    export function useSettings() {
+      const {
+        isLoading,
+        error,
+        data: settings,
+      } = useQuery({
+        queryKey: ['settings'],
+        queryFn: getSettings,       ------ func from settings api
+      });
+
+      return { isLoading, error, settings };
+    }
+
+    - Use this hook in component to fetch data from DB:
+    function UpdateSettingsForm() {
+    const {
+      isLoading,
+      settings: { minBookingLenght, maxBookingLenght, maxGuestsPerBooking, breakfastPrice } = {},   ------ assign to emty object to avoid error during first rendering
+    } = useSettings();
+    if (isLoading) return <Spinner />;
+    return (
+      <Form>
+        <FormRow label="Minimum nights/booking">
+          <Input type="number" id="min-nights" defaultValue={minBookingLenght} />
+        </FormRow>
+        <FormRow label="Maximum nights/booking">
+          <Input type="number" id="max-nights" defaultValue={maxBookingLenght} />
+        </FormRow>
+        <FormRow label="Maximum guests/booking">
+          <Input type="number" id="max-guests" defaultValue={maxGuestsPerBooking} />
+        </FormRow>
+        <FormRow label="Breakfast price">
+          <Input type="number" id="breakfast-price" defaultValue={breakfastPrice} />
+        </FormRow>
+      </Form>
+    );
+  }
+  export default UpdateSettingsForm;
