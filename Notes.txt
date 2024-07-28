@@ -3577,3 +3577,5 @@ Section 27: React Query: Managing Remote State
     );
   }
   export default UpdateSettingsForm;
+
+- 360. Updating Application Settings
