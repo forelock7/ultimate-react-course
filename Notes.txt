@@ -3579,3 +3579,19 @@ Section 27: React Query: Managing Remote State
   export default UpdateSettingsForm;
 
 - 360. Updating Application Settings
+
+*****************************************************************************************************************
+Section 28: Advanced React Patterns
+*****************************************************************************************************************
+
+- 362. An Overview of Reusability in React
+
+  - I need to reuse:
+    1. UI
+      - Components and props (Use props as a component API, to enable custom behavior. Can be stateless, stateful or structural components)
+      - Children prop (To customize the component's content)
+    2. Stateful Logic (logic with hooks)
+
+  - New patterns:
+    - Render props pattern (for complete control over what the component renders, by passing in a function that tells the component what to render. Was more common before hooks, but still useful)
+    - Compound component pattern (For very self-contained components that need/want to manage their own state. Compound components are like fancy super-components)
