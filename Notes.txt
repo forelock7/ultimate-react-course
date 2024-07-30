@@ -3765,3 +3765,20 @@ Section 28: Advanced React Patterns
       Counter.Increase = Increase;
       Counter.Decrease = Decrease;
       export default Counter;
+
+- 367. Building a Modal Window Using a React Portal:
+
+    - Create modal window inside particular element (in our case 'body' element)
+      const Modal = ({ children, onClose }) => {
+        return createPortal(
+          <Overlay>
+            <StyledModal>
+              <Button onClick={onClose}>
+                <HiXMark />
+              </Button>
+              <div>{children}</div>
+            </StyledModal>
+          </Overlay>,
+          document.body,
+        );
+      };
