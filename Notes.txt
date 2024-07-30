@@ -3782,3 +3782,70 @@ Section 28: Advanced React Patterns
           document.body,
         );
       };
+
+- 368. Converting the Modal to a Compound Component
+
+        const AddCabin = () => {
+          return (
+            <Modal>
+              <Modal.Open opens="cabin-form">
+                <Button>Add new cabin</Button>
+              </Modal.Open>
+              <Modal.Window name="cabin-form">
+                <CreateCabinForm />
+              </Modal.Window>
+
+              <Modal.Open opens="table">
+                <Button>Show table</Button>
+              </Modal.Open>
+              <Modal.Window name="table">
+                <CabinTable />
+              </Modal.Window>
+            </Modal>
+          );
+        };
+        -----------
+        const ModalContext = createContext();
+
+        const Modal = ({ children }) => {
+          const [openName, setOpenName] = useState('');
+
+          const close = () => setOpenName('');
+          const open = setOpenName;
+
+          return (
+            <ModalContext.Provider value={{ openName, close, open }}>{children}</ModalContext.Provider>
+          );
+        };
+
+        const Open = ({ children, opens: opensWindowName }) => {
+          const { open } = useContext(ModalContext);
+
+          return cloneElement(children, { onClick: () => open(opensWindowName) });
+        };
+
+        const Window = ({ children, name }) => {
+          const { openName, close } = useContext(ModalContext);
+          if (name !== openName) return null;
+
+          return createPortal(
+            <Overlay>
+              <StyledModal>
+                <Button onClick={close}>
+                  <HiXMark />
+                </Button>
+                <div>{cloneElement(children, { onCloseModal: close })}</div>
+              </StyledModal>
+            </Overlay>,
+            document.body,
+          );
+        };
+
+        Modal.Open = Open;
+        Modal.Window = Window;
+
+        export default Modal;
+
+        *****
+        To pass props can be used:
+        cloneElement(children, { onClick: () => open(opensWindowName) });
