@@ -4014,3 +4014,120 @@ Section 28: Advanced React Patterns
           <CabinRow cabin={cabin} key={cabin.id} />
         ))} */}
       </Table>
+
+- 373. Building a Reusable Context Menu
+
+  function handleClick(e) {
+    const rect = e.target.closest('button').getBoundingClientRect();   --- get coordinates of clickable element
+    console.log(rect);
+
+    openId === '' || openId !== id ? open(id) : close();
+  }
+
+  Menus.jsx
+  ----------------
+  const MenusContext = createContext();
+  const Menus = ({ children }) => {
+    const [openId, setOpenId] = useState('');
+    const [position, setPosition] = useState(null);
+    const close = () => setOpenId('');
+    const open = setOpenId;
+    return (
+      <MenusContext.Provider value={{ openId, close, open, position, setPosition }}>
+        {children}
+      </MenusContext.Provider>
+    );
+  };
+  function Toggle({ id }) {
+    const { openId, close, open, position, setPosition } = useContext(MenusContext);
+    function handleClick(e) {
+      const rect = e.target.closest('button').getBoundingClientRect();
+      setPosition({
+        x: window.innerWidth - rect.width - rect.x,
+        y: rect.y + rect.height + 8,
+      });
+
+      openId === '' || openId !== id ? open(id) : close();
+    }
+    return (
+      <StyledToggle onClick={handleClick}>
+        <HiEllipsisVertical />
+      </StyledToggle>
+    );
+  }
+  function List({ id, children }) {
+    const { openId, position, close } = useContext(MenusContext);
+    const ref = useOutsideClick(close);
+
+    if (openId !== id) return null;
+    return createPortal(
+      <StyledList position={position} ref={ref}>
+        {children}
+      </StyledList>,
+      document.body,
+    );
+  }
+  function Button({ children, icon, onClick }) {
+    const { close } = useContext(MenusContext);
+
+    function handleClick() {
+      onClick?.();
+      close();
+    }
+    return (
+      <li>
+        <StyledButton onClick={handleClick}>
+          {icon}
+          <span>{children}</span>
+        </StyledButton>
+      </li>
+    );
+  }
+  Menus.Menu = Menu;
+  Menus.Toggle = Toggle;
+  Menus.List = List;
+  Menus.Button = Button;
+  export default Menus;
+
+  -------------
+        return (
+        <Table.Row>
+          <Img src={image} />
+          <Cabin>{name}</Cabin>
+          <div>Fits up to {maxCapacity} guests</div>
+          <Price>{formatCurrency(regularPrice)}</Price>
+          {discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
+          <div>
+            <Modal>
+              <Menus.Menu>
+                <Menus.Toggle id={cabinId} />
+                <Menus.List id={cabinId}>
+                  <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>
+                    Duplicate
+                  </Menus.Button>
+
+                  <Modal.Open opens="edit">
+                    <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
+                  </Modal.Open>
+
+                  <Modal.Open opens="delete">
+                    <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
+                  </Modal.Open>
+                </Menus.List>
+
+                <Modal.Window name="edit">
+                  <CreateCabinForm cabinToEdit={cabin} />
+                </Modal.Window>
+
+                <Modal.Window name="delete">
+                  <ConfirmDelete
+                    resourceName="cabins"
+                    disabled={isDeleting}
+                    onConfirm={() => deleteCabin(cabinId)}
+                  />
+                </Modal.Window>
+              </Menus.Menu>
+            </Modal>
+          </div>
+        </Table.Row>
+      );
