@@ -3944,3 +3944,51 @@ Section 28: Advanced React Patterns
         );
       }
 
+- 371. Building a Reusable Table
+
+  - See all implementation in commit
+
+        <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
+          <Table.Header>
+            <div></div>
+            <div>Cabin</div>
+            <div>Capacity</div>
+            <div>Price</div>
+            <div>Discount</div>
+            <div></div>
+          </Table.Header>
+          {cabins.map((cabin) => (
+            <CabinRow cabin={cabin} key={cabin.id} />
+          ))}
+        </Table>
+        ---------
+        const TableContext = createContext();
+        function Table({ columns, children }) {
+          return (
+            <TableContext.Provider value={{ columns }}>
+              <StyledTable role="table">{children}</StyledTable>
+            </TableContext.Provider>
+          );
+        }
+        function Header({ children }) {
+          const { columns } = useContext(TableContext);
+          return (
+            <StyledHeader role="row" columns={columns} as="header"> --- 'as' make element as 'header'
+              {children}
+            </StyledHeader>
+          );
+        }
+        function Row({ children }) {
+          const { columns } = useContext(TableContext);
+          return (
+            <StyledRow role="row" columns={columns}>
+              {children}
+            </StyledRow>
+          );
+        }
+        function Body({ children }) {}
+        Table.Header = Header;
+        Table.Row = Row;
+        Table.Body = Body;
+        Table.Footer = Footer;
+        export default Table;
