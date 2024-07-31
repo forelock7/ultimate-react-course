@@ -3849,3 +3849,37 @@ Section 28: Advanced React Patterns
         *****
         To pass props can be used:
         cloneElement(children, { onClick: () => open(opensWindowName) });
+
+- 369. Detecting a Click Outside the Modal
+
+      const Window = ({ children, name }) => {
+        const { openName, close } = useContext(ModalContext);
+        const ref = useOutsideClick(close);   ------ !!!!!
+        if (name !== openName) return null;
+        return createPortal(
+          <Overlay>
+            <StyledModal ref={ref}>    ------ !!!!!
+              <Button onClick={close}>
+                <HiXMark />
+              </Button>
+              <div>{cloneElement(children, { onCloseModal: close })}</div>
+            </StyledModal>
+          </Overlay>,
+          document.body,
+        );
+      };
+      ----------
+      export function useOutsideClick(handler, listenCapturing = true) {
+        const ref = useRef();
+        useEffect(
+          function () {
+            function handleClick(e) {
+              if (ref.current && !ref.current.contains(e.target)) handler();
+            }
+            document.addEventListener('click', handleClick, listenCapturing);  ----- listenCapturing=true to avoid imidiate closing right after model opening (just listen event in capturing phase, not in bubling)
+            return () => document.removeEventListener('click', handleClick, listenCapturing);  ---- the same
+          },
+          [handler, listenCapturing],
+        );
+        return ref;
+      }
