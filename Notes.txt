@@ -3883,3 +3883,62 @@ Section 28: Advanced React Patterns
         );
         return ref;
       }
+
+- 370. Confirming Cabin Deletions
+
+          <TableRow role="row">
+            <Img src={image} />
+            <Cabin>{name}</Cabin>
+            <div>Fits up to {maxCapacity} guests</div>
+            <Price>{formatCurrency(regularPrice)}</Price>
+            {discount ? <Discount>{formatCurrency(discount)}</Discount> : <span>&mdash;</span>}
+            <div>
+              <button onClick={handleDuplicate} disabled={isCreating}>
+                <HiSquare2Stack />
+              </button>
+
+              <Modal>
+                <Modal.Open opens="edit">
+                  <button>
+                    <HiPencil />
+                  </button>
+                </Modal.Open>
+                <Modal.Window name="edit">
+                  <CreateCabinForm cabinToEdit={cabin} />
+                </Modal.Window>
+                <Modal.Open>
+                  <button>
+                    <HiTrash />
+                  </button>
+                </Modal.Open>
+                <Modal.Window>
+                  <ConfirmDelete
+                    resourceName="cabins"
+                    disabled={isDeleting}
+                    onConfirm={() => deleteCabin(cabinId)}
+                  />
+                </Modal.Window>
+              </Modal>
+            </div>
+          </TableRow>
+          ----------
+      function ConfirmDelete({ resourceName, onConfirm, disabled, onCloseModal }) {
+        return (
+          <StyledConfirmDelete>
+            <Heading as="h3">Delete {resourceName}</Heading>
+            <p>
+              Are you sure you want to delete this {resourceName} permanently? This action cannot be
+              undone.
+            </p>
+
+            <div>
+              <Button variation="secondary" disabled={disabled} onClick={onCloseModal}>
+                Cancel
+              </Button>
+              <Button variation="danger" disabled={disabled} onClick={onConfirm}>
+                Delete
+              </Button>
+            </div>
+          </StyledConfirmDelete>
+        );
+      }
