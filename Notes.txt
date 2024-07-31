@@ -3992,3 +3992,25 @@ Section 28: Advanced React Patterns
         Table.Body = Body;
         Table.Footer = Footer;
         export default Table;
+
+- 372. Applying the Render Props Pattern
+
+      function Body({ data, render }) {
+        if (!data.length) return <Empty>No data to show at the moment</Empty>;
+        return <StyledBody>{data.map(render)}</StyledBody>;
+      }
+      ----
+      <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
+        <Table.Header>
+          <div></div>
+          <div>Cabin</div>
+          <div>Capacity</div>
+          <div>Price</div>
+          <div>Discount</div>
+          <div></div>
+        </Table.Header>
+        <Table.Body data={cabins} render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />} />
+        {/* {cabins.map((cabin) => (
+          <CabinRow cabin={cabin} key={cabin.id} />
+        ))} */}
+      </Table>
