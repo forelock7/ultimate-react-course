@@ -4131,3 +4131,49 @@ Section 28: Advanced React Patterns
           </div>
         </Table.Row>
       );
+
+*****************************************************************************************************************
+Section 29: [Optional] Implementing More Features: Authentication, Dark Mode, Dashboard, etc
+*****************************************************************************************************************
+
+- 375. Client-Side Filtering: Filtering Cabins
+
+    - Use URL params for this:
+    const CabinTableOperations = () => {
+      return (
+        <TableOperations>
+          <Filter
+            filterField={'discount'}
+            options={[
+              { value: 'all', label: 'All' },
+              { value: 'no-discount', label: 'No discount' },
+              { value: 'with-discount', label: 'With discount' },
+            ]}
+          />
+        </TableOperations>
+      );
+    };
+    -------
+    const Filter = ({ filterField, options }) => {
+      const [searchParams, setSearchParams] = useSearchParams();
+      const currentFilter = searchParams.get(filterField) || options.at(0).value;
+
+      function handleClick(value) {
+        searchParams.set(filterField, value);
+        setSearchParams(searchParams);
+      }
+
+      return (
+        <StyledFilter>
+          {options.map((option) => (
+            <FilterButton
+              key={option.value}
+              onClick={() => handleClick(option.value)}
+              active={option.value === currentFilter}
+            >
+              {option.label}
+            </FilterButton>
+          ))}
+        </StyledFilter>
+      );
+    };
