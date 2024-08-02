@@ -4220,3 +4220,22 @@ Section 29: [Optional] Implementing More Features: Authentication, Dark Mode, Da
           { value: 'maxCapacity-desc', label: 'Sort by capacity (high first)' },
         ]}
       />
+
+- 377. Building the Bookings Table
+
+  - Create data in supabase for 'guests' and 'bookings' tables
+
+  - To get data from table and related records by foreign keys from other tables:
+      export async function getBookings() {
+        // const { data, error } = await supabase.from('bookings').select('*, cabins(*), guests(*)');
+        const { data, error } = await supabase
+          .from('bookings')
+          .select(
+            'id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName, email)',
+          );
+        if (error) {
+          console.error(error);
+          throw new Error('Bookings could not be loaded');
+        }
+        return data;
+      }
