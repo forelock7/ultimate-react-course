@@ -4243,3 +4243,40 @@ Section 29: [Optional] Implementing More Features: Authentication, Dark Mode, Da
 - 378. Uploading Sample Data
 
     - Added 'Uploder' component to upload test data 
+
+- 379. API-Side Filtering: Filtering Bookings
+
+  - apiBookings.js:
+      export async function getBookings({ filter, sortBy }) {
+        // const { data, error } = await supabase.from('bookings').select('*, cabins(*), guests(*)');
+        let query = supabase
+          .from('bookings')
+          .select(
+            'id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName, email)',
+          );
+        // FILTER
+        if (filter !== null) query = query.eq(filter.field, filter.value);
+        // if (filter !== null) query = query[filter.method](filter.field, filter.value);
+        const { data, error } = await query;
+        if (error) {
+          console.error(error);
+          throw new Error('Bookings could not be loaded');
+        }
+        return data;
+      }
+
+  - useBookings.js:
+      export function useBookings() {
+        const [searchParams] = useSearchParams();
+        // FILTER
+        const filterValue = searchParams.get('status');
+        const filter =
+          !filterValue || filterValue === 'all' ? null : { field: 'status', value: filterValue };
+        const {
+          isLoading,
+          data: bookings,
+          error,
+        } = useQuery({
+          queryKey: ['bookings', filter],    --- dependancy array to re-fetch data (all data from applied filters will be cached)
+          queryFn: () => getBookings({ filter }),
+        });
