@@ -4411,3 +4411,49 @@ Section 29: [Optional] Implementing More Features: Authentication, Dark Mode, Da
           queryFn: () => getBookings({ filter, sortBy, page: page - 1 }),
         });
       .....
+
+- 384. Building the Single Booking Page
+
+  - Default behaviour of react is to try fetch data 3 times, but we can disabled it:
+    const {
+      isLoading,
+      data: booking,
+      error,
+    } = useQuery({
+      queryKey: ['booking'],
+      queryFn: () => getBooking(bookingId),
+      retry: false,    ----- !!!!!
+    });
+
+  - Add new routing in App.jsx:
+      .....
+      <Route path="booking/:bookingId" element={<Booking />} />
+      .....
+
+  - Add new component in Booking.jsx:
+      const Booking = () => {
+        return <BookingDetail />;
+      };
+
+  - Add fetching data in BookingDetail.jsx from useBooking.jsx:
+      function BookingDetail() {
+        const { booking, isLoading } = useBooking();
+        const moveBack = useMoveBack();
+        if (isLoading) return <Spinner />;
+        const { status, id: bookingId } = booking;
+        .....
+
+  - UseBooking implementation:
+      export function useBooking() {
+        const { bookingId } = useParams();
+        const {
+          isLoading,
+          data: booking,
+          error,
+        } = useQuery({
+          queryKey: ['booking'],
+          queryFn: () => getBooking(bookingId),
+          retry: false,
+        });
+        ....
+
