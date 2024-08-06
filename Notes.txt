@@ -4647,3 +4647,20 @@ function CheckinBooking() {
                 )}
           .....
           -----
+
+- 388. Deleting a Booking
+
+    - To close modal menu right after success/error of deleteing (close modal)
+        <Modal>
+          <Modal.Open opens="delete">
+            <Button variation="danger">Delete booking</Button>
+          </Modal.Open>
+
+          <Modal.Window name="delete">
+            <ConfirmDelete
+              resourceName="bookings"
+              disabled={isDeleting}
+              onConfirm={() => deleteBooking(bookingId, { onSettled: () => navigate(-1) })} ---- !!!!
+            />
+          </Modal.Window>
+        </Modal>
