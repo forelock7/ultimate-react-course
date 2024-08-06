@@ -4598,3 +4598,52 @@ function CheckinBooking() {
               )} + ${formatCurrency(optionalBreakfastPrice)})`}
         </Checkbox>
       </Box>
+
+- 387. Checking Out a Booking (+ Fixing a Small Bug)
+
+        export function useCheckout() {
+          const queryClient = useQueryClient();
+          const { mutate: checkout, isLoading: isCheckingOut } = useMutation({
+            mutationFn: (bookingId) =>
+              updateBooking(bookingId, {
+                status: 'checked-out',
+              }),
+            onSuccess: (data) => {
+              toast.success(`Booking #${data.id} successfully checked out`);
+              queryClient.invalidateQueries({ active: true }); // true - instead of query key, just do for all queries
+            },
+        .....
+        -----
+        function BookingRow({
+          ...
+          const { checkout, isCheckingOut } = useCheckout();
+          ....
+                    {status === 'checked-in' && (
+                    <Menus.Button
+                      icon={<HiArrowUpOnSquare />}
+                      onClick={() => {
+                        checkout(bookingId);
+                      }}
+                      disabled={isCheckingOut}
+                    >
+                      Check out
+                    </Menus.Button>
+                  )}
+          ....
+          -----
+          function BookingDetail() {
+          .....
+          const { checkout, isCheckingOut } = useCheckout();
+          ....
+                  {status === 'checked-in' && (
+                  <Button
+                    onClick={() => {
+                      checkout(bookingId);
+                    }}
+                    disabled={isCheckingOut}
+                  >
+                    Check out
+                  </Button>
+                )}
+          .....
+          -----
