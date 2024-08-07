@@ -4664,3 +4664,48 @@ function CheckinBooking() {
             />
           </Modal.Window>
         </Modal>
+
+- 389. Authentication: User Login With Supabase
+
+  - Create new user in Supabase:
+    - Go to Authentification 
+    - You can choose different providers (sso) Now just use email 
+    - add new user
+    - Go to API Docs -> User Management (supabase uses JWT technology to auth)
+    - Copy 'USER LOGIN'
+
+      export async function login({ email, password }) {
+        let { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        if (error) throw new Error(error.message);
+        return data;
+      }
+      ----
+      export function useLogin() {
+        const navigate = useNavigate();
+        const { mutate: login, isLoading } = useMutation({
+          mutationFn: ({ email, password }) => loginApi({ email, password }),
+          onSuccess: (user) => {
+            navigate('/dashboard');
+          },
+          onError: (err) => {
+            console.log('ERROR', err);
+            toast.error('Provided email or password are incorrect');
+          },
+        });
+        return { login, isLoading };
+      }
+      ----
+      ...
+        const [email, setEmail] = useState('vova@example.com');
+        const [password, setPassword] = useState('1234567');
+        const { login, isLoading } = useLogin();
+
+        function handleSubmit(e) {
+          e.preventDefault();
+          if (!email || !password) return;
+          login({ email, password });
+        }
+        ...
