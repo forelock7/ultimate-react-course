@@ -4709,3 +4709,89 @@ function CheckinBooking() {
           login({ email, password });
         }
         ...
+
+- 390. Authorization: Protecting Routes
+
+  - Clear login form right after submitting:
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!email || !password) return;
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          setEmail('');
+          setPassword('');
+          ....
+
+  - Make protected component for App Layout:
+          <Route
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Navigate replace to="dashboard" />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            ....
+
+  - Protected component:
+    const FullPage = styled.div`
+      height: 100vh;
+      background-color: var(--color-grey-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    `;
+    const ProtectedRoute = ({ children }) => {
+      const navigate = useNavigate();
+      // 1. Load authenticated user
+      const { user, isLoading, isAuthenticated } = useUser();
+      // 2. If there is NO authenticated user, redirect to the /login
+      useEffect(
+        function () {
+          if (!isAuthenticated && !isLoading) navigate('/login');
+        },
+        [isAuthenticated, isLoading, navigate],
+      );
+      // 3. While loading, show a spinner
+      if (isLoading)
+        return (
+          <FullPage>
+            <Spinner />
+          </FullPage>
+        );
+
+      // 4. If there IS a user, render the app
+      if (isAuthenticated) return children;
+    };
+    export default ProtectedRoute;
+
+  - export async function getCurrentUser() {
+      const { data: session } = await supabase.auth.getSession();
+      if (!session.session) return null;
+      const { data, error } = await supabase.auth.getUser();
+      if (error) throw new Error(error.message);
+      return data?.user;
+    }
+
+  - export function useUser() {
+        const { isLoading, data: user } = useQuery({
+          queryKey: ['user'],
+          queryFn: getCurrentUser,
+        });
+        return { isLoading, user, isAuthenticated: user?.role === 'authenticated' };
+      }
+
+  - Cache login user data:
+      export function useLogin() {
+      const queryClient = useQueryClient();
+      ....
+      const { mutate: login, isLoading } = useMutation({
+        mutationFn: ({ email, password }) => loginApi({ email, password }),
+        onSuccess: (user) => {
+          queryClient.setQueriesData(['user'], user);
+          navigate('/dashboard');
+        },
+      ....
