@@ -4795,3 +4795,32 @@ function CheckinBooking() {
           navigate('/dashboard');
         },
       ....
+
+391. User Logout
+
+const Header = () => {
+  return (
+    <StyledHeader>
+      <Logout />
+    </StyledHeader>
+......
+const Logout = () => {
+  const { logout, isLoading } = useLogout();
+  return (
+    <ButtonIcon disabled={isLoading} onClick={logout}>
+      {!isLoading ? <HiArrowRightOnRectangle /> : <SpinnerMini />}
+    </ButtonIcon>
+.....
+export function useLogout() {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const { mutate: logout, isLoading } = useMutation({
+    mutationFn: logoutApi,
+    onSuccess: () => {
+      queryClient.removeQueries();
+      navigate('/login', { replace: true });
+.....
+export async function logout() {
+  const { error } = supabase.auth.signOut();
+  if (error) throw new Error(error.message);
+}
