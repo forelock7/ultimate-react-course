@@ -4824,3 +4824,16 @@ export async function logout() {
   const { error } = supabase.auth.signOut();
   if (error) throw new Error(error.message);
 }
+
+392. Fixing an Important Bug
+Relogin didn't work after logout and navigation to the root page.
+
+export function useLogin() {
+....
+  const { mutate: login, isLoading } = useMutation({
+    mutationFn: ({ email, password }) => loginApi({ email, password }),
+    onSuccess: (user) => {
+      queryClient.setQueryData(['user'], user.user); ------!!!! (was: queryClient.setQueriesData(['user'], user))
+      navigate('/dashboard', { replace: true });
+    },
+....
