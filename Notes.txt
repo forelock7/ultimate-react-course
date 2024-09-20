@@ -4904,3 +4904,56 @@ function SignupForm() {
     </Form>
   );
 }
+
+394. User Sign Up
+
+https://temp-mail.org/en/ - service to have temporary emails for testing
+
+Configure auth with cinfirmation email in Supabase:
+- Authentification/Users - all existing users and their status
+- Authentification/Providers/Email - 'Confirm Email'=true
+- Authentification/Email Templates - configure email Templates
+- Authentification/URL Configuration - config on which should be redirected after confirmation
+
+------
+export async function signup({ fullName, email, password }) {
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        fullName,
+        avatar: '',
+      },
+    },
+  });
+  if (error) throw new Error(error.message);
+  return data;
+}
+-----
+export function useSignup() {
+  const { mutate: signup, isLoading } = useMutation({
+    mutationFn: signupApi,
+    onSuccess: (user) => {
+      toast.success(
+        "Accoount successfully created! Please verify the new account from the user's email address",
+      );
+    },
+  });
+  return { signup, isLoading };
+}
+-------
+function SignupForm() {
+  const { signup, isLoading } = useSignup();
+  const { register, formState, getValues, handleSubmit } = useForm();
+  const { errors, reset } = formState;
+
+  function onSubmit({ fullName, email, password }) {
+    signup(
+      { fullName, email, password },
+      {
+        onSettled: () => reset(),
+      },
+    );
+  }
+.....
