@@ -4957,3 +4957,9 @@ function SignupForm() {
     );
   }
 .....
+
+395. Authorization on Supabase: Protecting Database (RLS)
+
+RLS - row level security policy
+
+- Authentification/Policies - Update each action with authentificated user
