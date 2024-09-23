@@ -4963,3 +4963,28 @@ function SignupForm() {
 RLS - row level security policy
 
 - Authentification/Policies - Update each action with authentificated user
+
+396. Building The App Header
+
+const StyledHeader = styled.header`
+  background-color: var(--color-grey-0);
+  padding: 1.2rem 4.8rem;
+  border-bottom: 1px solid var(--color-grey-100);
+
+  display: flex;
+  gap: 2.4rem;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+const Header = () => {
+  return (
+    <StyledHeader>
+      <UserAvatar />
+      <HeaderMenu />
+    </StyledHeader>
+  );
+};
+
+
+see other implementation in code
