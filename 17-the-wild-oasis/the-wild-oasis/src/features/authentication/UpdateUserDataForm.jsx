@@ -28,12 +28,12 @@ function UpdateUserDataForm() {
     if (!fullName) return;
     updateUser(
       { fullName, avatar },
-      // {
-      //   onSuccess: () => {
-      //     setAvatar(null);
-      //     e.target.reset();
-      //   },
-      // },
+      {
+        onSuccess: () => {
+          setAvatar(null);
+          e.target.reset();
+        },
+      },
     );
   }
 
