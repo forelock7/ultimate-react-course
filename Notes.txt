@@ -5114,3 +5114,9 @@ export function useRecentBookings() {
 ...
   const { bookings, isLoading: isLoading1 } = useRecentBookings();
   if (isLoading1 || isLoading2) return <Spinner />;
+
+- 401. Displaying Statistics
+    see implementation: 
+      - 17-the-wild-oasis/the-wild-oasis/src/features/dashboard/Stats.jsx
+      - 17-the-wild-oasis/the-wild-oasis/src/features/dashboard/useRecentStays.js
+      - 17-the-wild-oasis/the-wild-oasis/src/features/dashboard/DashboardLayout.jsx
