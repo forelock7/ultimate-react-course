@@ -5085,3 +5085,32 @@ see whole implementation in code
 
 - 399. Building the Dashboard Layout
     - see implementation in code
+
+- 400. Computing Recent Bookings and Stays
+...
+export async function getBookingsAfterDate(date) {
+  const { data, error } = await supabase
+    .from('bookings')
+    .select('created_at, totalPrice, extrasPrice')
+    .gte('created_at', date)
+    .lte('created_at', getToday({ end: true }));
+  if (error) {
+    console.error(error);
+    throw new Error('Bookings could not get loaded');
+  }
+  return data;
+}
+...
+export function useRecentBookings() {
+  const [searchParams] = useSearchParams();
+  const numDays = !searchParams.get('last') ? 7 : Number(searchParams.get('last'));
+  const queryDate = subDays(new Date(), numDays).toISOString()
+  const { isLoading, data: bookings } = useQuery({
+    queryFn: () => getBookingsAfterDate(queryDate),
+    queryKey: ['bookings', `last-${numDays}`],
+  });
+  return { isLoading, bookings };
+}
+...
+  const { bookings, isLoading: isLoading1 } = useRecentBookings();
+  if (isLoading1 || isLoading2) return <Spinner />;
