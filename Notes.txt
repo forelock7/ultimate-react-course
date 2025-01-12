@@ -5316,3 +5316,25 @@ Fix close menu after clicking again on menu button
       'isDarkMode',
     );
     .....
+
+*****************************************************************************************************************
+Section 30: Deployment With Netlify and Vercel
+*****************************************************************************************************************
+
+- 407. Section Overview
+- 408. Deploying to Netlify
+
+1. npm run build - build the project via Vite
+// '/dist' folder will be created for farther deploying, for instance in Netlify
+
+2. Create file './dist/netlify.toml' with next content (Better to create it in './publlick' folder) it will be added automatically to dist during building the project:
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+3. Go to:
+https://app.netlify.com/teams/forelock7/sites
+sites -> add new -> deploy manually -> Drag and drop './dist' folder
+
+4. You can change site name(URL)
