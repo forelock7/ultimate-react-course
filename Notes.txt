@@ -5295,3 +5295,24 @@ function TodayItem({ activity }) {
       </>
     );
   };
+
+- 406. Final Touches + Fixing Bugs
+
+Fix close menu after clicking again on menu button
+  function handleClick(e) {
+    e.stopPropagation(); // handling one click once (capturing or bubbling phase)
+    .....
+  ------
+  function List({ id, children }) {
+    const { openId, position, close } = useContext(MenusContext);
+    const ref = useOutsideClick(close, false); // use only bubbling phase
+    ....
+
+  
+  Change dark mode regarding in the system preferences:
+  function DarkModeProvider({ children }) {
+    const [isDarkMode, setIsDarkMode] = useLocalStorageState(
+      window.matchMedia('(preferes-color-scheme: dark)').matches,
+      'isDarkMode',
+    );
+    .....

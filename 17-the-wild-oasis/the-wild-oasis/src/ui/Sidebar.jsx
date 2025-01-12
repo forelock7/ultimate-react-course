@@ -20,6 +20,7 @@ const Sidebar = () => {
       <Logo />
       <MainNav />
 
+      {/* For debugging to populate data */}
       <Uploader />
     </StyledSidebar>
   );
