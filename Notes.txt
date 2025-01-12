@@ -5254,3 +5254,44 @@ function TodayItem({ activity }) {
     </StyledTodayItem>
   );
 }
+
+- 405. Error Boundaries
+
+  npm install react-error-boundary
+
+  wrap the root of application components with error boundary component passing as a prop error component to display.
+  It catch error only when React is rendering
+
+    import React from 'react';
+    import ReactDOM from 'react-dom/client';
+    import App from './App';
+    import { ErrorBoundary } from 'react-error-boundary';
+    import ErrorFallback from './ui/ErrorFallback';
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <React.StrictMode>
+        <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => window.location.replace('/')}>
+          <App />
+        </ErrorBoundary>
+      </React.StrictMode>,
+    );
+
+    ------
+
+    ....
+    const ErrorFallback = ({ error, resetErrorBoundary }) => {
+    return (
+      <>
+        <GlobalStyles />
+        <StyledErrorFallback>
+          <Box>
+            <Heading as="h1">Something went wrong 🧐</Heading>
+            <p>{error.message}</p>
+            <Button size="large" onClick={resetErrorBoundary}>
+              Try again
+            </Button>
+          </Box>
+        </StyledErrorFallback>
+      </>
+    );
+  };
