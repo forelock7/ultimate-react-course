@@ -5338,3 +5338,6 @@ https://app.netlify.com/teams/forelock7/sites
 sites -> add new -> deploy manually -> Drag and drop './dist' folder
 
 4. You can change site name(URL)
+
+- 409. Setting Up a Git and GitHub Repository
+- 410. Deploying to Vercel
