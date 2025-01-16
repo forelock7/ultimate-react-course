@@ -5341,3 +5341,25 @@ sites -> add new -> deploy manually -> Drag and drop './dist' folder
 
 - 409. Setting Up a Git and GitHub Repository
 - 410. Deploying to Vercel
+
+*****************************************************************************************************************
+Section 31: PART 5: FULL-STACK REACT WITH NEXT.JS [1 PROJECT]
+*****************************************************************************************************************
+
+Here are some high-quality resources that you might find helpful while studying this Part 5. (The list follows the order of sections in this part)
+
+These resources are 100% optional, but might give you additional insights or provide ever deeper dives into some topics.
+
+👉 28 advanced Next.js features that everyone should know (A must-read for everyone after finishing the course! ☝️)
+
+👉 How React Server Components work (We cover React Server Components (RSC) in great detail, but here is another look at them, with a few more visualizations. Written before RSC was available anywhere, but still good)
+
+👉 RSC DevTools (A nice way of visualizing the RSC payload right in Chrome's DevTools)
+
+👉 Next.js Image Component Tutorial (Going even more deep into the <Image /> component than we do in the course)
+
+👉 Understanding Next.js cache (We cover caching in detail in the course, but this is another very good article on caching)
+
+👉 Static Site Generation (SSG) Next.js documentation page
+
+👉 High-quality open-source Next.js app for learning (A huge modern Next.js codebase that you can learn a lot from)
