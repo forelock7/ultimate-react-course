@@ -5363,3 +5363,7 @@ These resources are 100% optional, but might give you additional insights or pro
 👉 Static Site Generation (SSG) Next.js documentation page
 
 👉 High-quality open-source Next.js app for learning (A huge modern Next.js codebase that you can learn a lot from)
+
+*****************************************************************************************************************
+Section 32: Overview of Next.js With the "App" Router
+*****************************************************************************************************************
