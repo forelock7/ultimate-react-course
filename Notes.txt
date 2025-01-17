@@ -5367,3 +5367,6 @@ These resources are 100% optional, but might give you additional insights or pro
 *****************************************************************************************************************
 Section 32: Overview of Next.js With the "App" Router
 *****************************************************************************************************************
+
+- 414. Download Fresh Starter Files + Slides!
+  theory-slides-v1.1.pdf
