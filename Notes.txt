@@ -5370,3 +5370,16 @@ Section 32: Overview of Next.js With the "App" Router
 
 - 414. Download Fresh Starter Files + Slides!
   theory-slides-v1.1.pdf
+
+- 415. An Overview of Server-Side Rendering (SSR)
+ 
+- 416. Experiment: Manual SSR With React DOM + Node.js
+
+node server.js - run js file by node js
+node --watch server.js - run js file by node js and watch for changes in file
+
+npm i -D @babel/core @babel/preset-env @babel/preset-react @babel/register 
+npm i react react-dom
+
+after setting up babel use next to run project:
+node --watch start.js
