@@ -5383,3 +5383,7 @@ npm i react react-dom
 
 after setting up babel use next to run project:
 node --watch start.js
+
+- 417. The Missing Piece: Hydration
+
+- 418. Implementing Hydration
