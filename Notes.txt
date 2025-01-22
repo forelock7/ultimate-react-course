@@ -5406,3 +5406,14 @@ with options:
 Update settings 'custom labels' in VSCode to rename tabs because all page scripst have name: page.js
 item: **/app/**/page.js 
 value: Page: ${dirname}
+
+- 423. Navigating Between Pages
+
+export default function Page() {
+  return (
+    <div>
+      <h1>The Wild Oasis. Welcome to paradise.</h1>
+      <Link href="/cabins">Explore luxury cabins</Link>
+    </div>
+  );
+}
