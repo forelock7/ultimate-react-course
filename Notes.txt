@@ -5387,3 +5387,16 @@ node --watch start.js
 - 417. The Missing Piece: Hydration
 
 - 418. Implementing Hydration
+
+- 419. What is Next.js?
+
+- 420. Setting Up a Next.js Project
+
+npx create-next-app@14 the-wild-oasis-website
+with options:
+✔ Would you like to use TypeScript? … No 
+✔ Would you like to use ESLint? … Yes
+✔ Would you like to use Tailwind CSS? …  Yes
+✔ Would you like to use `src/` directory? … No 
+✔ Would you like to use App Router? (recommended) … Yes
+✔ Would you like to customize the default import alias (@/*)? … No 
