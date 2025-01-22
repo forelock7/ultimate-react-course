@@ -5399,4 +5399,10 @@ with options:
 ✔ Would you like to use Tailwind CSS? …  Yes
 ✔ Would you like to use `src/` directory? … No 
 ✔ Would you like to use App Router? (recommended) … Yes
-✔ Would you like to customize the default import alias (@/*)? … No 
+✔ Would you like to customize the default import alias (@/*)? … No
+
+- 422. Defining Routes and Pages
+
+Update settings 'custom labels' in VSCode to rename tabs because all page scripst have name: page.js
+item: **/app/**/page.js 
+value: Page: ${dirname}
