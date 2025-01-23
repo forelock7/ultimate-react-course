@@ -5417,3 +5417,25 @@ export default function Page() {
     </div>
   );
 }
+
+- 424. Creating a Layout
+
+project/app/layout.js
+----
+export const metadata = {
+  title: 'The Wild Oasis',   ---- title element is setting automaticaly (browser tab name)
+};
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <header>
+          <Logo />
+          <Navigation />    ---- propagated to all pages, where 'children' is pages' content
+        </header>
+        <main>{children}</main>
+        <footer>Copyright by The Wild Oasis</footer>
+      </body>
+    </html>
+  );
+}
