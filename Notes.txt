@@ -5499,3 +5499,11 @@ export default async function Page() {
     </div>
   );
 }
+
+- 428. Displaying a Loading Indicator
+To add global loading indicator just add this component in /app dir:
+21-the-wild-oasis-website/the-wild-oasis-website/app/loading.js
+....
+export default function Loading() {
+  return <p>LOADING DATA...</p>;
+}
