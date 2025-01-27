@@ -5464,3 +5464,38 @@ export default async function Page() {
     </div>
   );
 }
+
+- 427. Adding Interactivity With Client Components
+
+use effects only can be used in Client component
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/components/Counter.js
+......
+'use client';
+import { useState } from 'react';
+export default function Counter({ users }) {
+  const [count, setCount] = useState(0);
+
+  console.log(users);
+
+  return (
+    <div>
+      <p>There are {users.length} users</p>
+      <button onClick={() => setCount((c) => c + 1)}>{count}</button>
+    </div>
+  );
+}
+-----
+21-the-wild-oasis-website/the-wild-oasis-website/app/cabins/page.js
+.....
+import Counter from '../components/Counter';
+export default async function Page() {
+...
+  return (
+    <div>
+...
+
+      <Counter users={data} />
+    </div>
+  );
+}
