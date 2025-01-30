@@ -5507,3 +5507,11 @@ To add global loading indicator just add this component in /app dir:
 export default function Loading() {
   return <p>LOADING DATA...</p>;
 }
+
+- 429. How RSC Works Behind the Scenes (RSC – Part 2)
+
+RSC - React Server Component
+
+- 430. RSC vs. SSR: How are They Related? (RSC – Part 3)
+
+SSR - Server-Side Rendering
