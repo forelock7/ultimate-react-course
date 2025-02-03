@@ -5515,3 +5515,15 @@ RSC - React Server Component
 - 430. RSC vs. SSR: How are They Related? (RSC – Part 3)
 
 SSR - Server-Side Rendering
+
+*****************************************************************************************************************
+Section 33: Starting to Build the "Wild Oasis" Website
+*****************************************************************************************************************
+
+- 432. Project Planning: "The Wild Oasis" Customer Website
+
+Technologies:
++ Framework - NEXT.js
++ UI State management - Context API (or Redux)
++ BD/API - Supabase
++ Styling - tailwindcss
