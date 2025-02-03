@@ -5527,3 +5527,10 @@ Technologies:
 + UI State management - Context API (or Redux)
 + BD/API - Supabase
 + Styling - tailwindcss
+
+- 433. Project Organization
+
+Better to have /app/components/ dir to store all reusable components. Not to store them in page folders
+To avoid wrong routing, all othe dir should be named with underscore: "_components"
+
+import Logo from '@/app/_components/Logo'; - alias could be used, where @ - represents a root folder
