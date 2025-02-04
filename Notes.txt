@@ -5534,3 +5534,33 @@ Better to have /app/components/ dir to store all reusable components. Not to sto
 To avoid wrong routing, all othe dir should be named with underscore: "_components"
 
 import Logo from '@/app/_components/Logo'; - alias could be used, where @ - represents a root folder
+
+- 434. Styling With Tailwind CSS
+
+To activate Tailwind just add this file:
+/the-wild-oasis-website/app/_styles/globals.css
+
+Some colors could be predefined in /the-wild-oasis-website/tailwind.config.js and use them as class:
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50: '#E1E8EF',
+          100: '#D4DEE7',
+          200: '#B7C7D7',
+          300: '#99B0C7',
+          400: '#7C99B6',
+-------
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body className='bg-primary-950 text-gray-50 min-h-screen'>
+
+Install icons lib from tailwind developers:
+npm i @heroicons/react
