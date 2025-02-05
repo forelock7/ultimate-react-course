@@ -5564,3 +5564,22 @@ export default function RootLayout({ children }) {
 
 Install icons lib from tailwind developers:
 npm i @heroicons/react
+
+- 435. Adding Page Metadata and Favicon
+
+/the-wild-oasis-website/app/layout.js
+export const metadata = {
+  title: {
+    template: '%s / The Wild Oasis',    ---- set template for other pages where title is already set
+    default: 'Welcome / The Wild Oasis',
+  },
+  description:
+    'Luxurious cabin hotel, located in the heart of the Italian Dolomites, surrounded by beautiful mountains and dark forests',
+};
+
+/the-wild-oasis-website/app/cabins/page.js
+export const metadata = {
+  title: 'Cabins',
+};
+
+To set icon for web-site? just need to place 'icon.png' into '/app' folder
