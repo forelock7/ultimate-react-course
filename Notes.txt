@@ -5583,3 +5583,16 @@ export const metadata = {
 };
 
 To set icon for web-site? just need to place 'icon.png' into '/app' folder
+
+- 436. Loading and Optimizing Fonts
+
+import { Josefin_Sans } from 'next/font/google';
+const josefin = Josefin_Sans({
+  subsets: ['latin'],
+  // display: 'swap', //-- somehow it doesn't work properly
+});
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body className={`${josefin.className} bg-primary-950 text-primary-100 min-h-screen`}>
+        <header>
