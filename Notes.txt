@@ -5670,3 +5670,14 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+*****************************************************************************************************************
+Section 34: Data Fetching, Caching, and Rendering
+*****************************************************************************************************************
+
+- 443. Section Overview
+
++ How to work with data effectively in Next.js
++ Streaming with Suspense and loading.js
++ Static vs. Dynamic rendering
++ Caching mechanisms
