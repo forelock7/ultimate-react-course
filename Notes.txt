@@ -5616,10 +5616,23 @@ export default function Page() {
   return (
     <main className="mt-24">
       <Image
-        src={bg}   ---- direct import of image gives us fill, placeholder and quality props
-        fill ---- image fills entire element (like background) 
+        src={bg}   ---- direct import of image gives us placeholder and quality props
+        fill ---- image fills entire viewport (like background) 
         placeholder="blur"   ---- show bur during loading the image
         quality={80}  --- just quality of image for optimization
         className="object-cover object-top"  --- cover element properly: fit image by cutting and place it always on the top during scrolling
         alt="Mountains and forests with two cabins"
       />
+
+- 440. Building the About Page With Responsive Images
+
+Make image responsive if we cannnot import image, for istance when image is downloaded from DB:
+
+      <div className="relative aspect-square col-span-2">   --- relative aspect-square
+        <Image
+          src="/about-2.jpg"
+          fill  ----- fill
+          className="object-cover"   ----- object-cover
+          alt="Family that manages The Wild Oasis"
+        />
+      </div>
