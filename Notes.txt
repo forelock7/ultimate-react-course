@@ -5640,3 +5640,33 @@ Make image responsive if we cannnot import image, for istance when image is down
 - 441. Adding Nested Routes and Pages
 
 npm i date-fns
+
+- 442. Adding a Nested Layout
+
+Just create nested layout: /the-wild-oasis-website/app/account/layout.js
+.....
+export default function Layout({ children }) {
+  return (
+    <div className="grid grid-cols-[16rem_1fr] h-full gap-12">
+      <SideNavigation />
+      <div className="py-1">{children}</div>
+    </div>
+  );
+}
+
+------
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body
+        className={`${josefin.className} bg-primary-950 text-primary-100 min-h-screen flex flex-col relative`}
+      >
+        <Header />
+        <div className="flex-1 px-8 py-12 grid">    --- 'grid' fixes SideNavigation in Account Layout
+          <main className="max-w-7xl mx-auto w-full">{children}</main> --- 'w-full' fixes SideNavigation in Account Layout
+        </div>
+      </body>
+    </html>
+  );
+}
