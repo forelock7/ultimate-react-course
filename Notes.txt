@@ -5598,3 +5598,12 @@ export default function RootLayout({ children }) {
         <header>
 
 - 437. Improving the Navigation and Root Layout
+
+- 438. Optimizing Images With Next.js <Image /> Component
+
+import logo from '@/public/logo.png';
+function Logo() {
+  return (
+    <Link href="/" className="flex items-center gap-4 z-10">
+      {/* <Image src="/logo.png" height="60" width="60" alt="The Wild Oasis logo" /> */}
+      <Image src={logo} height="60" width="60" alt="The Wild Oasis logo" quality={100} /> --- import of image give us additional parameters to specify, like quality
