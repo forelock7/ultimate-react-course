@@ -5681,3 +5681,22 @@ Section 34: Data Fetching, Caching, and Rendering
 + Streaming with Suspense and loading.js
 + Static vs. Dynamic rendering
 + Caching mechanisms
+
+- 444. Setting Up Supabase
+
+Create file:
+/the-wild-oasis-website/app/_lib/supabase.js
+import { createClient } from '@supabase/supabase-js';
+export const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+
+Install package:
+npm i @supabase/supabase-js
+
+Create file:
+/the-wild-oasis-website/.env.local
+SUPABASE_URL=https://tbdnqeequpkpxismudxc.supabase.co
+SUPABASE_KEY=ddd  --- secret_role from Supabase/Settngs/Data API/Project API Keys
+NEXT_PUBLIC_SOME_VAR=23  ---- public env var which is reached from browser
+
+Update /the-wild-oasis-website/app/_lib/data-service.js with:
+import { supabase } from './supabase';
