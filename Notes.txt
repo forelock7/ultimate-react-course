@@ -5700,3 +5700,5 @@ NEXT_PUBLIC_SOME_VAR=23  ---- public env var which is reached from browser
 
 Update /the-wild-oasis-website/app/_lib/data-service.js with:
 import { supabase } from './supabase';
+
+- 445. Fetching and Displaying Cabin List
