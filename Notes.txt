@@ -5722,3 +5722,8 @@ Why a component can be suspending:
       </Suspense>
 
   This override loading.js 
+
+- 449. Dynamic Route Segments: Building the Cabin Page
+
+name dir:
+/app/cabins/[cabinId]/page.js]
