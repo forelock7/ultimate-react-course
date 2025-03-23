@@ -5715,3 +5715,10 @@ Why a component can be suspending:
 1. Fetching data (with supported library)
 2. Loading cade (with React lazy loading)
 
+- 448. Streaming UI With Suspense: Cabin List
+
+      <Suspense fallback={<Spinner />}>
+        <CabinList />  ---- data fetching!!
+      </Suspense>
+
+  This override loading.js 
