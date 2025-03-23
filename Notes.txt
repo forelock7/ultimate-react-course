@@ -5707,3 +5707,11 @@ import { supabase } from './supabase';
 
 To override global loading.js, just create file in the rout with the same name:
 /cabins/loading.js
+
+- 447. What is React Suspense?
+
+Built-in React component that we use to catch/isolate components that are not ready to be rendered.
+Why a component can be suspending:
+1. Fetching data (with supported library)
+2. Loading cade (with React lazy loading)
+
