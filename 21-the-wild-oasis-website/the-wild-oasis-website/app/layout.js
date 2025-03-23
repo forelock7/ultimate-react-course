@@ -8,7 +8,7 @@ import Header from './_components/Header';
 
 const josefin = Josefin_Sans({
   subsets: ['latin'],
-  // display: 'swap', //-- somehow it doesn't work properly
+  display: 'swap', //-- somehow it doesn't work properly
 });
 
 export const metadata = {

@@ -5702,3 +5702,8 @@ Update /the-wild-oasis-website/app/_lib/data-service.js with:
 import { supabase } from './supabase';
 
 - 445. Fetching and Displaying Cabin List
+
+- 446. Streaming Route Segments With loading.js File
+
+To override global loading.js, just create file in the rout with the same name:
+/cabins/loading.js
