@@ -5727,3 +5727,12 @@ Why a component can be suspending:
 
 name dir:
 /app/cabins/[cabinId]/page.js]
+
+- 450. Generating Dynamic Metadata
+
+export async function generateMetadata({params}) {
+    const cabin = await getCabin(params.cabinId);
+    return {
+        title: `Cabin ${cabin.name}`,
+    };
+}
