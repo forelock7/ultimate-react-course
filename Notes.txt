@@ -5816,3 +5816,12 @@ Terminology:
   - CDN
   - Serverless Computing - we can run app code, usually back-end code, without managing teh server ourself
   - Incremental Static Regeneration (ISR)
+
+- 454. Analyzing Rendering in Our App
+
+Next.js decides if it's static or dynemic
+
+Run to build project to find out which route is dynemic or static:
+npm run build
+
+As a result /cabins/[cabinId] - is dynemic and all other are static
