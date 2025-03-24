@@ -5789,3 +5789,30 @@ export async function getCabin(id) {
 }
 
 Also you can override 'not-found.js' for any route.
+
+- 453. Different Types of SSR: Static vs. Dynamic Rendering
+
+Static
+  - HTML is generated at built time or periodically in the background by re-fetching data
+  - Useful when data doesn't change often and is not personalized to user
+  - Default rendering strategy in Next.js (even when a page or component fetches data)
+  - When deployed to Vercel, each static route is automatically hosted on a CDN (Content Delivery Network)
+  - If all routes of an app are static, the entire app can be exported as a static site (SSG)
+
+Dynemic 
+  - HTML is generated at request time (for each new request reaches the server)
+  - Makes sense if:
+    - The data changes frequently and is personalized to the user
+    - Rendering a rout requires information that depends on request
+  - A route automatically switches to dynemic rendering in certain condition 
+  - When deployed to Vercel, each dynemic rout becomes a serverless function
+
+When NEXT.js switches to Dynemic Rendering:
+  1. The route has a dynemic Segments (page uses params)
+  2. searchParams are used in the page component
+  3. headers() or cookies() is made in any of the route's server components
+
+Terminology:
+  - CDN
+  - Serverless Computing - we can run app code, usually back-end code, without managing teh server ourself
+  - Incremental Static Regeneration (ISR)
