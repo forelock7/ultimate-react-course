@@ -5875,3 +5875,14 @@ Route (app)                              Size     First Load JS
 
 ○  (Static)  prerendered as static content
 ●  (SSG)     prerendered as static HTML (uses getStaticProps)
+
+- 456. Static Site Generation (SSG)
+
+Just update next config:
+/next.config.mjs
+  },
+  output: 'export',
+};
+
+Run: npm run build
+as a result you'll get /out dir with static content, but without images. To use images, need to use special loaders.
