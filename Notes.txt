@@ -5823,5 +5823,55 @@ Next.js decides if it's static or dynemic
 
 Run to build project to find out which route is dynemic or static:
 npm run build
+----
+Route (app)                              Size     First Load JS
+┌ ○ /                                    526 B          99.6 kB
+├ ○ /_not-found                          155 B          87.2 kB
+├ ○ /about                               847 B          93.1 kB
+├ ○ /account                             155 B          87.2 kB
+├ ○ /account/profile                     155 B          87.2 kB
+├ ○ /account/reservations                155 B          87.2 kB
+├ ○ /cabins                              185 B          99.2 kB
+├ ƒ /cabins/[cabinId]                    293 B          92.5 kB
+└ ○ /icon.png                            0 B                0 B
++ First Load JS shared by all            87.1 kB
+  ├ chunks/117-3dc6c157de4418a1.js       31.6 kB
+  ├ chunks/fd9d1056-749e5812300142af.js  53.6 kB
+  └ other shared chunks (total)          1.86 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
 
 As a result /cabins/[cabinId] - is dynemic and all other are static
+
+- 455. Making Dynamic Pages Static With generateStaticParams
+
+export async function generateStaticParams() {
+  const cabins = await getCabins();
+  return cabins.map((cabin) => ({ cabinId: String(cabin.id) }));
+}
+
+npm run build
+-----
+Route (app)                              Size     First Load JS
+┌ ○ /                                    526 B          99.6 kB
+├ ○ /_not-found                          155 B          87.2 kB
+├ ○ /about                               847 B          93.1 kB
+├ ○ /account                             155 B          87.2 kB
+├ ○ /account/profile                     155 B          87.2 kB
+├ ○ /account/reservations                155 B          87.2 kB
+├ ○ /cabins                              185 B          99.2 kB
+├ ● /cabins/[cabinId]                    293 B          92.5 kB
+├   ├ /cabins/70
+├   ├ /cabins/71
+├   ├ /cabins/72
+├   └ [+5 more paths]
+└ ○ /icon.png                            0 B                0 B
++ First Load JS shared by all            87.1 kB
+  ├ chunks/117-3dc6c157de4418a1.js       31.6 kB
+  ├ chunks/fd9d1056-749e5812300142af.js  53.6 kB
+  └ other shared chunks (total)          1.86 kB
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses getStaticProps)
