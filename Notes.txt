@@ -5899,3 +5899,7 @@ Solution: Partial Pre-Rendering, It combines static and dynemic rendering
 Result: Even faster pages that can mostly be delivered from the edge (CDN) even when there are small dynemic parts
 
 It is still experimental and shouldn't be used in production
+
+- 458. How Next.js Caches Data
+
+see in theory-slides-v1.1.pdf
