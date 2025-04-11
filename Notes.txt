@@ -5903,3 +5903,28 @@ It is still experimental and shouldn't be used in production
 - 458. How Next.js Caches Data
 
 see in theory-slides-v1.1.pdf
+
+- 459. Experimenting With Caching and ISR
+
+To simulate production env:
+npm run prod
+
+If change price for cabin 001 in DB, it will not reflect this on prod env because of caching.
+
+To fix this we can use revalidate in the ROUTE level (/the-wild-oasis-website/app/cabins/page.js):
+...
+export const revalidate = 3600; - auto revalidation each 3600  seconds
+...
+
+OR
+To fix this we can use revalidate in the COMPONENT level. Set timeout to 'fetch' function (/the-wild-oasis-website/app/_components/CabinList.js):
+fetch('https://...', { next: { revalidate: 3600 } })
+
+in case we use supabase API instead of 'fetch' we can disable caching for particular call:
+...
+import { unstable_noStore as noStore } from 'next/cache';
+...
+async function CabinList() {
+  noStore();
+  const cabins = await getCabins();
+...
