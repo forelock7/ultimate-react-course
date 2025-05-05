@@ -5937,3 +5937,7 @@ Section 35: Client and Server Interactions
 
 Client Component (CC) can render Server Component (SC) inside  if it's passed as a prop.
 But this both components should be imported inside another SC.
+
+- 463. Client Components in Server Components
+
+If we import SC inside CC it becaomes automatically CC too.
