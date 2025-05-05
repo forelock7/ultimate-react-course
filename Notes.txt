@@ -5928,3 +5928,12 @@ async function CabinList() {
   noStore();
   const cabins = await getCabins();
 ...
+
+*****************************************************************************************************************
+Section 35: Client and Server Interactions
+*****************************************************************************************************************
+
+- 462. Blurring the Boundary Between Server and Client (RSC – Part 4)
+
+Client Component (CC) can render Server Component (SC) inside  if it's passed as a prop.
+But this both components should be imported inside another SC.
