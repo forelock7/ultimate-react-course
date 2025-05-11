@@ -6009,3 +6009,7 @@ function Button({ filter, handleFilter, activeFilter, children }) {
     </button>
   );
 }
+
+- 466. Advanced: Server Components in Client Components
+
+Pass server component to client component inside server component
