@@ -6013,3 +6013,14 @@ function Button({ filter, handleFilter, activeFilter, children }) {
 - 466. Advanced: Server Components in Client Components
 
 Pass server component to client component inside server component
+
+- 467. Data Fetching Strategies for the Reservation Section
+
+install 'react-day-picker' package for DateSelector component
+
+See:
++ 21-the-wild-oasis-website/the-wild-oasis-website/app/cabins/[cabinId]/page.js
++ 21-the-wild-oasis-website/the-wild-oasis-website/app/_components/Reservation.js
++ 21-the-wild-oasis-website/the-wild-oasis-website/app/_components/DateSelector.js
++ 21-the-wild-oasis-website/the-wild-oasis-website/app/_components/ReservationForm.js
++ 21-the-wild-oasis-website/the-wild-oasis-website/app/_components/Cabin.js
