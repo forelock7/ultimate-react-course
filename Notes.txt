@@ -6024,3 +6024,18 @@ See:
 + 21-the-wild-oasis-website/the-wild-oasis-website/app/_components/DateSelector.js
 + 21-the-wild-oasis-website/the-wild-oasis-website/app/_components/ReservationForm.js
 + 21-the-wild-oasis-website/the-wild-oasis-website/app/_components/Cabin.js
+
+
+- 468. Using the Context API for State Management
+
+To use Context API in Next.js you need:
+1. Create CLIENT component for Context; 
+2. Use Context Provider in root layout 
+3. Where we use react hook (custom hook also), that component should be client ('use client';)
+
+All only CLIENT component will use custom hook from Context API
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/_components/ReservationContext.js:
+21-the-wild-oasis-website/the-wild-oasis-website/app/layout.js
+21-the-wild-oasis-website/the-wild-oasis-website/app/_components/ReservationReminder.js
+21-the-wild-oasis-website/the-wild-oasis-website/app/_components/DateSelector.js
