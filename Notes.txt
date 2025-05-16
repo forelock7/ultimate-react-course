@@ -6039,3 +6039,23 @@ All only CLIENT component will use custom hook from Context API
 21-the-wild-oasis-website/the-wild-oasis-website/app/layout.js
 21-the-wild-oasis-website/the-wild-oasis-website/app/_components/ReservationReminder.js
 21-the-wild-oasis-website/the-wild-oasis-website/app/_components/DateSelector.js
+
+- 469. Creating an API Endpoint With Route Handlers
+
+page.js and route.js cannot be in the same folder. It will provoke conflict
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/api/cabins/[cabinId]/route.js
+import { getBookedDatesByCabinId, getCabin } from '@/app/_lib/data-service';
+export async function GET(request, { params }) {
+  const { cabinId } = params;
+  try {
+    const [cabin, bookedDates] = await Promise.all([
+      getCabin(cabinId),
+      getBookedDatesByCabinId(cabinId),
+    ]);
+    return Response.json({ cabin, bookedDates });
+  } catch {
+    return Response.json({ message: 'Cabin no found' });
+  }
+}
+// export async function POST(params) {}
