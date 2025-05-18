@@ -6107,3 +6107,22 @@ Open in browser: http://localhost:3000/api/auth/signin
 as a result - Sign in with Google
 
 More options: http://localhost:3000/api/auth/providers
+
+- 472. Getting the User Session
+
+            <Link href="/account" className="hover:text-accent-400 transition-colors">
+              <img
+                className="h-8 rounded-full"
+                src={session.user.image}
+                alt={session.user.name}
+                referrerPolicy="no-referrer"
+              />
+              <span>Guest area</span>
+            </Link>
+referrerPolicy="no-referrer"   --- When you set referrerPolicy='no-referrer', the Referer header will not be sent at all in any HTTP requests, meaning that no referrer information will be included in the request. This is useful for privacy reasons or when you don't want to expose the source URL for requests made to external sites.
+
+http://localhost:3000/api/auth/signin
+http://localhost:3000/api/auth/signout
+Picture of profile will disappear
+
+If we use auth() in Navigation component which is part of layout, every route bacomes dynemic, because auth work with cookies.
