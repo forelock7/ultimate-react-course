@@ -6126,3 +6126,16 @@ http://localhost:3000/api/auth/signout
 Picture of profile will disappear
 
 If we use auth() in Navigation component which is part of layout, every route bacomes dynemic, because auth work with cookies.
+
+- 473. What is Middleware in Next.js?
+
+Middleware - it runs between request and response.
+request -> middleware -> app routs -> response
+Should be middleware.js file in root folder of project.
+
+Use case:
+- read and set cookies and headers
+- Authentication and Authorization
+- Server-side analytics
+- Redirect based on geolocation
+- A/B testing
