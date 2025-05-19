@@ -6167,3 +6167,36 @@ export const {
   handlers: { GET, POST },
 } = NextAuth(authConfig);
 
+- 475. Building a Custom Sign In Page
+
+onClick param cannot be on Server component, that's why 'form' should be used.
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/_components/SignInButton.js
+...
+function SignInButton() {
+  return (
+    <form action={signInAction}>
+      <button className="flex items-center gap-6 text-lg border border-primary-300 px-10 py-4 font-medium">
+        <img
+        ...
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/_lib/actions.js
+'use server';
+import { signIn } from './auth';
+export async function signInAction() {
+  await signIn('google', { redirectTo: '/account' });
+}
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/_lib/auth.js
+const authConfig = {
+...
+  pages: {
+    signIn: '/login',
+  },
+};
+
+export const {
+  auth,
+  signIn,
+  signOut,
+  ...
