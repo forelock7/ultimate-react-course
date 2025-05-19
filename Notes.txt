@@ -6217,3 +6217,25 @@ export async function signOutAction() {
   await signOut('google', { redirectTo: '/' });
 }
 
+- 477. Creating a New Guest on First Sign In
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/_lib/auth.js
+const authConfig = {
+...
+    async signIn({ user, account, profile }) {
+      try {
+        const existingGuest = await getGuest(user.email);
+        if (!existingGuest) await createGuest({ email: user.email, fullName: user.name });
+        return true;
+      } catch {
+        return false;
+      }
+    },
+    async session({ session, user }) {
+      const guest = await getGuest(session.user.email);
+      session.user.guestId = guest.id;
+      return session;
+    },
+  },
+...
+};

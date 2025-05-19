@@ -1,3 +1,4 @@
+import { loadComponents } from 'next/dist/server/load-components';
 import { auth } from '../_lib/auth';
 
 export const metadata = {
