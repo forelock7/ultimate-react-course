@@ -6139,3 +6139,31 @@ Use case:
 - Server-side analytics
 - Redirect based on geolocation
 - A/B testing
+
+- 474. Protecting Routes With NextAuth Middleware
+
+21-the-wild-oasis-website/the-wild-oasis-website/middleware.js
+import { auth } from '@/app/_lib/auth';
+export const middleware = auth;
+export const config = {
+  matcher: ['/account'],
+};
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/_lib/auth.js
+(see callback!)
+...
+const authConfig = {
+  providers: [
+    Google({ clientId: process.env.AUTH_GOOGLE_ID, clientSecret: process.env.AUTH_GOOGLE_SECRET }),
+  ],
+  callbacks: {
+    authorized({ auth, request }) {
+      return !!auth?.user;
+    },
+  },
+};
+export const {
+  auth,
+  handlers: { GET, POST },
+} = NextAuth(authConfig);
+
