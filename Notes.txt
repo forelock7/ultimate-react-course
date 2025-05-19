@@ -6200,3 +6200,20 @@ export const {
   signIn,
   signOut,
   ...
+
+- 476. Building a Custom Sign Out Button
+
+Actions can be used also in Client components
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/_components/SignOutButton.js
+function SignOutButton() {
+  return (
+    <form action={signOutAction}>
+      <button 
+      ...
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/_lib/actions.js
+export async function signOutAction() {
+  await signOut('google', { redirectTo: '/' });
+}
+
