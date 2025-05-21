@@ -6244,4 +6244,27 @@ const authConfig = {
 Section 37: Mutations With Server Actions + Modern React Hooks
 *****************************************************************************************************************
 
-478. Section Overview
+- 478. Section Overview
+
+- 479. What are Server Actions?
+
++ Server actions - for mutation data after data fetching
++ This async functions that run on the server
++ Created with "use server" derective at the top
++ Behind the scenes: Next.js creates API endpoint (with URL) for each server action. Whenever a server action is called, a POST request is made to its URL (the function itself never reaches client)
++ Unlike server components, server actions actually require a running web server
+
+
+1. An async function in a server component. Can be used in component ot passed to a client component(unlike functions)
+2. Standalone file: exported functions become server actions that can be imported into any component [recommended]
+
+Server actions can be called from:
+1. action attribute in a <form> element (in server and client components)
+2. Event handlers (only client components)
+3. useEffect (only client conponents)
+ 
+ In Server actions we can:
+ + Perform data mutation (create, update, delete)
+ + Update the UI with new data: Revalidate cachewith "revalidatePath" and "revalidateTag"
+ + Work with cookies
+ + Many more
