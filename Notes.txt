@@ -6301,3 +6301,13 @@ export async function updateGuest(formData) {
   if (error) throw new Error('Guest could not be updated');
 }
 ....
+
+- 481. Manual Cache Revalidation
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/_lib/actions.js
+export async function updateGuest(formData) {
+  const session = auth();
+.....
+  if (error) throw new Error('Guest could not be updated');
+  revalidatePath('/account/profile');
+}
