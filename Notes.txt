@@ -6268,3 +6268,36 @@ Server actions can be called from:
  + Update the UI with new data: Revalidate cachewith "revalidatePath" and "revalidateTag"
  + Work with cookies
  + Many more
+
+ - 480. Updating the Profile Using a Server action
+ 
+ 21-the-wild-oasis-website/the-wild-oasis-website/app/_components/UpdateProfileForm.js
+function UpdateProfileForm({ guest, children }) {
+  const [count, setCount] = useState();
+  const { fullName, email, nationality, nationalID, countryFlag } = guest;
+  return (
+    <form action={updateGuest} className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
+      <div className="space-y-2">
+        <label>Full name</label>
+        <input
+          disabled
+          defaultValue={fullName}
+          name="fullName"
+          ....
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/_lib/actions.js
+export async function updateGuest(formData) {
+  const session = auth();
+  if (!session) throw new Error('You must be logged in');
+  const nationalID = formData.get('nationalID');
+  const [nationality, countryFlag] = formData.get('nationality').split('%');
+  if (!/^[a-zA-Z0-9]{6,12}$/.test(nationalID))
+    throw new Error('Please provide a valid national ID');
+  const updateData = { nationality, countryFlag, nationalID };
+  const { data, error } = await supabase
+    .from('guests')
+    .update(updateData)
+    .eq('id', (await session).user.guestId);
+  if (error) throw new Error('Guest could not be updated');
+}
+....
