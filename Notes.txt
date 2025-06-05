@@ -6392,3 +6392,10 @@ function DeleteReservation({ bookingId }) {
     </button>
   );
 }
+
+- 486. CHALLENGE #1: Updating a Reservation
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/account/reservations/edit/[bookingId]/page.js
+21-the-wild-oasis-website/the-wild-oasis-website/app/_lib/actions.js
+21-the-wild-oasis-website/the-wild-oasis-website/app/_components/UpdateProfileForm.js
+21-the-wild-oasis-website/the-wild-oasis-website/app/_components/SubmitButton.js
