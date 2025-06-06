@@ -6434,3 +6434,52 @@ function ReservationList({ bookings }) {
 - 488. Back to the Cabin Page: Finishing the Date Selector
 
 21-the-wild-oasis-website/the-wild-oasis-website/app/_components/DateSelector.js
+
+- 489. Creating a New Reservation
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/_components/ReservationForm.js
+function ReservationForm({ cabin, user }) {
+  const { range, resetRange } = useReservation();
+  const { maxCapacity, regularPrice, discount, id } = cabin;
+  const startDate = range.from;
+  const endDate = range.to;
+  const numNights = differenceInDays(endDate, startDate);
+  const cabinPrice = numNights * (regularPrice - discount);
+  const bookingData = { startDate, endDate, numNights, cabinPrice, cabinId: id };
+  const createBookingWithData = createBooking.bind(null, bookingData);
+  ....
+        <form
+        action={async (formData) => {
+          await createBookingWithData(formData);
+          resetRange();
+        }}
+        ...
+
+There are two options to submit some data that arer missing in fields:
+1. Use hidden fields in form (used earlier)
+2. Bind action method with extended params (see next realization)
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/_lib/actions.js
+export async function createBooking(bookingData, formData) {
+  const session = await auth();
+  if (!session) throw new Error('You must be logged in');
+  const newBooking = {
+    ...bookingData,
+    guestId: session.user.guestId,
+    numGuests: Number(formData.get('numGuests')),
+    observations: formData.get('observations').slice(0, 1000),
+    extrasPrice: 0,
+    totalPrice: bookingData.cabinPrice,
+    isPaid: false,
+    hasBreakfast: false,
+    status: 'unconfirmed',
+  };
+  const { data, error } = await supabase.from('bookings').insert([newBooking]);
+  if (error) {
+    console.error(error);
+    throw new Error('Booking could not be created');
+  }
+  revalidatePath(`/cabins/${bookingData.cabinId}`);
+  redirect('/cabins/thankyou');
+}
+
