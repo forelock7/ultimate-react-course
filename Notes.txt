@@ -6399,3 +6399,34 @@ function DeleteReservation({ bookingId }) {
 21-the-wild-oasis-website/the-wild-oasis-website/app/_lib/actions.js
 21-the-wild-oasis-website/the-wild-oasis-website/app/_components/UpdateProfileForm.js
 21-the-wild-oasis-website/the-wild-oasis-website/app/_components/SubmitButton.js
+
+- 487. Removing Reservations Immediately: The useOptimistic Hook
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/_components/ReservationList.js
+'use client';
+import { useOptimistic } from 'react';
+import ReservationCard from './ReservationCard';
+import { deleteReservetion } from '../_lib/actions';
+function ReservationList({ bookings }) {
+  const [optimisticBookings, optimisticDelete] = useOptimistic(
+    bookings,
+    (curBookings, bookingId) => {
+      return curBookings.filter((booking) => booking.id !== bookingId);
+    },
+  );
+  async function handleDelete(bookingId) {
+    optimisticDelete(bookingId);
+    await deleteReservetion(bookingId);
+  }
+  return (
+    <ul className="space-y-6">
+      {optimisticBookings.map((booking) => (
+        <ReservationCard booking={booking} onDelete={handleDelete} key={booking.id} />
+      ))}
+    </ul>
+  );
+}
+
+21-the-wild-oasis-website/the-wild-oasis-website/app/account/reservations/page.js
+21-the-wild-oasis-website/the-wild-oasis-website/app/_components/ReservationCard.js
+21-the-wild-oasis-website/the-wild-oasis-website/app/_components/DeleteReservation.js
