@@ -6483,3 +6483,11 @@ export async function createBooking(bookingData, formData) {
   redirect('/cabins/thankyou');
 }
 
+*****************************************************************************************************************
+Section 38: Deployment With Vercel
+*****************************************************************************************************************
+
+- 490. Section Overview
+- 491. Setting Up the GitHub Repository
+- 492. Deploying to Vercel
+- 493. Updating Environment Variables and OAuth Credentials
